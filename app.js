@@ -5,8 +5,6 @@
 
 var express = require('express'),
 	routes = require('./routes'),
-	user = require('./routes/user'),
-	job = require('./routes/job'),
 	http = require('http'),
 	path = require('path'),
 	GtechService = require('./routes/gtechservice').GtechService,
@@ -31,8 +29,6 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.post('/addjob', job.addjob);
 
 var gtechservice= new GtechService('localhost', 27017);
 

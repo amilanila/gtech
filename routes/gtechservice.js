@@ -12,16 +12,20 @@ GtechService = function(host, port) {
 
 GtechService.prototype.getCollection= function(callback) {
   this.db.collection('job', function(error, job_collection) {
-    if( error ) callback(error);
-    else callback(null, job_collection);
+    if( error ) {
+      callback(error);
+    } else {
+      callback(null, job_collection);
+    }
   });
 };
 
-//find all employees
+//find all jobs
 GtechService.prototype.findAll = function(callback) {
     this.getCollection(function(error, job_collection) {
-      if( error ) callback(error)
-      else {
+      if( error ) {
+        callback(error);
+      } else {
         job_collection.find().toArray(function(error, results) {
           if( error ) callback(error)
           else callback(null, results)
@@ -30,21 +34,22 @@ GtechService.prototype.findAll = function(callback) {
     });
 };
 
-//save new employee
-GtechService.prototype.save = function(employees, callback) {
+//save new job
+GtechService.prototype.save = function(jobs, callback) {
     this.getCollection(function(error, job_collection) {
-      if( error ) callback(error)
-      else {
-        if( typeof(employees.length)=="undefined")
-          employees = [employees];
+      if( error ) {
+        callback(error);
+      } else {
+        if( typeof(jobs.length)=="undefined")
+          jobs = [jobs];
 
-        for( var i =0;i< employees.length;i++ ) {
-          employee = employees[i];
-          employee.created_at = new Date();
+        for( var i =0;i< jobs.length;i++ ) {
+          job = jobs[i];
+          job.created_at = new Date();
         }
 
-        job_collection.insert(employees, function() {
-          callback(null, employees);
+        job_collection.insert(jobs, function() {
+          callback(null, jobs);
         });
       }
     });
