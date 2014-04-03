@@ -54,74 +54,74 @@
 
           <!-- Nav tabs -->
           <ul id="mainTab" class="nav nav-tabs">
-            <li class="active"><a href="#" data-toggle="tab">Manufacturer</a></li>
-            <li><a href="#" data-toggle="tab">Model</a></li>
-            <li><a href="#" data-toggle="tab">Service Type</a></li>
-            <li><a href="#" data-toggle="tab">Job</a></li>
+            <li class="active"><a href="#manufacturer" data-toggle="tab">Manufacturer</a></li>
+            <li><a href="#model" data-toggle="tab">Model</a></li>
+            <li><a href="#service" data-toggle="tab">Service Type</a></li>
+            <li><a href="#job" data-toggle="tab">Job</a></li>
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <div class="tab-pane active" id="manufacturerTab">fsdfsd</div>
-            <div class="tab-pane" id="modelTab">sdfsdfsdf</div>
-            <div class="tab-pane" id="serviceTab">dfsdfsdfsdfsdfsdf</div>
-            <div class="tab-pane" id="jobTab">sdfsdfsdfsdfsdfsdfdfsdfsdf</div>
-          </div>
-
-          <h2 class="sub-header">New Job</h2>          
-          <div class="table-responsive">
-          	<form role="newJobForm" method="post" action="/addgtechservice">
-      			  <div class="form-group">
-      			    <label for="make">Manufacturer</label>
-      			    <input type="text" class="form-control" id="make" name="make" placeholder="Manufacturer">
-      			  </div>
-      			  <div class="form-group">
-      			    <label for="model">Model</label>
-      			    <input type="input" class="form-control" id="model" name="model" placeholder="Model">
-      			  </div>
-      			  <div class="form-group">
-      			    <label for="model">Rego</label>
-      			    <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
-      			  </div>
-      			  <div class="form-group">
-      			    <label for="name">Name</label>
-      			    <input type="input" class="form-control" id="name" name="name" placeholder="Name">
-      			  </div>
-      			  <div class="form-group">
-      			    <label for="contact">Contact</label>
-      			    <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
-      			  </div>
-      			  <button type="submit" class="btn btn-default">Save Job</button>
-      			</form>	
-          </div>
-          <hr>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>                
-                <tr>
-                  <th>#</th>
-                  <th>Make</th>
-                  <th>Model</th>
-                  <th>Rego</th>
-                  <th>Name</th>
-                  <th>Contact</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#services}}
-                  <tr>
-                    <td>{{id}}</td>
-                    <td>{{make}}</td>
-                    <td>{{model}}</td>
-                    <td>{{rego}}</td>
-                    <td>{{name}}</td>
-                    <td>{{contact}}</td>
-                    <td><input type="checkbox" name="status_1001" value="1"></td>
-                  </tr>
-                {{/services}}
-              </tbody>
-            </table>
+            <div class="tab-pane active" id="manufacturer">Manufacturers</div>
+            <div class="tab-pane" id="model">Models</div>
+            <div class="tab-pane" id="service">Services</div>
+            <div class="tab-pane" id="job">
+	          <h2 class="sub-header">Jobs</h2>          
+	          <div class="table-responsive">
+	          	<form role="newJobForm" method="post" action="/addgtechservice">
+	      			  <div class="form-group">
+	      			    <label for="make">Manufacturer</label>
+	      			    <input type="text" class="form-control" id="make" name="make" placeholder="Manufacturer">
+	      			  </div>
+	      			  <div class="form-group">
+	      			    <label for="model">Model</label>
+	      			    <input type="input" class="form-control" id="model" name="model" placeholder="Model">
+	      			  </div>
+	      			  <div class="form-group">
+	      			    <label for="model">Rego</label>
+	      			    <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+	      			  </div>
+	      			  <div class="form-group">
+	      			    <label for="name">Name</label>
+	      			    <input type="input" class="form-control" id="name" name="name" placeholder="Name">
+	      			  </div>
+	      			  <div class="form-group">
+	      			    <label for="contact">Contact</label>
+	      			    <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
+	      			  </div>
+	      			  <button type="submit" class="btn btn-default">Save Job</button>
+	      			</form>	
+	          </div>
+	          <hr>
+	          <div class="table-responsive">
+	            <table class="table table-striped">
+	              <thead>                
+	                <tr>
+	                  <th>#</th>
+	                  <th>Make</th>
+	                  <th>Model</th>
+	                  <th>Rego</th>
+	                  <th>Name</th>
+	                  <th>Contact</th>
+	                  <th>Status</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                {{#services}}
+	                  <tr>
+	                    <td>{{id}}</td>
+	                    <td>{{make}}</td>
+	                    <td>{{model}}</td>
+	                    <td>{{rego}}</td>
+	                    <td>{{name}}</td>
+	                    <td>{{contact}}</td>
+	                    <td><input type="checkbox" name="status_1001" value="1"></td>
+	                  </tr>
+	                {{/services}}
+	              </tbody>
+	            </table>
+	          </div>	            
+            </div>
           </div>
         </div>
       </div>
