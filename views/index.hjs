@@ -10,7 +10,9 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <script src='/javascript/jquery.min.js'></script>
     <script src='/javascript/bootstrap.min.js'></script>
+    <script src='/javascript/gtech.js'></script>
     
   </head>
   <body>
@@ -49,6 +51,23 @@
           </ul>          
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <!-- Nav tabs -->
+          <ul id="mainTab" class="nav nav-tabs">
+            <li class="active"><a href="#" data-toggle="tab">Manufacturer</a></li>
+            <li><a href="#" data-toggle="tab">Model</a></li>
+            <li><a href="#" data-toggle="tab">Service Type</a></li>
+            <li><a href="#" data-toggle="tab">Job</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="manufacturerTab">fsdfsd</div>
+            <div class="tab-pane" id="modelTab">sdfsdfsdf</div>
+            <div class="tab-pane" id="serviceTab">dfsdfsdfsdfsdfsdf</div>
+            <div class="tab-pane" id="jobTab">sdfsdfsdfsdfsdfsdfdfsdfsdf</div>
+          </div>
+
           <h2 class="sub-header">New Job</h2>          
           <div class="table-responsive">
           	<form role="newJobForm" method="post" action="/addgtechservice">
