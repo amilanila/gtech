@@ -4,13 +4,13 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-GtechService = function(host, port) {
+JobService = function(host, port) {
   this.db= new Db('gtech', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
   this.db.open(function(){});
 };
 
 
-GtechService.prototype.getCollection= function(callback) {
+JobService.prototype.getCollection= function(callback) {
   this.db.collection('job', function(error, job_collection) {
     if( error ) {
       callback(error);
@@ -21,7 +21,7 @@ GtechService.prototype.getCollection= function(callback) {
 };
 
 //find all jobs
-GtechService.prototype.findAll = function(callback) {
+JobService.prototype.findAll = function(callback) {
     this.getCollection(function(error, job_collection) {
       if( error ) {
         callback(error);
@@ -35,7 +35,7 @@ GtechService.prototype.findAll = function(callback) {
 };
 
 //save new job
-GtechService.prototype.save = function(jobs, callback) {
+JobService.prototype.save = function(jobs, callback) {
     this.getCollection(function(error, job_collection) {
       if( error ) {
         callback(error);
@@ -55,4 +55,4 @@ GtechService.prototype.save = function(jobs, callback) {
     });
 };
 
-exports.GtechService = GtechService;
+exports.JobService = JobService;

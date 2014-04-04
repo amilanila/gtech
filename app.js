@@ -3,7 +3,9 @@ var express = require('express'),
 	http = require('http'),
 	path = require('path'),
     ManufactureService = require('./routes/ManufacturerService').ManufacturerService,
-	GtechService = require('./routes/gtechservice').GtechService,
+    ModelService = require('./routes/ModelService').ModelService,
+    ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
+	JobService = require('./routes/JobService').JobService,
 	crypto = require("crypto");
 
 var app = express();
@@ -26,59 +28,133 @@ if ('development' === app.get('env')) {
 
 app.get('/', routes.index);
 
+var varManufacturers = null;
+var varModels = null;
+var varServiceTypes = null;
+
 /////////////////////////////////////// Manufactures ////////////////////////////////
 var manufactureService= new ManufactureService('localhost', 27017);
 
 app.post('/addManufacturer', function(req, res){
     var id = crypto.randomBytes(20).toString('hex');
-    var name = req.body.make;
+    var name = req.body.name;
+    var description = req.body.description;
     
     manufactureService.save({
         'id': id,
-        'name': name
+        'name': name,
+        'description': description
     }, function( error, docs) {
-        res.redirect('/findManufacturers')
+        res.redirect('/manufacturer')
     });
 });
 
-app.get('/findManufacturers', function(req, res){
-    manufactureService.findAll(function( error, manufactures) {
+app.get('/manufacturer', function(req, res){
+    manufactureService.findAll(function( error, manufacturers) {
+        varManufacturers = manufacturers;
         res.render('index', {
-            title: 'Manufactures',
-            services:manufactures
+            'title': 'Manufacturers',
+            'manufacturers': manufacturers
         });
     });
 });
 
+/////////////////////////////////////// Model ////////////////////////////////
+var modelService= new ModelService('localhost', 27017);
+
+app.post('/addModel', function(req, res){
+    var id = crypto.randomBytes(20).toString('hex');
+    var make = req.body.make;
+    var name = req.body.name;
+    var description = req.body.description;
+    
+    modelService.save({
+        'id': id,
+        'make': make,
+        'name': name,
+        'description': description        
+    }, function( error, docs) {
+        res.redirect('/model')
+    });
+});
+
+app.get('/model', function(req, res){
+    modelService.findAll(function( error, models) {
+        varModels = models;
+        res.render('index', {
+            'title': 'Models',
+            'models': models,
+            'manufacturers': varManufacturers
+        });
+    });
+});
+
+/////////////////////////////////////// Service Types ////////////////////////////////
+var serviceTypeService= new ServiceTypeService('localhost', 27017);
+
+app.post('/addServicetype', function(req, res){
+    var id = crypto.randomBytes(20).toString('hex');
+    var code = req.body.code;
+    var name = req.body.name;
+    var description = req.body.description;
+    
+    serviceTypeService.save({
+        'id': id,
+        'code': code,
+        'name': name,
+        'description': description
+    }, function( error, docs) {
+        res.redirect('/servicetype')
+    });
+});
+
+app.get('/servicetype', function(req, res){
+    serviceTypeService.findAll(function( error, servicetypes) {
+        varServiceTypes = servicetypes;
+        res.render('index', {
+            'title': 'Service Types',
+            'servicetypes': servicetypes
+        });
+    });
+});
 
 /////////////////////////////////////// Services //////////////////////////////////////
-var gtechservice= new GtechService('localhost', 27017);
+var jobService= new JobService('localhost', 27017);
 
-app.post('/addgtechservice', function(req, res){
+app.post('/addJob', function(req, res){
 	var id = crypto.randomBytes(20).toString('hex');
     var make = req.body.make;
     var model = req.body.model;
     var rego = req.body.rego;
     var name = req.body.name;
     var contact = req.body.contact;
+    var servicetypes = req.body.servicetype;
+    var note = req.body.note;
 
-    gtechservice.save({
+    console.log(">>> " + req.body);
+        
+    jobService.save({
 	    'id': id,
         'make': make,
         'model': model,
         'rego': rego,
         'name': name,
-        'contact': contact
+        'contact': contact,
+        'servicetypes': servicetypes,
+        'note': note
     }, function( error, docs) {
-        res.redirect('/findgtechservice')
+        res.redirect('/job')
     });
 });
 
-app.get('/findgtechservice', function(req, res){
-    gtechservice.findAll(function( error, gtechservices) {
+app.get('/job', function(req, res){
+    jobService.findAll(function( error, jobs) {
         res.render('index', {
-            title: 'Gtech services',
-            services:gtechservices
+            'title': 'Jobs',
+            'jobs':jobs,
+            'manufacturers': varManufacturers,
+            'models': varModels,
+            'serviceTypes': varServiceTypes
         });
     });
 });

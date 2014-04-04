@@ -54,73 +54,229 @@
 
           <!-- Nav tabs -->
           <ul id="mainTab" class="nav nav-tabs">
-            <li class="active"><a href="#manufacturer" data-toggle="tab">Manufacturer</a></li>
+            <li class="active"><a href="#job" data-toggle="tab">Job</a></li>
+            <li><a href="#manufacturer" data-toggle="tab">Manufacturer</a></li>
             <li><a href="#model" data-toggle="tab">Model</a></li>
-            <li><a href="#service" data-toggle="tab">Service Type</a></li>
-            <li><a href="#job" data-toggle="tab">Job</a></li>
+            <li><a href="#servicetype" data-toggle="tab">Service Type</a></li>            
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <div class="tab-pane active" id="manufacturer">Manufacturers</div>
-            <div class="tab-pane" id="model">Models</div>
-            <div class="tab-pane" id="service">Services</div>
-            <div class="tab-pane" id="job">
-	          <h2 class="sub-header">Jobs</h2>          
-	          <div class="table-responsive">
-	          	<form role="newJobForm" method="post" action="/addgtechservice">
-	      			  <div class="form-group">
-	      			    <label for="make">Manufacturer</label>
-	      			    <input type="text" class="form-control" id="make" name="make" placeholder="Manufacturer">
-	      			  </div>
-	      			  <div class="form-group">
-	      			    <label for="model">Model</label>
-	      			    <input type="input" class="form-control" id="model" name="model" placeholder="Model">
-	      			  </div>
-	      			  <div class="form-group">
-	      			    <label for="model">Rego</label>
-	      			    <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
-	      			  </div>
-	      			  <div class="form-group">
-	      			    <label for="name">Name</label>
-	      			    <input type="input" class="form-control" id="name" name="name" placeholder="Name">
-	      			  </div>
-	      			  <div class="form-group">
-	      			    <label for="contact">Contact</label>
-	      			    <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
-	      			  </div>
-	      			  <button type="submit" class="btn btn-default">Save Job</button>
-	      			</form>	
-	          </div>
-	          <hr>
-	          <div class="table-responsive">
-	            <table class="table table-striped">
-	              <thead>                
-	                <tr>
-	                  <th>#</th>
-	                  <th>Make</th>
-	                  <th>Model</th>
-	                  <th>Rego</th>
-	                  <th>Name</th>
-	                  <th>Contact</th>
-	                  <th>Status</th>
-	                </tr>
-	              </thead>
-	              <tbody>
-	                {{#services}}
-	                  <tr>
-	                    <td>{{id}}</td>
-	                    <td>{{make}}</td>
-	                    <td>{{model}}</td>
-	                    <td>{{rego}}</td>
-	                    <td>{{name}}</td>
-	                    <td>{{contact}}</td>
-	                    <td><input type="checkbox" name="status_1001" value="1"></td>
-	                  </tr>
-	                {{/services}}
-	              </tbody>
-	            </table>
-	          </div>	            
+
+            <!-- Manufacturers tab-->
+            <div class="tab-pane" id="manufacturer">
+              <h2 class="sub-header">Manufacturers</h2>
+              <div class="table-responsive">
+                <form role="newManufacturerForm" method="post" action="/addManufacturer">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                  </div>                  
+                  <button type="submit" class="btn btn-default">Save</button>
+                </form> 
+              </div>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>                
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Description</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#manufacturers}}
+                      <tr>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{description}}</td>                        
+                      </tr>
+                    {{/manufacturers}}
+                  </tbody>
+                </table>
+              </div>     
+            </div>
+
+            <!-- Models tab-->
+            <div class="tab-pane" id="model">
+              <h2 class="sub-header">Models</h2>                
+              <div class="table-responsive">
+                <form role="newModelForm" method="post" action="/addModel">
+                  <div class="form-group">
+                    <label for="make">Make</label>
+                    <select class="form-control" id="make" name="make" placeholder="make">
+                      {{#manufacturers}}
+                      <option>{{name}}</option>
+                      {{/manufacturers}}                      
+                    </select>                    
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                  </div>                  
+                  <button type="submit" class="btn btn-default">Save</button>
+                </form> 
+              </div>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>                
+                    <tr>
+                      <th>#</th>
+                      <th>Make</th>
+                      <th>Name</th>
+                      <th>Description</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#models}}
+                      <tr>
+                        <td>{{id}}</td>
+                        <td>{{make}}</td>
+                        <td>{{name}}</td>
+                        <td>{{description}}</td>                        
+                      </tr>
+                    {{/models}}
+                  </tbody>
+                </table>
+              </div>      
+            </div>
+
+            <!-- Services tab-->
+            <div class="tab-pane" id="servicetype">
+              <h2 class="sub-header">Service Types</h2>
+              <div class="table-responsive">
+                <form role="newServiceTypeForm" method="post" action="/addServicetype">
+                  <div class="form-group">
+                    <label for="code">Code</label>
+                    <input type="text" class="form-control" id="code" name="code" placeholder="Code">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                  </div>                  
+                  <button type="submit" class="btn btn-default">Save</button>
+                </form> 
+              </div>
+              <hr>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>                
+                    <tr>
+                      <th>#</th>
+                      <th>Code</th>
+                      <th>Name</th>
+                      <th>Description</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#servicetypes}}
+                      <tr>
+                        <td>{{id}}</td>
+                        <td>{{code}}</td>
+                        <td>{{name}}</td>
+                        <td>{{description}}</td>                        
+                      </tr>
+                    {{/servicetypes}}
+                  </tbody>
+                </table>
+              </div>     
+            </div>
+
+            <!-- Jobs tab-->
+            <div class="tab-pane active" id="job">              
+  	          <h2 class="sub-header">Jobs</h2>          
+  	          <div class="table-responsive">
+                <form role="newJobForm" method="post" action="/addJob">
+                  <div class="col-xs-6">                  
+                      <div class="form-group">
+                        <label for="make">Manufacturer</label>
+                        <select class="form-control" id="make" name="make" placeholder="Manufacturer">
+                          {{#manufacturers}}
+                          <option>{{name}}</option>
+                          {{/manufacturers}}                      
+                        </select>                                            
+                      </div>
+                      <div class="form-group">
+                        <label for="model">Model</label>
+                        <select class="form-control" id="model" name="model" placeholder="Model">
+                          {{#models}}
+                          <option>{{name}}</option>
+                          {{/models}}                      
+                        </select>                                            
+                      </div>
+                      <div class="form-group">
+                        <label for="model">Rego</label>
+                        <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="input" class="form-control" id="name" name="name" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="contact">Contact</label>
+                        <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
+                      </div>
+                      <button type="submit" class="btn btn-default">Save Job</button>                  
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label for="servicetype">Service Type</label>
+                      <select multiple class="form-control" id="servicetype" name="servicetype" placeholder="Service Type" style="height:173px">
+                        {{#serviceTypes}}
+                        <option>{{name}}</option>
+                        {{/serviceTypes}}                      
+                      </select>                       
+                    </div>
+                    <div class="form-group">
+                      <label for="note">Notes</label>        
+                      <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
+                    </div>
+                  </div>  	          	
+                </form> 
+  	          </div>
+  	          <hr>
+  	          <div class="table-responsive">
+  	            <table class="table table-striped">
+  	              <thead>                
+  	                <tr>
+  	                  <th>#</th>
+  	                  <th>Make</th>
+  	                  <th>Model</th>
+  	                  <th>Rego</th>
+  	                  <th>Name</th>
+  	                  <th>Contact</th>  	                  
+                      <th>Status</th>                      
+  	                </tr>
+  	              </thead>
+  	              <tbody>
+  	                {{#services}}
+  	                  <tr>
+  	                    <td>{{id}}</td>
+  	                    <td>{{make}}</td>
+  	                    <td>{{model}}</td>
+  	                    <td>{{rego}}</td>
+  	                    <td>{{name}}</td>
+  	                    <td>{{contact}}</td>                        
+  	                    <td><input type="checkbox" name="status_1001" value="1"></td>
+  	                  </tr>
+  	                {{/services}}
+  	              </tbody>
+  	            </table>
+  	          </div>	            
             </div>
           </div>
         </div>

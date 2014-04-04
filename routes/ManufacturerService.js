@@ -23,13 +23,13 @@ ManufacturerService.prototype.getCollection= function(callback) {
 //find all manufacturers
 ManufacturerService.prototype.findAll = function(callback) {
     this.getCollection(function(error, manufacturer_collection) {
-      if( error ) {
+      if( error ) {        
         callback(error);
       } else {
         manufacturer_collection.find().toArray(function(error, results) {
           if( error ) {
             callback(error);
-          } else {
+          } else {   
             callback(null, results);
           }
         });
