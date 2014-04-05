@@ -59,6 +59,17 @@ app.get('/manufacturer', function(req, res){
     });
 });
 
+app.get('/manufacturer/:id', function(req, res){
+	var id = req.params.id;	
+	manufactureService.findOne(id, function(error, manufacturer){
+		res.render('index', {
+			'title': 'Manufacturers',
+			'manufacturer':manufacturer,
+			'manufacturers': varManufacturers
+		});
+	})
+});
+
 /////////////////////////////////////// Model ////////////////////////////////
 var modelService= new ModelService('localhost', 27017);
 
@@ -130,8 +141,6 @@ app.post('/addJob', function(req, res){
     var contact = req.body.contact;
     var servicetypes = req.body.servicetype;
     var note = req.body.note;
-
-    console.log(">>> " + req.body);
         
     jobService.save({
 	    'id': id,

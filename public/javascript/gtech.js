@@ -1,7 +1,18 @@
 $(document).ready(function () {
 	var pathName = $(location).attr('pathname');
 	if(pathName != undefined && pathName != "/"){
-		var selector = "#mainTab a[href=\"#" + pathName.replace('/','') + "\"]";
+		var tabName = '';
+		if(pathName.indexOf('manufacturer') > -1){
+			tabName = 'manufacturer'; 
+		} else if(pathName.indexOf('model') > -1){
+			tabName = 'model';
+		} else if(pathName.indexOf('servicetype') > -1){
+			tabName = 'servicetype';
+		} else if(pathName.indexOf('job') > -1){
+			tabName = 'job';
+		}
+		
+		var selector = "#mainTab a[href=\"#" + tabName + "\"]";
 		$(selector).tab('show');		
 	}
 

@@ -70,11 +70,21 @@
                 <form role="newManufacturerForm" method="post" action="/addManufacturer">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    {{#manufacturer}}                    
+                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value={{name}}>
+                    {{/manufacturer}}
+                    {{^manufacturer}}
+                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    {{/manufacturer}}
                   </div>
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                    {{#manufacturer}}                    
+                    	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value={{description}}>
+                    {{/manufacturer}}
+                    {{^manufacturer}}
+                    	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                    {{/manufacturer}}                    
                   </div>                  
                   <button type="submit" class="btn btn-default">Save</button>
                 </form> 
@@ -93,7 +103,7 @@
                     {{#manufacturers}}
                       <tr>
                         <td>{{id}}</td>
-                        <td>{{name}}</td>
+                        <td><a href='/manufacturer/{{id}}'>{{name}}</a></td>
                         <td>{{description}}</td>                        
                       </tr>
                     {{/manufacturers}}
@@ -219,7 +229,7 @@
                         </select>                                            
                       </div>
                       <div class="form-group">
-                        <label for="model">Rego</label>
+                        <label for="rego">Rego</label>
                         <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
                       </div>
                       <div class="form-group">
@@ -259,21 +269,23 @@
   	                  <th>Rego</th>
   	                  <th>Name</th>
   	                  <th>Contact</th>  	                  
+  	                  <th>Service</th>
                       <th>Status</th>                      
   	                </tr>
   	              </thead>
   	              <tbody>
-  	                {{#services}}
+  	                {{#jobs}}
   	                  <tr>
   	                    <td>{{id}}</td>
   	                    <td>{{make}}</td>
   	                    <td>{{model}}</td>
   	                    <td>{{rego}}</td>
   	                    <td>{{name}}</td>
-  	                    <td>{{contact}}</td>                        
+  	                    <td>{{contact}}</td>
+  	                    <td>{{servicetypes}}</td>                        
   	                    <td><input type="checkbox" name="status_1001" value="1"></td>
   	                  </tr>
-  	                {{/services}}
+  	                {{/jobs}}
   	              </tbody>
   	            </table>
   	          </div>	            
