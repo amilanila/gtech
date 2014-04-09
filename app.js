@@ -35,18 +35,29 @@ var varServiceTypes = null;
 /////////////////////////////////////// Manufactures ////////////////////////////////
 var manufactureService= new ManufactureService('localhost', 27017);
 
-app.post('/addManufacturer', function(req, res){
-    var id = crypto.randomBytes(20).toString('hex');
+app.post('/manufacturer/save', function(req, res){
+    var id = req.body.id;
     var name = req.body.name;
     var description = req.body.description;
-    
-    manufactureService.save({
-        'id': id,
-        'name': name,
-        'description': description
-    }, function( error, docs) {
-        res.redirect('/manufacturer')
-    });
+
+    if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        manufactureService.save({
+            'id': id,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/manufacturer')
+        });    
+    } else {
+        manufactureService.update({
+            'id': id,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/manufacturer')
+        });    
+    }   
 });
 
 app.get('/manufacturer', function(req, res){

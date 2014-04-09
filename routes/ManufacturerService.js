@@ -75,4 +75,26 @@ ManufacturerService.prototype.findOne = function(id, callback){
 	});
 };
 
+ManufacturerService.prototype.update = function(manufacturer, callback){
+  this.getCollection(function(error, manufacturer_collection){
+    if(error){
+      callback(error);
+    } else {      
+      manufacturer_collection.update(
+        {'id': manufacturer.id},
+        {
+          $set: {'name': manufacturer.name, 'description': manufacturer.description}
+        },
+        function(err, result){
+          if(err){
+            callback(err);
+          } else {
+            callback(result);
+          }
+        }
+      );
+    }
+  });
+};
+
 exports.ManufacturerService = ManufacturerService;
