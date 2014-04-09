@@ -58,4 +58,44 @@ ModelService.prototype.save = function(models, callback) {
     });
 };
 
+//find a single model
+ModelService.prototype.findOne = function(id, callback){
+  this.getCollection(function(error, model_collection){
+    if(error){
+      callback(error);
+    } else {
+      model_collection.findOne({'id': id}, function(error, result){
+        if(error){
+          callback(error);
+        } else {
+          callback(null, result);
+        }
+      });
+    }   
+  });
+};
+
+//update a model
+ModelService.prototype.update = function(model, callback){
+  this.getCollection(function(error, model_collection){
+    if(error){
+      callback(error);
+    } else {      
+      model_collection.update(
+        {'id': model.id},
+        {
+          $set: {'make': model.make,  'name': model.name, 'description': model.description}
+        },
+        function(err, result){
+          if(err){
+            callback(err);
+          } else {
+            callback(result);
+          }
+        }
+      );
+    }
+  });
+};
+
 exports.ModelService = ModelService;

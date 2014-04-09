@@ -75,6 +75,7 @@ ManufacturerService.prototype.findOne = function(id, callback){
 	});
 };
 
+//update a manufacturer
 ManufacturerService.prototype.update = function(manufacturer, callback){
   this.getCollection(function(error, manufacturer_collection){
     if(error){

@@ -84,20 +84,32 @@ app.get('/manufacturer/:id', function(req, res){
 /////////////////////////////////////// Model ////////////////////////////////
 var modelService= new ModelService('localhost', 27017);
 
-app.post('/addModel', function(req, res){
-    var id = crypto.randomBytes(20).toString('hex');
+app.post('/model/save', function(req, res){
+    var id = req.body.id;
     var make = req.body.make;
     var name = req.body.name;
     var description = req.body.description;
-    
-    modelService.save({
-        'id': id,
-        'make': make,
-        'name': name,
-        'description': description        
-    }, function( error, docs) {
-        res.redirect('/model')
-    });
+
+    if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        modelService.save({
+            'id': id,
+            'make': make,
+            'name': name,
+            'description': description        
+        }, function( error, docs) {
+            res.redirect('/model')
+        });
+    } else {
+        modelService.update({
+            'id': id,
+            'make': make,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/model')
+        });    
+    }   
 });
 
 app.get('/model', function(req, res){
@@ -109,6 +121,21 @@ app.get('/model', function(req, res){
             'manufacturers': varManufacturers
         });
     });
+});
+
+app.get('/model/:id', function(req, res){
+    var id = req.params.id; 
+    modelService.findOne(id, function(error, model){
+        
+        console.log(JSON.stringify(model));
+
+        res.render('index', {
+            'title': 'Models',
+            'model': model,
+            'models': varModels,            
+            'manufacturers': varManufacturers
+        });
+    })
 });
 
 /////////////////////////////////////// Service Types ////////////////////////////////
