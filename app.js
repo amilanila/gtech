@@ -126,9 +126,6 @@ app.get('/model', function(req, res){
 app.get('/model/:id', function(req, res){
     var id = req.params.id; 
     modelService.findOne(id, function(error, model){
-        
-        console.log(JSON.stringify(model));
-
         res.render('index', {
             'title': 'Models',
             'model': model,
@@ -141,20 +138,32 @@ app.get('/model/:id', function(req, res){
 /////////////////////////////////////// Service Types ////////////////////////////////
 var serviceTypeService= new ServiceTypeService('localhost', 27017);
 
-app.post('/addServicetype', function(req, res){
-    var id = crypto.randomBytes(20).toString('hex');
+app.post('/servicetype/save', function(req, res){
+    var id = req.body.id;
     var code = req.body.code;
     var name = req.body.name;
     var description = req.body.description;
     
-    serviceTypeService.save({
-        'id': id,
-        'code': code,
-        'name': name,
-        'description': description
-    }, function( error, docs) {
-        res.redirect('/servicetype')
-    });
+     if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        serviceTypeService.save({
+            'id': id,
+            'code': code,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/servicetype')
+        });
+    } else {
+        serviceTypeService.update({
+            'id': id,
+            'code': code,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/servicetype')
+        });    
+    }   
 });
 
 app.get('/servicetype', function(req, res){
@@ -165,6 +174,17 @@ app.get('/servicetype', function(req, res){
             'servicetypes': servicetypes
         });
     });
+});
+
+app.get('/servicetype/:id', function(req, res){
+    var id = req.params.id; 
+    serviceTypeService.findOne(id, function(error, servicetype){
+        res.render('index', {
+            'title': 'Service Types',
+            'servicetype': servicetype,
+            'servicetypes': varServiceTypes
+        });
+    })
 });
 
 /////////////////////////////////////// Services //////////////////////////////////////

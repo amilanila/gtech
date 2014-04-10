@@ -13,13 +13,13 @@ $(document).ready(function () {
 		}
 		
 		var selector = "#mainTab a[href=\"#" + tabName + "\"]";
-		$(selector).tab('show');		
+		$(selector).tab('show');			
 	}
 
 	$('#mainTab a').click(function (e) {
 	  e.preventDefault();
 	  var href = $(this).attr('href').replace('#','');	  
-	  window.location.href = href;		  
+	  window.location.href = "/" + href;		  
 	})
 });
 

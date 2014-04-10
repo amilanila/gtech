@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>{{ title }}</title>        
+    <title>{{{ title }}}</title>        
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -77,7 +77,7 @@
                   <div class="form-group">                    
                     <label for="name">Name</label>
                     {{#manufacturer}}                    
-                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value={{{name}}}>
+                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
                     {{/manufacturer}}
                     {{^manufacturer}}
                     	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -86,7 +86,7 @@
                   <div class="form-group">
                     <label for="description">Description</label>
                     {{#manufacturer}}                    
-                    	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value={{{description}}}>
+                    	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
                     {{/manufacturer}}
                     {{^manufacturer}}
                     	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
@@ -100,7 +100,6 @@
                 <table class="table table-striped">
                   <thead>                
                     <tr>
-                      <th>#</th>
                       <th>Name</th>
                       <th>Description</th>                      
                     </tr>
@@ -108,9 +107,8 @@
                   <tbody>
                     {{#manufacturers}}
                       <tr>
-                        <td>{{id}}</td>
-                        <td><a href='/manufacturer/{{id}}'>{{name}}</a></td>
-                        <td>{{description}}</td>                        
+                        <td><a href='/manufacturer/{{id}}'>{{{name}}}</a></td>
+                        <td>{{{description}}}</td>                        
                       </tr>
                     {{/manufacturers}}
                   </tbody>
@@ -140,7 +138,7 @@
                   <div class="form-group">
                     <label for="name">Name</label>
                     {{#model}}
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value={{name}}>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
                     {{/model}}
                     {{^model}}
                       <input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -149,7 +147,7 @@
                   <div class="form-group">
                     <label for="description">Description</label>
                     {{#model}}                    
-                      <input type="input" class="form-control" id="description" name="description" placeholder="Description" value={{description}}>
+                      <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
                     {{/model}}
                     {{^model}}
                       <input type="input" class="form-control" id="description" name="description" placeholder="Description">
@@ -163,7 +161,6 @@
                 <table class="table table-striped">
                   <thead>                
                     <tr>
-                      <th>#</th>
                       <th>Make</th>
                       <th>Name</th>
                       <th>Description</th>                      
@@ -172,10 +169,9 @@
                   <tbody>
                     {{#models}}
                       <tr>
-                        <td>{{id}}</td>
-                        <td>{{make}}</td>
-                        <td><a href='/model/{{id}}'>{{name}}</a></td>
-                        <td>{{description}}</td>                        
+                        <td>{{{make}}}</td>
+                        <td><a href='/model/{{id}}'>{{{name}}}</a></td>
+                        <td>{{{description}}}</td>                        
                       </tr>
                     {{/models}}
                   </tbody>
@@ -187,18 +183,39 @@
             <div class="tab-pane" id="servicetype">
               <h2 class="sub-header">Service Types</h2>
               <div class="table-responsive">
-                <form role="newServiceTypeForm" method="post" action="/addServicetype">
+                <form role="newServiceTypeForm" method="post" action="/servicetype/save">
+                  {{#servicetype}}                    
+                    <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                  {{/servicetype}}
+                  {{^servicetype}}
+                    <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                  {{/servicetype}}
                   <div class="form-group">
                     <label for="code">Code</label>
-                    <input type="text" class="form-control" id="code" name="code" placeholder="Code">
+                    {{#servicetype}}
+                      <input type="text" class="form-control" id="code" name="code" placeholder="Code" value="{{{code}}}">
+                    {{/servicetype}}
+                    {{^servicetype}}
+                      <input type="text" class="form-control" id="code" name="code" placeholder="Code">
+                    {{/servicetype}}                    
                   </div>
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    {{#servicetype}}
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                    {{/servicetype}}
+                    {{^servicetype}}
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    {{/servicetype}}                    
                   </div>
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                    {{#servicetype}}
+                      <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                    {{/servicetype}}
+                    {{^servicetype}}
+                      <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                    {{/servicetype}}                    
                   </div>                  
                   <button type="submit" class="btn btn-default">Save</button>
                 </form> 
@@ -208,7 +225,6 @@
                 <table class="table table-striped">
                   <thead>                
                     <tr>
-                      <th>#</th>
                       <th>Code</th>
                       <th>Name</th>
                       <th>Description</th>                      
@@ -217,10 +233,9 @@
                   <tbody>
                     {{#servicetypes}}
                       <tr>
-                        <td>{{id}}</td>
-                        <td>{{code}}</td>
-                        <td>{{name}}</td>
-                        <td>{{description}}</td>                        
+                        <td>{{{code}}}</td>
+                        <td><a href='/servicetype/{{id}}'>{{{name}}}</a></td>
+                        <td>{{{description}}}</td>                        
                       </tr>
                     {{/servicetypes}}
                   </tbody>
@@ -285,7 +300,6 @@
   	            <table class="table table-striped">
   	              <thead>                
   	                <tr>
-  	                  <th>#</th>
   	                  <th>Make</th>
   	                  <th>Model</th>
   	                  <th>Rego</th>
@@ -298,13 +312,12 @@
   	              <tbody>
   	                {{#jobs}}
   	                  <tr>
-  	                    <td>{{id}}</td>
-  	                    <td>{{make}}</td>
-  	                    <td>{{model}}</td>
-  	                    <td>{{rego}}</td>
-  	                    <td>{{name}}</td>
-  	                    <td>{{contact}}</td>
-  	                    <td>{{servicetypes}}</td>                        
+  	                    <td>{{{make}}}</td>
+  	                    <td>{{{model}}}</td>
+  	                    <td>{{{rego}}}</td>
+  	                    <td>{{{name}}}</td>
+  	                    <td>{{{contact}}}</td>
+  	                    <td>{{{servicetypes}}}</td>                        
   	                    <td><input type="checkbox" name="status_1001" value="1"></td>
   	                  </tr>
   	                {{/jobs}}
