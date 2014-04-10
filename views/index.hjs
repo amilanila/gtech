@@ -247,8 +247,14 @@
             <div class="tab-pane active" id="job">              
   	          <h2 class="sub-header">Jobs</h2>          
   	          <div class="table-responsive">
-                <form role="newJobForm" method="post" action="/addJob">
-                  <div class="col-xs-6">                  
+                <form role="newJobForm" method="post" action="/job/save">
+                  <div class="col-xs-6">   
+                      {{#job}}                    
+                        <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                      {{/job}}
+                      {{^job}}
+                        <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                      {{/job}}
                       <div class="form-group">
                         <label for="make">Manufacturer</label>
                         <select class="form-control" id="make" name="make" placeholder="Manufacturer">
@@ -267,15 +273,30 @@
                       </div>
                       <div class="form-group">
                         <label for="rego">Rego</label>
-                        <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+                        {{#job}}                    
+                          <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego" value="{{{rego}}}">
+                        {{/job}}
+                        {{^job}}
+                          <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+                        {{/job}}
                       </div>
                       <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="input" class="form-control" id="name" name="name" placeholder="Name">
+                        {{#job}}                    
+                          <input type="input" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                        {{/job}}
+                        {{^job}}
+                          <input type="input" class="form-control" id="name" name="name" placeholder="Name">
+                        {{/job}}
                       </div>
                       <div class="form-group">
                         <label for="contact">Contact</label>
-                        <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
+                        {{#job}}                    
+                          <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{{contact}}}">
+                        {{/job}}
+                        {{^job}}
+                          <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
+                        {{/job}}
                       </div>
                       <button type="submit" class="btn btn-default">Save Job</button>                  
                   </div>
@@ -290,7 +311,12 @@
                     </div>
                     <div class="form-group">
                       <label for="note">Notes</label>        
-                      <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
+                      {{#job}}                    
+                        <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px" value="{{{note}}}"></textarea>
+                      {{/job}}
+                      {{^job}}
+                        <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
+                      {{/job}}
                     </div>
                   </div>  	          	
                 </form> 
@@ -300,9 +326,9 @@
   	            <table class="table table-striped">
   	              <thead>                
   	                <tr>
-  	                  <th>Make</th>
-  	                  <th>Model</th>
   	                  <th>Rego</th>
+                      <th>Make</th>
+                      <th>Model</th>
   	                  <th>Name</th>
   	                  <th>Contact</th>  	                  
   	                  <th>Service</th>
@@ -312,9 +338,9 @@
   	              <tbody>
   	                {{#jobs}}
   	                  <tr>
-  	                    <td>{{{make}}}</td>
-  	                    <td>{{{model}}}</td>
-  	                    <td>{{{rego}}}</td>
+  	                    <td><a href='/job/{{id}}'>{{{rego}}}</a></td>
+                        <td>{{{make}}}</td>
+                        <td>{{{model}}}</td>
   	                    <td>{{{name}}}</td>
   	                    <td>{{{contact}}}</td>
   	                    <td>{{{servicetypes}}}</td>                        

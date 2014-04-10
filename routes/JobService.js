@@ -55,4 +55,47 @@ JobService.prototype.save = function(jobs, callback) {
     });
 };
 
+//find a single job
+JobService.prototype.findOne = function(id, callback){
+  this.getCollection(function(error, job_collection){
+    if(error){
+      callback(error);
+    } else {
+      job_collection.findOne({'id': id}, function(error, result){
+        if(error){
+          callback(error);
+        } else {
+          callback(null, result);
+        }
+      });
+    }   
+  });
+};
+
+//update a job
+JobService.prototype.update = function(job, callback){
+  this.getCollection(function(error, job_collection){
+    if(error){
+      callback(error);
+    } else {      
+      job_collection.update(
+        {'id': job.id},
+        {
+          $set: {
+                  'make': job.make, 'model': job.model, 'rego': job.rego, 'name': job.name, 
+                  'contact': job.contact, 'servicetypes': job.servicetype, 'note': job.note
+                }
+        },
+        function(err, result){
+          if(err){
+            callback(err);
+          } else {
+            callback(result);
+          }
+        }
+      );
+    }
+  });
+};
+
 exports.JobService = JobService;

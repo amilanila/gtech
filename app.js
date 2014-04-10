@@ -31,6 +31,7 @@ app.get('/', routes.index);
 var varManufacturers = null;
 var varModels = null;
 var varServiceTypes = null;
+var varJobs = null;
 
 /////////////////////////////////////// Manufactures ////////////////////////////////
 var manufactureService= new ManufactureService('localhost', 27017);
@@ -144,7 +145,7 @@ app.post('/servicetype/save', function(req, res){
     var name = req.body.name;
     var description = req.body.description;
     
-     if(id == '-1'){
+    if(id == '-1'){
         id = crypto.randomBytes(20).toString('hex');
         serviceTypeService.save({
             'id': id,
@@ -190,32 +191,49 @@ app.get('/servicetype/:id', function(req, res){
 /////////////////////////////////////// Services //////////////////////////////////////
 var jobService= new JobService('localhost', 27017);
 
-app.post('/addJob', function(req, res){
-	var id = crypto.randomBytes(20).toString('hex');
+app.post('/job/save', function(req, res){
+	var id = req.body.id;
     var make = req.body.make;
     var model = req.body.model;
     var rego = req.body.rego;
     var name = req.body.name;
     var contact = req.body.contact;
-    var servicetypes = req.body.servicetype;
+    var servicetype = req.body.servicetype;
     var note = req.body.note;
         
-    jobService.save({
-	    'id': id,
-        'make': make,
-        'model': model,
-        'rego': rego,
-        'name': name,
-        'contact': contact,
-        'servicetypes': servicetypes,
-        'note': note
-    }, function( error, docs) {
-        res.redirect('/job')
-    });
+    if(id == '-1'){        
+        id = crypto.randomBytes(20).toString('hex');
+        jobService.save({
+            'id': id,
+            'make': make,
+            'model': model,
+            'rego': rego,
+            'name': name,
+            'contact': contact,
+            'servicetypes': servicetype,
+            'note': note
+        }, function( error, docs) {
+            res.redirect('/job')
+        });
+    } else {
+        jobService.update({
+            'id': id,
+            'make': make,
+            'model': model,
+            'rego': rego,
+            'name': name,
+            'contact': contact,
+            'servicetypes': servicetype,
+            'note': note
+        }, function( error, docs) {
+            res.redirect('/job')
+        });                 
+    }   
 });
 
 app.get('/job', function(req, res){
     jobService.findAll(function( error, jobs) {
+        varJobs = jobs;
         res.render('index', {
             'title': 'Jobs',
             'jobs':jobs,
@@ -224,6 +242,20 @@ app.get('/job', function(req, res){
             'serviceTypes': varServiceTypes
         });
     });
+});
+
+app.get('/job/:id', function(req, res){
+    var id = req.params.id; 
+    jobService.findOne(id, function(error, job){
+        res.render('index', {
+            'title': 'Jobs',
+            'jobs': varJobs,
+            'job': job,
+            'manufacturers': varManufacturers,
+            'models': varModels,
+            'serviceTypes': varServiceTypes
+        });
+    })
 });
 
 // create server
