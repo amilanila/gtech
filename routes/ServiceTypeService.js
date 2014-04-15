@@ -1,14 +1,9 @@
-var Db = require('mongodb').Db;
-var Connection = require('mongodb').Connection;
-var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-ServiceTypeService = function(host, port) {
-  this.db= new Db('gtech', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+ServiceTypeService = function(db) {
+  this.db = db;
 };
-
 
 ServiceTypeService.prototype.getCollection= function(callback) {
   this.db.collection('servicetype', function(error, servicetype_collection) {

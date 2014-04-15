@@ -1,14 +1,9 @@
-var Db = require('mongodb').Db;
-var Connection = require('mongodb').Connection;
-var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-JobService = function(host, port) {
-  this.db= new Db('gtech', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+JobService = function(db) {
+  this.db = db;
 };
-
 
 JobService.prototype.getCollection= function(callback) {
   this.db.collection('job', function(error, job_collection) {
