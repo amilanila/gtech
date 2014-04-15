@@ -2,20 +2,15 @@ var express = require('express'),
 	routes = require('./routes'),
 	http = require('http'),
 	path = require('path'),
+    crypto = require("crypto"),
+    Db = require('mongodb').Db,
+    Connection = require('mongodb').Connection,
+    Server = require('mongodb').Server,
+    InitService = require('./routes/InitService').InitService
     ManufactureService = require('./routes/ManufacturerService').ManufacturerService,
     ModelService = require('./routes/ModelService').ModelService,
     ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
-	JobService = require('./routes/JobService').JobService,
-	crypto = require("crypto"),
-    Db = require('mongodb').Db,
-    Connection = require('mongodb').Connection,
-    Server = require('mongodb').Server;    
-
-var host = 'localhost';
-var port = 27017;
-
-var db = new Db('gtech', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
-db.open(function(){});
+    JobService = require('./routes/JobService').JobService;   
 
 var app = express();
 
@@ -37,14 +32,20 @@ if ('development' === app.get('env')) {
 
 app.get('/', routes.index);
 
+var initService = new InitService('localhost', 27017);
+initService.db(function(error, db){
+    this.manufactureService = new ManufactureService(db);
+    this.modelService = new ModelService(db);
+    this.serviceTypeService = new ServiceTypeService(db);
+    this.jobService = new JobService(db);
+});
+
 var varManufacturers = null;
 var varModels = null;
 var varServiceTypes = null;
 var varJobs = null;
 
 /////////////////////////////////////// Manufactures ////////////////////////////////
-var manufactureService= new ManufactureService(db);
-
 app.post('/manufacturer/save', function(req, res){
     var id = req.body.id;
     var name = req.body.name;
@@ -92,8 +93,6 @@ app.get('/manufacturer/:id', function(req, res){
 });
 
 /////////////////////////////////////// Model ////////////////////////////////
-var modelService= new ModelService(db);
-
 app.post('/model/save', function(req, res){
     var id = req.body.id;
     var make = req.body.make;
@@ -146,8 +145,6 @@ app.get('/model/:id', function(req, res){
 });
 
 /////////////////////////////////////// Service Types ////////////////////////////////
-var serviceTypeService= new ServiceTypeService(db);
-
 app.post('/servicetype/save', function(req, res){
     var id = req.body.id;
     var code = req.body.code;
@@ -198,8 +195,6 @@ app.get('/servicetype/:id', function(req, res){
 });
 
 /////////////////////////////////////// Services //////////////////////////////////////
-var jobService= new JobService(db);
-
 app.post('/job/save', function(req, res){
 	var id = req.body.id;
     var make = req.body.make;

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	var pathName = $(location).attr('pathname');
-	if(pathName != undefined && pathName != "/"){
+	if(pathName != undefined){
 		var tabName = '';
 		if(pathName.indexOf('manufacturer') > -1){
 			tabName = 'manufacturer'; 
@@ -8,7 +8,7 @@ $(document).ready(function () {
 			tabName = 'model';
 		} else if(pathName.indexOf('servicetype') > -1){
 			tabName = 'servicetype';
-		} else if(pathName.indexOf('job') > -1){
+		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			tabName = 'job';
 		}
 		
