@@ -67,52 +67,56 @@
             <div class="tab-pane" id="manufacturer">
               <h2 class="sub-header">Manufacturers</h2>
               <div class="table-responsive">
-                <form role="newManufacturerForm" method="post" action="/manufacturer/save">                
-                  {{#manufacturer}}                    
-                    <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                  {{/manufacturer}}
-                  {{^manufacturer}}
-                    <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                  {{/manufacturer}}
-                  <div class="form-group">                    
-                    <label for="name">Name</label>
+                <div class="row">
+                  <form role="newManufacturerForm" method="post" action="/manufacturer/save">                
                     {{#manufacturer}}                    
-                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                      <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
                     {{/manufacturer}}
                     {{^manufacturer}}
-                    	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
                     {{/manufacturer}}
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Description</label>
-                    {{#manufacturer}}                    
-                    	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
-                    {{/manufacturer}}
-                    {{^manufacturer}}
-                    	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
-                    {{/manufacturer}}                    
-                  </div>                  
-                  <button type="submit" class="btn btn-default">Save</button>                  
-                </form> 
-              </div>
-              <hr>
+                    <div class="form-group">                    
+                      <label for="name">Name</label>
+                      {{#manufacturer}}                    
+                      	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                      {{/manufacturer}}
+                      {{^manufacturer}}
+                      	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      {{/manufacturer}}
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      {{#manufacturer}}                    
+                      	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                      {{/manufacturer}}
+                      {{^manufacturer}}
+                      	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                      {{/manufacturer}}                    
+                    </div>                  
+                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                  
+                  </form> 
+                </div>
+              </div>  
+              <hr>            
               <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>                
-                    <tr>
-                      <th>Name</th>
-                      <th>Description</th>                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#manufacturers}}
+                <div class="row">
+                  <table class="table table-striped">
+                    <thead>                
                       <tr>
-                        <td><a href='/manufacturer/{{id}}'>{{{name}}}</a></td>
-                        <td>{{{description}}}</td>                        
+                        <th>Name</th>
+                        <th>Description</th>                      
                       </tr>
-                    {{/manufacturers}}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {{#manufacturers}}
+                        <tr>
+                          <td><a href='/manufacturer/{{id}}'>{{{name}}}</a></td>
+                          <td>{{{description}}}</td>                        
+                        </tr>
+                      {{/manufacturers}}
+                    </tbody>
+                  </table>
+                </div>
               </div>     
             </div>
 
@@ -120,62 +124,66 @@
             <div class="tab-pane" id="model">
               <h2 class="sub-header">Models</h2>                
               <div class="table-responsive">
-                <form role="newModelForm" method="post" action="/model/save">
-                  {{#model}}                    
-                    <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                  {{/model}}
-                  {{^model}}
-                    <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                  {{/model}}
-                  <div class="form-group">
-                    <label for="make">Make</label>
-                    <select class="form-control" id="make" name="make" placeholder="make">
-                      {{#manufacturers}}
-                      <option>{{name}}</option>
-                      {{/manufacturers}}                      
-                    </select>                    
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    {{#model}}
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
-                    {{/model}}
-                    {{^model}}
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                    {{/model}}                    
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Description</label>
+                <div class="row">
+                  <form role="newModelForm" method="post" action="/model/save">
                     {{#model}}                    
-                      <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                      <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
                     {{/model}}
                     {{^model}}
-                      <input type="input" class="form-control" id="description" name="description" placeholder="Description">
-                    {{/model}}                    
-                  </div>                  
-                  <button type="submit" class="btn btn-default">Save</button>
-                </form> 
+                      <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                    {{/model}}
+                    <div class="form-group">
+                      <label for="make">Make</label>
+                      <select class="form-control" id="make" name="make" placeholder="make">
+                        {{#manufacturers}}
+                        <option>{{name}}</option>
+                        {{/manufacturers}}                      
+                      </select>                    
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      {{#model}}
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                      {{/model}}
+                      {{^model}}
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      {{/model}}                    
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      {{#model}}                    
+                        <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                      {{/model}}
+                      {{^model}}
+                        <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                      {{/model}}                    
+                    </div>                  
+                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
+                  </form> 
+                </div>
               </div>
               <hr>
               <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>                
-                    <tr>
-                      <th>Make</th>
-                      <th>Name</th>
-                      <th>Description</th>                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#models}}
+                <div class="row">
+                  <table class="table table-striped">
+                    <thead>                
                       <tr>
-                        <td>{{{make}}}</td>
-                        <td><a href='/model/{{id}}'>{{{name}}}</a></td>
-                        <td>{{{description}}}</td>                        
+                        <th>Make</th>
+                        <th>Name</th>
+                        <th>Description</th>                      
                       </tr>
-                    {{/models}}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {{#models}}
+                        <tr>
+                          <td>{{{make}}}</td>
+                          <td><a href='/model/{{id}}'>{{{name}}}</a></td>
+                          <td>{{{description}}}</td>                        
+                        </tr>
+                      {{/models}}
+                    </tbody>
+                  </table>
+                </div>
               </div>      
             </div>
 
@@ -183,63 +191,67 @@
             <div class="tab-pane" id="servicetype">
               <h2 class="sub-header">Service Types</h2>
               <div class="table-responsive">
-                <form role="newServiceTypeForm" method="post" action="/servicetype/save">
-                  {{#servicetype}}                    
-                    <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                  {{/servicetype}}
-                  {{^servicetype}}
-                    <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                  {{/servicetype}}
-                  <div class="form-group">
-                    <label for="code">Code</label>
-                    {{#servicetype}}
-                      <input type="text" class="form-control" id="code" name="code" placeholder="Code" value="{{{code}}}">
+                <div class="row">
+                  <form role="newServiceTypeForm" method="post" action="/servicetype/save">
+                    {{#servicetype}}                    
+                      <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
                     {{/servicetype}}
                     {{^servicetype}}
-                      <input type="text" class="form-control" id="code" name="code" placeholder="Code">
-                    {{/servicetype}}                    
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    {{#servicetype}}
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                      <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
                     {{/servicetype}}
-                    {{^servicetype}}
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                    {{/servicetype}}                    
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Description</label>
-                    {{#servicetype}}
-                      <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
-                    {{/servicetype}}
-                    {{^servicetype}}
-                      <input type="input" class="form-control" id="description" name="description" placeholder="Description">
-                    {{/servicetype}}                    
-                  </div>                  
-                  <button type="submit" class="btn btn-default">Save</button>
+                    <div class="form-group">
+                      <label for="code">Code</label>
+                      {{#servicetype}}
+                        <input type="text" class="form-control" id="code" name="code" placeholder="Code" value="{{{code}}}">
+                      {{/servicetype}}
+                      {{^servicetype}}
+                        <input type="text" class="form-control" id="code" name="code" placeholder="Code">
+                      {{/servicetype}}                    
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      {{#servicetype}}
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                      {{/servicetype}}
+                      {{^servicetype}}
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      {{/servicetype}}                    
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      {{#servicetype}}
+                        <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                      {{/servicetype}}
+                      {{^servicetype}}
+                        <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                      {{/servicetype}}                    
+                    </div>                  
+                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
                 </form> 
+                </div>
               </div>
               <hr>
               <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>                
-                    <tr>
-                      <th>Code</th>
-                      <th>Name</th>
-                      <th>Description</th>                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#servicetypes}}
+                <div class="row">
+                  <table class="table table-striped">
+                    <thead>                
                       <tr>
-                        <td>{{{code}}}</td>
-                        <td><a href='/servicetype/{{id}}'>{{{name}}}</a></td>
-                        <td>{{{description}}}</td>                        
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Description</th>                      
                       </tr>
-                    {{/servicetypes}}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {{#servicetypes}}
+                        <tr>
+                          <td>{{{code}}}</td>
+                          <td><a href='/servicetype/{{id}}'>{{{name}}}</a></td>
+                          <td>{{{description}}}</td>                        
+                        </tr>
+                      {{/servicetypes}}
+                    </tbody>
+                  </table>
+                </div>
               </div>     
             </div>
 
@@ -248,115 +260,120 @@
   	          <h2 class="sub-header">Jobs</h2>          
   	          <div class="table-responsive">
                 <form role="newJobForm" method="post" action="/job/save">
-                  <div class="col-xs-6">   
-                      {{#job}}                    
-                        <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                      {{/job}}
-                      {{^job}}
-                        <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                      {{/job}}
+                  <div class="row">
+                    <div class="col-xs-6">   
+                        {{#job}}                    
+                          <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                        {{/job}}
+                        {{^job}}
+                          <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                        {{/job}}
+                        <div class="form-group">
+                          <label for="make">Manufacturer</label>
+                          <select class="form-control" id="make" name="make" placeholder="Manufacturer">
+                            {{#manufacturers}}
+                            <option>{{name}}</option>
+                            {{/manufacturers}}                      
+                          </select>                                            
+                        </div>
+                        <div class="form-group">
+                          <label for="model">Model</label>
+                          <select class="form-control" id="model" name="model" placeholder="Model">
+                            {{#models}}
+                            <option>{{name}}</option>
+                            {{/models}}                      
+                          </select>                                            
+                        </div>
+                        <div class="form-group">
+                          <label for="rego">Rego</label>
+                          {{#job}}                    
+                            <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego" value="{{{rego}}}">
+                          {{/job}}
+                          {{^job}}
+                            <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+                          {{/job}}
+                        </div>
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          {{#job}}                    
+                            <input type="input" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                          {{/job}}
+                          {{^job}}
+                            <input type="input" class="form-control" id="name" name="name" placeholder="Name">
+                          {{/job}}
+                        </div>
+                        <div class="form-group">
+                          <label for="contact">Contact</label>
+                          {{#job}}                    
+                            <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{{contact}}}">
+                          {{/job}}
+                          {{^job}}
+                            <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
+                          {{/job}}
+                        </div>                      
+                    </div>
+                    <div class="col-xs-6">
                       <div class="form-group">
-                        <label for="make">Manufacturer</label>
-                        <select class="form-control" id="make" name="make" placeholder="Manufacturer">
-                          {{#manufacturers}}
+                        <label for="servicetype">Service Type</label>
+                        <select multiple class="form-control" id="servicetype" name="servicetype" placeholder="Service Type" style="height:103px">
+                          {{#serviceTypes}}
                           <option>{{name}}</option>
-                          {{/manufacturers}}                      
-                        </select>                                            
+                          {{/serviceTypes}}                      
+                        </select>                       
                       </div>
                       <div class="form-group">
-                        <label for="model">Model</label>
-                        <select class="form-control" id="model" name="model" placeholder="Model">
-                          {{#models}}
-                          <option>{{name}}</option>
-                          {{/models}}                      
-                        </select>                                            
-                      </div>
-                      <div class="form-group">
-                        <label for="rego">Rego</label>
+                        <label for="note">Notes</label>        
                         {{#job}}                    
-                          <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego" value="{{{rego}}}">
+                          <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px">{{{note}}}</textarea>
                         {{/job}}
                         {{^job}}
-                          <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+                          <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
                         {{/job}}
                       </div>
                       <div class="form-group">
-                        <label for="name">Name</label>
-                        {{#job}}                    
-                          <input type="input" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
-                        {{/job}}
-                        {{^job}}
-                          <input type="input" class="form-control" id="name" name="name" placeholder="Name">
-                        {{/job}}
+                        <label for="note">Status</label>        
+                        <select class="form-control" id="status" name="status" placeholder="Manufacturer">                          
+                            <option value="New">New</option>                          
+                            <option value="In Progress">In Progress</option>                          
+                            <option value="Completed">Completed</option>                          
+                            <option value="Picked Up">Picked Up</option>                          
+                        </select>                                                                  
                       </div>
-                      <div class="form-group">
-                        <label for="contact">Contact</label>
-                        {{#job}}                    
-                          <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{{contact}}}">
-                        {{/job}}
-                        {{^job}}
-                          <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
-                        {{/job}}
-                      </div>                      
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="form-group">
-                      <label for="servicetype">Service Type</label>
-                      <select multiple class="form-control" id="servicetype" name="servicetype" placeholder="Service Type" style="height:103px">
-                        {{#serviceTypes}}
-                        <option>{{name}}</option>
-                        {{/serviceTypes}}                      
-                      </select>                       
-                    </div>
-                    <div class="form-group">
-                      <label for="note">Notes</label>        
-                      {{#job}}                    
-                        <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px">{{{note}}}</textarea>
-                      {{/job}}
-                      {{^job}}
-                        <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
-                      {{/job}}
-                    </div>
-                    <div class="form-group">
-                      <label for="note">Status</label>        
-                      <select class="form-control" id="status" name="status" placeholder="Manufacturer">                          
-                          <option value="New">New</option>                          
-                          <option value="In Progress">In Progress</option>                          
-                          <option value="Completed">Completed</option>                          
-                          <option value="Picked Up">Picked Up</option>                          
-                      </select>                                                                  
-                    </div>
-                    <button type="submit" class="btn btn-default">Save Job</button>
-                  </div>  	          	
+                      <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
+                    </div>  	
+                  </div>          	
                 </form> 
-  	          </div>              
+  	          </div>  
+              <hr>            
   	          <div class="table-responsive">
-  	            <table class="table table-striped">
-  	              <thead>                
-  	                <tr>
-  	                  <th>Rego</th>
-                      <th>Make</th>
-                      <th>Model</th>
-  	                  <th>Name</th>
-  	                  <th>Contact</th>  	                  
-  	                  <th>Service</th>
-                      <th>Status</th>                      
-  	                </tr>
-  	              </thead>
-  	              <tbody>
-  	                {{#jobs}}
-  	                  <tr>
-  	                    <td><a href='/job/{{id}}'>{{{rego}}}</a></td>
-                        <td>{{{make}}}</td>
-                        <td>{{{model}}}</td>
-  	                    <td>{{{name}}}</td>
-  	                    <td>{{{contact}}}</td>
-  	                    <td>{{{servicetypes}}}</td>                        
-  	                    <td>{{{status}}}</td>
-  	                  </tr>
-  	                {{/jobs}}
-  	              </tbody>
-  	            </table>
+                <div class="row">
+    	            <table class="table table-striped">
+    	              <thead>                
+    	                <tr>
+    	                  <th>Rego</th>
+                        <th>Make</th>
+                        <th>Model</th>
+    	                  <th>Name</th>
+    	                  <th>Contact</th>  	                  
+    	                  <th>Service</th>
+                        <th>Status</th>                      
+    	                </tr>
+    	              </thead>
+    	              <tbody>
+    	                {{#jobs}}
+    	                  <tr>
+    	                    <td><a href='/job/{{id}}'>{{{rego}}}</a></td>
+                          <td>{{{make}}}</td>
+                          <td>{{{model}}}</td>
+    	                    <td>{{{name}}}</td>
+    	                    <td>{{{contact}}}</td>
+    	                    <td>{{{servicetypes}}}</td>                        
+    	                    <td>{{{status}}}</td>
+    	                  </tr>
+    	                {{/jobs}}
+    	              </tbody>
+    	            </table>
+                </div>
   	          </div>	            
             </div>
           </div>
