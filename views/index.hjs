@@ -15,7 +15,7 @@
     <script src='/javascript/gtech.js'></script>
     
   </head>
-  <body>
+  <body>    
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -256,7 +256,8 @@
             </div>
 
             <!-- Jobs tab-->
-            <div class="tab-pane active" id="job">              
+            <div class="tab-pane active" id="job">     
+              <input type="hidden" name="makeModelMap" id="makeModelMap" value="{{makeModelMap}}"/>         
   	          <h2 class="sub-header">Jobs</h2>          
   	          <div class="table-responsive">
                 <form role="newJobForm" method="post" action="/job/save">
@@ -270,7 +271,8 @@
                         {{/job}}
                         <div class="form-group">
                           <label for="make">Manufacturer</label>
-                          <select class="form-control" id="make" name="make" placeholder="Manufacturer">
+                          <select class="form-control job-make" id="make" name="make" placeholder="Manufacturer">
+                            <option value='-'>- select -</option>
                             {{#manufacturers}}
                             <option>{{name}}</option>
                             {{/manufacturers}}                      
@@ -278,7 +280,8 @@
                         </div>
                         <div class="form-group">
                           <label for="model">Model</label>
-                          <select class="form-control" id="model" name="model" placeholder="Model">
+                          <select class="form-control job-models" id="model" name="model" placeholder="Model">
+                            <option value='-'>- select -</option>
                             {{#models}}
                             <option>{{name}}</option>
                             {{/models}}                      

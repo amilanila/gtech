@@ -21,6 +21,25 @@ $(document).ready(function () {
 	  var href = $(this).attr('href').replace('#','');	  
 	  window.location.href = "/" + href;		  
 	})
+
+	$('.job-make').change(function (e) {
+	  e.preventDefault();
+	  var map = $('#makeModelMap').val();
+	  var json = JSON.parse(map);
+
+	  var selectedMake = $(this).val();
+	  var selectedModels = json[selectedMake];
+
+	  $('.job-models').empty();
+	  $('.job-models').append($("<option></option>").attr("value", '-').text('- select -'));
+
+	  if(selectedModels != undefined){
+	  	var selectedModelsArr = selectedModels.split('#');	
+	  	selectedModelsArr.forEach(function(selectedModel){
+			$('.job-models').append($("<option></option>").attr("value", selectedModel).text(selectedModel));
+	  	});
+	  } 
+	})
 });
 
 

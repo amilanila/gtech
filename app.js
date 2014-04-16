@@ -42,6 +42,7 @@ var varManufacturers = null;
 var varModels = null;
 var varServiceTypes = null;
 var varJobs = null;
+var makeModelMap = {};
 
 /////////////////////////////////////// Root ////////////////////////////////////////
 app.get('/', function(req, res){
@@ -50,7 +51,19 @@ app.get('/', function(req, res){
     });
 
     modelService.findAll(function( error, models) {
-        varModels = models;    
+        makeModelMap = {};
+        varModels = models;  
+
+        for (var i = 0; i < models.length; i++) {
+            var makeTmp = models[i].make;
+            var modelTmp = models[i].name;          
+
+            if(makeModelMap[makeTmp] == undefined){
+                makeModelMap[makeTmp] = modelTmp;
+            } else {
+                makeModelMap[makeTmp] = makeModelMap[makeTmp] + '#' + modelTmp;    
+            }            
+        };           
     });
 
     serviceTypeService.findAll(function( error, servicetypes) {
@@ -64,7 +77,8 @@ app.get('/', function(req, res){
             'jobs':jobs,
             'manufacturers': varManufacturers,
             'models': varModels,
-            'serviceTypes': varServiceTypes
+            'serviceTypes': varServiceTypes,
+            'makeModelMap': JSON.stringify(makeModelMap)
         });
     });
 });
@@ -148,6 +162,19 @@ app.post('/model/save', function(req, res){
 app.get('/model', function(req, res){
     modelService.findAll(function( error, models) {
         varModels = models;
+
+        makeModelMap = {};
+        for (var i = 0; i < models.length; i++) {
+            var makeTmp = models[i].make;
+            var modelTmp = models[i].name;          
+
+            if(makeModelMap[makeTmp] == undefined){
+                makeModelMap[makeTmp] = modelTmp;
+            } else {
+                makeModelMap[makeTmp] = makeModelMap[makeTmp] + '#' + modelTmp;    
+            }            
+        };   
+
         res.render('index', {
             'title': 'Models',
             'models': models,
@@ -263,14 +290,15 @@ app.post('/job/save', function(req, res){
 });
 
 app.get('/job', function(req, res){
-    jobService.findAll(function( error, jobs) {
+    jobService.findAll(function( error, jobs) {        
         varJobs = jobs;
         res.render('index', {
             'title': 'Jobs',
             'jobs':jobs,
             'manufacturers': varManufacturers,
             'models': varModels,
-            'serviceTypes': varServiceTypes
+            'serviceTypes': varServiceTypes,
+            'makeModelMap': JSON.stringify(makeModelMap)
         });
     });
 });
