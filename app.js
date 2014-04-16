@@ -30,8 +30,6 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-
 var initService = new InitService('localhost', 27017);
 initService.db(function(error, db){
     this.manufactureService = new ManufactureService(db);
@@ -44,6 +42,32 @@ var varManufacturers = null;
 var varModels = null;
 var varServiceTypes = null;
 var varJobs = null;
+
+/////////////////////////////////////// Root ////////////////////////////////////////
+app.get('/', function(req, res){
+    manufactureService.findAll(function( error, manufacturers) {
+        varManufacturers = manufacturers;    
+    });
+
+    modelService.findAll(function( error, models) {
+        varModels = models;    
+    });
+
+    serviceTypeService.findAll(function( error, servicetypes) {
+        varServiceTypes = servicetypes;    
+    });
+
+    jobService.findAll(function( error, jobs) {
+        varJobs = jobs;
+        res.render('index', {
+            'title': 'Jobs',
+            'jobs':jobs,
+            'manufacturers': varManufacturers,
+            'models': varModels,
+            'serviceTypes': varServiceTypes
+        });
+    });
+});
 
 /////////////////////////////////////// Manufactures ////////////////////////////////
 app.post('/manufacturer/save', function(req, res){
