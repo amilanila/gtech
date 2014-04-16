@@ -297,13 +297,12 @@
                         {{^job}}
                           <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
                         {{/job}}
-                      </div>
-                      <button type="submit" class="btn btn-default">Save Job</button>                  
+                      </div>                      
                   </div>
                   <div class="col-xs-6">
                     <div class="form-group">
                       <label for="servicetype">Service Type</label>
-                      <select multiple class="form-control" id="servicetype" name="servicetype" placeholder="Service Type" style="height:173px">
+                      <select multiple class="form-control" id="servicetype" name="servicetype" placeholder="Service Type" style="height:103px">
                         {{#serviceTypes}}
                         <option>{{name}}</option>
                         {{/serviceTypes}}                      
@@ -312,16 +311,25 @@
                     <div class="form-group">
                       <label for="note">Notes</label>        
                       {{#job}}                    
-                        <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px" value="{{{note}}}"></textarea>
+                        <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px">{{{note}}}</textarea>
                       {{/job}}
                       {{^job}}
                         <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
                       {{/job}}
                     </div>
+                    <div class="form-group">
+                      <label for="note">Status</label>        
+                      <select class="form-control" id="status" name="status" placeholder="Manufacturer">                          
+                          <option value="New">New</option>                          
+                          <option value="In Progress">In Progress</option>                          
+                          <option value="Completed">Completed</option>                          
+                          <option value="Picked Up">Picked Up</option>                          
+                      </select>                                                                  
+                    </div>
+                    <button type="submit" class="btn btn-default">Save Job</button>
                   </div>  	          	
                 </form> 
-  	          </div>
-  	          <hr>
+  	          </div>              
   	          <div class="table-responsive">
   	            <table class="table table-striped">
   	              <thead>                
@@ -344,7 +352,7 @@
   	                    <td>{{{name}}}</td>
   	                    <td>{{{contact}}}</td>
   	                    <td>{{{servicetypes}}}</td>                        
-  	                    <td><input type="checkbox" name="status_1001" value="1"></td>
+  	                    <td>{{{status}}}</td>
   	                  </tr>
   	                {{/jobs}}
   	              </tbody>

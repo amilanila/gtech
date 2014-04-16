@@ -228,6 +228,7 @@ app.post('/job/save', function(req, res){
     var contact = req.body.contact;
     var servicetype = req.body.servicetype;
     var note = req.body.note;
+    var status = req.body.status;
         
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
@@ -239,7 +240,8 @@ app.post('/job/save', function(req, res){
             'name': name,
             'contact': contact,
             'servicetypes': servicetype,
-            'note': note
+            'note': note,
+            'status': status
         }, function( error, docs) {
             res.redirect('/job')
         });
@@ -252,7 +254,8 @@ app.post('/job/save', function(req, res){
             'name': name,
             'contact': contact,
             'servicetypes': servicetype,
-            'note': note
+            'note': note,
+            'status': status
         }, function( error, docs) {
             res.redirect('/job')
         });                 

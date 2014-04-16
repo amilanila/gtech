@@ -78,7 +78,8 @@ JobService.prototype.update = function(job, callback){
         {
           $set: {
                   'make': job.make, 'model': job.model, 'rego': job.rego, 'name': job.name, 
-                  'contact': job.contact, 'servicetypes': job.servicetype, 'note': job.note
+                  'contact': job.contact, 'servicetypes': job.servicetype, 'note': job.note,
+                  'status': job.status
                 }
         },
         function(err, result){
