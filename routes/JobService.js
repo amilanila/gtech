@@ -18,14 +18,16 @@ JobService.prototype.getCollection= function(callback) {
 //search for jobs with matching criteria
 JobService.prototype.search = function(keyword, callback){
   this.getCollection(function(error, job_collection){
+    var regex = new RegExp(["^",keyword,"$"].join(""),"i");
+
     if(error){
       callback(error);
     } else {
       job_collection.find(
         {
           $or: [
-                  {'name' : keyword},
-                  {'rego' : keyword}
+                  {'name' : regex},
+                  {'rego' : regex}
                ]
         }, 
         function(error, result){
