@@ -15,6 +15,30 @@ JobService.prototype.getCollection= function(callback) {
   });
 };
 
+//search for jobs with matching criteria
+JobService.prototype.search = function(keyword, callback){
+  this.getCollection(function(error, job_collection){
+    if(error){
+      callback(error);
+    } else {
+      job_collection.find(
+        {
+          $or: [
+                  {'name' : keyword},
+                  {'rego' : keyword}
+               ]
+        }, 
+        function(error, result){
+        if(error){
+          callback(error);
+        } else {          
+          callback(null, result);
+        }
+      });
+    }   
+  });
+};
+
 //find all jobs
 JobService.prototype.findAll = function(callback) {
     this.getCollection(function(error, job_collection) {
@@ -27,6 +51,23 @@ JobService.prototype.findAll = function(callback) {
         });
       }
     });
+};
+
+//find a single job
+JobService.prototype.findOne = function(id, callback){
+  this.getCollection(function(error, job_collection){
+    if(error){
+      callback(error);
+    } else {
+      job_collection.findOne({'id': id}, function(error, result){
+        if(error){
+          callback(error);
+        } else {
+          callback(null, result);          
+        }
+      });
+    }   
+  });
 };
 
 //save new job
@@ -48,23 +89,6 @@ JobService.prototype.save = function(jobs, callback) {
         });
       }
     });
-};
-
-//find a single job
-JobService.prototype.findOne = function(id, callback){
-  this.getCollection(function(error, job_collection){
-    if(error){
-      callback(error);
-    } else {
-      job_collection.findOne({'id': id}, function(error, result){
-        if(error){
-          callback(error);
-        } else {
-          callback(null, result);
-        }
-      });
-    }   
-  });
 };
 
 //update a job

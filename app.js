@@ -317,6 +317,22 @@ app.get('/job/:id', function(req, res){
     })
 });
 
+app.get('/search', function(req, res){    
+    var keyword = req.query.keyword; 
+    jobService.search(keyword, function(error, result){
+        result.toArray(function(err, jobs){
+            res.render('index', {
+                'title': 'Jobs Search',
+                'jobs': jobs,
+                'manufacturers': varManufacturers,
+                'models': varModels,
+                'serviceTypes': varServiceTypes,
+                'makeModelMap': JSON.stringify(makeModelMap)
+            });                    
+        });
+    })
+});
+
 // create server
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
