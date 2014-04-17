@@ -94,7 +94,8 @@
                       	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
                       {{/manufacturer}}                    
                     </div>                  
-                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                  
+                    <a href="/manufacturer" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
+                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                                      
                   </form> 
                 </div>
               </div>  
@@ -160,6 +161,7 @@
                         <input type="input" class="form-control" id="description" name="description" placeholder="Description">
                       {{/model}}                    
                     </div>                  
+                    <a href="/model" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
                     <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
                   </form> 
                 </div>
@@ -227,7 +229,8 @@
                       {{^servicetype}}
                         <input type="input" class="form-control" id="description" name="description" placeholder="Description">
                       {{/servicetype}}                    
-                    </div>                  
+                    </div>      
+                    <a href="/servicetype" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>            
                     <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
                 </form> 
                 </div>
@@ -353,6 +356,7 @@
                             <option value="Picked Up">Picked Up</option>                          
                         </select>                                                                  
                       </div>
+                      <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
                       <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
                     </div>  	
                   </div>          	
@@ -369,8 +373,7 @@
                         <th>Model</th>
     	                  <th>Name</th>
     	                  <th>Contact</th>  	                  
-    	                  <th>Service</th>
-                        <th>Status</th>                      
+    	                  <th>Status</th>                      
     	                </tr>
     	              </thead>
     	              <tbody>
@@ -381,7 +384,6 @@
                           <td>{{{model}}}</td>
     	                    <td>{{{name}}}</td>
     	                    <td>{{{contact}}}</td>
-    	                    <td>{{{servicetypes}}}</td>                        
     	                    <td>{{{status}}}</td>
     	                  </tr>
     	                {{/jobs}}
