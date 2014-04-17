@@ -12,6 +12,35 @@ $(document).ready(function () {
 			tabName = 'job';
 		}
 		
+		var selectedMake = $('#selectedMake').val();
+		var selectedModel = $('#selectedModel').val();
+		var selectedStatus = $('#selectedStatus').val();
+		var selectedServiceTypes = $('#selectedServiceTypes').val();
+		
+		if(selectedMake != "-1"){
+			$('.job-make').val(selectedMake);			
+		}
+		if(selectedMake != "-1"){
+			$('.job-models').val(selectedModel);			
+		}
+		if(selectedMake != "-1"){
+			$('.job-status').val(selectedStatus);			
+		}
+		if(selectedServiceTypes != "-1"){
+			var arr = selectedServiceTypes.split(',');
+
+			$('.job-servicetypes > option').each(function(){
+				var self = this;
+				var stype = this.value;				
+				$(arr).each(function(){
+					var selectedType = this;
+					if(stype == selectedType){
+						$(self).attr('selected','selected');
+					}					
+				});
+			});			
+		}
+
 		var selector = "#mainTab a[href=\"#" + tabName + "\"]";
 		$(selector).tab('show');			
 	}

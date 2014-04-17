@@ -136,6 +136,7 @@
                     <div class="form-group">
                       <label for="make">Make</label>
                       <select class="form-control" id="make" name="make" placeholder="make">
+                        <option value="-1">- select -</option>
                         {{#manufacturers}}
                         <option>{{name}}</option>
                         {{/manufacturers}}                      
@@ -266,9 +267,17 @@
                     <div class="col-xs-6">   
                         {{#job}}                    
                           <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                          <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
+                          <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value={{model}}>
+                          <input type="hidden" class="form-control" id="selectedStatus" name="selectedStatus" value={{status}}>
+                          <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value={{servicetypes}}>
                         {{/job}}
                         {{^job}}
                           <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                          <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value="-1">
+                          <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value="-1">
+                          <input type="hidden" class="form-control" id="selectedStatus" name="selectedStatus" value="-1">
+                          <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value="-1">                          
                         {{/job}}
                         <div class="form-group">
                           <label for="make">Manufacturer</label>
@@ -319,9 +328,9 @@
                     <div class="col-xs-6">
                       <div class="form-group">
                         <label for="servicetype">Service Type</label>
-                        <select multiple class="form-control" id="servicetype" name="servicetype" placeholder="Service Type" style="height:103px">
+                        <select multiple class="form-control job-servicetypes" id="jobservicetype" name="jobservicetype" placeholder="Service Type" style="height:103px">
                           {{#serviceTypes}}
-                          <option>{{name}}</option>
+                          <option value="{{code}}">{{name}}</option>
                           {{/serviceTypes}}                      
                         </select>                       
                       </div>
@@ -336,7 +345,7 @@
                       </div>
                       <div class="form-group">
                         <label for="note">Status</label>        
-                        <select class="form-control" id="status" name="status" placeholder="Manufacturer">                          
+                        <select class="form-control job-status" id="status" name="status" placeholder="Manufacturer">                          
                             <option value="-">- select -</option>                          
                             <option value="New">New</option>                          
                             <option value="In Progress">In Progress</option>                          

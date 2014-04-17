@@ -253,10 +253,10 @@ app.post('/job/save', function(req, res){
     var rego = req.body.rego;
     var name = req.body.name;
     var contact = req.body.contact;
-    var servicetype = req.body.servicetype;
+    var servicetype = req.body.jobservicetype;
     var note = req.body.note;
     var status = req.body.status;
-        
+
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
         jobService.save({
