@@ -317,6 +317,13 @@ app.get('/job/:id', function(req, res){
     })
 });
 
+app.get('/job/remove/:id', function(req, res){
+    var id = req.params.id; 
+    jobService.remove(id, function( error, docs) {
+        res.redirect('/job')
+    });
+});
+
 app.get('/search', function(req, res){    
     var keyword = req.query.keyword; 
     jobService.search(keyword, function(error, result){

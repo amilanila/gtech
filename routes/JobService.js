@@ -48,8 +48,11 @@ JobService.prototype.findAll = function(callback) {
         callback(error);
       } else {
         job_collection.find().toArray(function(error, results) {
-          if( error ) callback(error)
-          else callback(null, results)
+          if( error ) {
+            callback(error)
+          } else {
+            callback(null, results)
+          }
         });
       }
     });
@@ -119,5 +122,22 @@ JobService.prototype.update = function(job, callback){
     }
   });
 };
+
+// delete a job
+JobService.prototype.remove = function(id, callback){
+  this.getCollection(function(error, job_collection){
+    if(error){
+      callback(error);
+    } else {
+      job_collection.remove(
+        {'id': id},
+        {justOne: true},
+        function(err, result){
+          callback(result);
+        }
+      );
+    }
+  });
+}
 
 exports.JobService = JobService;

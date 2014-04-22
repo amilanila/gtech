@@ -374,6 +374,7 @@
     	                  <th>Name</th>
     	                  <th>Contact</th>  	                  
     	                  <th>Status</th>                      
+                        <th></th>                      
     	                </tr>
     	              </thead>
     	              <tbody>
@@ -385,6 +386,7 @@
     	                    <td>{{{name}}}</td>
     	                    <td>{{{contact}}}</td>
     	                    <td>{{{status}}}</td>
+                          <td><a href='/job/remove/{{id}}'><span class="glyphicon glyphicon-trash"></span></a></td>
     	                  </tr>
     	                {{/jobs}}
     	              </tbody>
