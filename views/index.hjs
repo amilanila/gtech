@@ -29,9 +29,6 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right" action="/search" method="GET">
@@ -45,10 +42,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li><a href="#">Reports</a></li>            
           </ul>          
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -446,25 +441,31 @@
                   </div>  
                   <div class="row">
                     <div class="table-responsive">                
-                        <div class="row">
-                          <div class="col-xs-12"> 
-                            <div class="form-group">
-                              <label for="note">Notes</label>        
-                              {{#job}}                    
-                                <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
-                              {{/job}}
-                              {{^job}}
-                                <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
-                              {{/job}}
-                            </div>
-
-                            <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
-                            <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
-                          </div>  
+                      <div class="row">
+                        <div class="col-xs-4"> 
+                          <div class="form-group">
+                            <label for="note">Notes</label>        
+                            {{#job}}                    
+                              <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
+                            {{/job}}
+                            {{^job}}
+                              <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
+                            {{/job}}
+                          </div>
+                        </div>
+                        <div class="col-xs-4"> 
+                          <div class="form-group">
+                            <label for="startDate">Start Date</label>                                    
+                          </div>
                         </div>  
-                      </div>  
+                        <div class="col-xs-4"> 
+                          <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
+                          <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
+                        </div>                        
                     </div>  
-                  </div>
+                    </div>                        
+                  </div>  
+                </div>
                 </form> 
               <div class="table-responsive"> 
               <hr>
