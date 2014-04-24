@@ -93,4 +93,22 @@ ServiceTypeService.prototype.update = function(servicetype, callback){
   });
 };
 
+// delete a service type
+ServiceTypeService.prototype.remove = function(id, callback){
+  this.getCollection(function(error, servicetype_collection){
+    if(error){
+      callback(error);
+    } else {
+      servicetype_collection.remove(
+        {'id': id},
+        {justOne: true},
+        function(err, result){
+          callback(result);
+        }
+      );
+    }
+  });
+}
+
+
 exports.ServiceTypeService = ServiceTypeService;

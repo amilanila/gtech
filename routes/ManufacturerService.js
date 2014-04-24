@@ -93,4 +93,21 @@ ManufacturerService.prototype.update = function(manufacturer, callback){
   });
 };
 
+// delete a manufacturer
+ManufacturerService.prototype.remove = function(id, callback){
+  this.getCollection(function(error, manufacturer_collection){
+    if(error){
+      callback(error);
+    } else {
+      manufacturer_collection.remove(
+        {'id': id},
+        {justOne: true},
+        function(err, result){
+          callback(result);
+        }
+      );
+    }
+  });
+}
+
 exports.ManufacturerService = ManufacturerService;

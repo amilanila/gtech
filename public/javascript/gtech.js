@@ -69,6 +69,32 @@ $(document).ready(function () {
 	  	});
 	  } 
 	})
+
+	$('.remove-manufacturer-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeManufacturerLink").attr('href', '/manufacturer/remove/' + id);
+     	$('#manufacturerDeleteModal').modal('show');
+	});
+	$('.remove-model-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeModelLink").attr('href', '/model/remove/' + id);
+     	$('#modelDeleteModal').modal('show');
+	});
+	$('.remove-servicetype-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeServiceTypeLink").attr('href', '/servicetype/remove/' + id);
+     	$('#serviceTypeDeleteModal').modal('show');
+	});
+	$('.remove-job-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeJobLink").attr('href', '/job/remove/' + id);
+     	$('#jobDeleteModal').modal('show');
+	});
+
 });
 
 

@@ -94,4 +94,22 @@ ModelService.prototype.update = function(model, callback){
   });
 };
 
+
+// delete a model
+ModelService.prototype.remove = function(id, callback){
+  this.getCollection(function(error, model_collection){
+    if(error){
+      callback(error);
+    } else {
+      model_collection.remove(
+        {'id': id},
+        {justOne: true},
+        function(err, result){
+          callback(result);
+        }
+      );
+    }
+  });
+}
+
 exports.ModelService = ModelService;

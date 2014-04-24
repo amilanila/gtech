@@ -130,6 +130,13 @@ app.get('/manufacturer/:id', function(req, res){
 	})
 });
 
+app.get('/manufacturer/remove/:id', function(req, res){
+    var id = req.params.id; 
+    manufactureService.remove(id, function( error, docs) {
+        res.redirect('/manufacturer')
+    });
+});
+
 /////////////////////////////////////// Model ////////////////////////////////
 app.post('/model/save', function(req, res){
     var id = req.body.id;
@@ -195,6 +202,13 @@ app.get('/model/:id', function(req, res){
     })
 });
 
+app.get('/model/remove/:id', function(req, res){
+    var id = req.params.id; 
+    modelService.remove(id, function( error, docs) {
+        res.redirect('/model')
+    });
+});
+
 /////////////////////////////////////// Service Types ////////////////////////////////
 app.post('/servicetype/save', function(req, res){
     var id = req.body.id;
@@ -243,6 +257,13 @@ app.get('/servicetype/:id', function(req, res){
             'servicetypes': varServiceTypes
         });
     })
+});
+
+app.get('/servicetype/remove/:id', function(req, res){
+    var id = req.params.id; 
+    serviceTypeService.remove(id, function( error, docs) {
+        res.redirect('/servicetype')
+    });
 });
 
 /////////////////////////////////////// Services //////////////////////////////////////

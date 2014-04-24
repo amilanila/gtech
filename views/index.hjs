@@ -99,14 +99,31 @@
                   </form> 
                 </div>
               </div>  
-              <hr>            
+              <hr>  
+              <div class="modal fade" id="manufacturerDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Remove Manufacturer</h4>
+                    </div>
+                    <div class="modal-body">
+                      Do you want to remove this manufacturer?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      <a id="removeManufacturerLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                    </div>
+                  </div>
+                </div>
+              </div>          
               <div class="table-responsive">
                 <div class="row">
                   <table class="table table-striped">
                     <thead>                
                       <tr>
                         <th>Name</th>
-                        <th>Description</th>                      
+                        <th>Description</th>                            
                       </tr>
                     </thead>
                     <tbody>
@@ -167,6 +184,23 @@
                 </div>
               </div>
               <hr>
+              <div class="modal fade" id="modelDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Remove Model</h4>
+                    </div>
+                    <div class="modal-body">
+                      Do you want to remove this model?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      <a id="removeModelLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                    </div>
+                  </div>
+                </div>
+              </div>       
               <div class="table-responsive">
                 <div class="row">
                   <table class="table table-striped">
@@ -182,7 +216,7 @@
                         <tr>
                           <td>{{{make}}}</td>
                           <td><a href='/model/{{id}}'>{{{name}}}</a></td>
-                          <td>{{{description}}}</td>                        
+                          <td>{{{description}}}</td>      
                         </tr>
                       {{/models}}
                     </tbody>
@@ -236,6 +270,23 @@
                 </div>
               </div>
               <hr>
+               <div class="modal fade" id="serviceTypeDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Remove Model</h4>
+                    </div>
+                    <div class="modal-body">
+                      Do you want to remove this service type?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      <a id="removeServiceTypeLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                    </div>
+                  </div>
+                </div>
+              </div>       
               <div class="table-responsive">
                 <div class="row">
                   <table class="table table-striped">
@@ -244,6 +295,7 @@
                         <th>Code</th>
                         <th>Name</th>
                         <th>Description</th>                      
+                        <th></th>                      
                       </tr>
                     </thead>
                     <tbody>
@@ -252,6 +304,7 @@
                           <td>{{{code}}}</td>
                           <td><a href='/servicetype/{{id}}'>{{{name}}}</a></td>
                           <td>{{{description}}}</td>                        
+                          <td><a class="remove-servicetype-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>      
                         </tr>
                       {{/servicetypes}}
                     </tbody>
@@ -362,7 +415,25 @@
                   </div>          	
                 </form> 
   	          </div>  
-              <hr>            
+              <hr>
+              <div class="modal fade" id="jobDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Remove Job</h4>
+                    </div>
+                    <div class="modal-body">
+                      <input type="hidden" name="jobRemoveId" id="jobRemoveId" value=""/>
+                      Do you want to remove this job?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      <a id="removeJobLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                    </div>
+                  </div>
+                </div>
+              </div>
   	          <div class="table-responsive">
                 <div class="row">
     	            <table class="table table-striped">
@@ -385,8 +456,8 @@
                           <td>{{{model}}}</td>
     	                    <td>{{{name}}}</td>
     	                    <td>{{{contact}}}</td>
-    	                    <td>{{{status}}}</td>
-                          <td><a href='/job/remove/{{id}}'><span class="glyphicon glyphicon-trash"></span></a></td>
+    	                    <td>{{{status}}}</td>                          
+                          <td><a class="remove-job-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
     	                  </tr>
     	                {{/jobs}}
     	              </tbody>
