@@ -271,12 +271,16 @@ app.post('/job/save', function(req, res){
 	var id = req.body.id;
     var make = req.body.make;
     var model = req.body.model;
+    var yom = req.body.yom;
     var rego = req.body.rego;
-    var name = req.body.name;
-    var contact = req.body.contact;
+    var odo = req.body.odo;
     var servicetype = req.body.jobservicetype;
-    var note = req.body.note;
     var status = req.body.status;
+    var fname = req.body.fname;
+    var lname = req.body.lname;
+    var contact = req.body.contact;
+    var address = req.body.address;
+    var note = req.body.note;
 
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
@@ -284,12 +288,16 @@ app.post('/job/save', function(req, res){
             'id': id,
             'make': make,
             'model': model,
+            'yom': yom,
             'rego': rego,
-            'name': name,
-            'contact': contact,
+            'odo': odo,            
             'servicetypes': servicetype,
-            'note': note,
-            'status': status
+            'status': status,
+            'fname': fname,
+            'lname': lname,
+            'contact': contact,
+            'address': address,
+            'note': note
         }, function( error, docs) {
             res.redirect('/job')
         });
@@ -298,12 +306,16 @@ app.post('/job/save', function(req, res){
             'id': id,
             'make': make,
             'model': model,
+            'yom': yom,
             'rego': rego,
-            'name': name,
-            'contact': contact,
+            'odo': odo,            
             'servicetypes': servicetype,
-            'note': note,
-            'status': status
+            'status': status,
+            'fname': fname,
+            'lname': lname,
+            'contact': contact,
+            'address': address,
+            'note': note
         }, function( error, docs) {
             res.redirect('/job')
         });                 

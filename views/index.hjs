@@ -317,104 +317,156 @@
             <div class="tab-pane active" id="job">     
               <input type="hidden" name="makeModelMap" id="makeModelMap" value="{{makeModelMap}}"/>         
   	          <h2 class="sub-header">Jobs</h2>          
-  	          <div class="table-responsive">
+              <div class="table-responsive"> 
                 <form role="newJobForm" method="post" action="/job/save">
                   <div class="row">
-                    <div class="col-xs-6">   
-                        {{#job}}                    
-                          <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                          <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
-                          <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value={{model}}>
-                          <input type="hidden" class="form-control" id="selectedStatus" name="selectedStatus" value={{status}}>
-                          <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value={{servicetypes}}>
-                        {{/job}}
-                        {{^job}}
-                          <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                          <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value="-1">
-                          <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value="-1">
-                          <input type="hidden" class="form-control" id="selectedStatus" name="selectedStatus" value="-1">
-                          <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value="-1">                          
-                        {{/job}}
-                        <div class="form-group">
-                          <label for="make">Manufacturer</label>
-                          <select class="form-control job-make" id="make" name="make" placeholder="Manufacturer">
-                            <option value='-'>- select -</option>
-                            {{#manufacturers}}
-                            <option>{{name}}</option>
-                            {{/manufacturers}}                      
-                          </select>                                            
-                        </div>
-                        <div class="form-group">
-                          <label for="model">Model</label>
-                          <select class="form-control job-models" id="model" name="model" placeholder="Model">
-                            <option value='-'>- select -</option>
-                            {{#models}}
-                            <option>{{name}}</option>
-                            {{/models}}                      
-                          </select>                                            
-                        </div>
-                        <div class="form-group">
-                          <label for="rego">Rego</label>
-                          {{#job}}                    
-                            <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego" value="{{{rego}}}">
-                          {{/job}}
-                          {{^job}}
-                            <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
-                          {{/job}}
-                        </div>
-                        <div class="form-group">
-                          <label for="name">Name</label>
-                          {{#job}}                    
-                            <input type="input" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
-                          {{/job}}
-                          {{^job}}
-                            <input type="input" class="form-control" id="name" name="name" placeholder="Name">
-                          {{/job}}
-                        </div>
-                        <div class="form-group">
-                          <label for="contact">Contact</label>
-                          {{#job}}                    
-                            <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{{contact}}}">
-                          {{/job}}
-                          {{^job}}
-                            <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
-                          {{/job}}
-                        </div>                      
-                    </div>
-                    <div class="col-xs-6">
-                      <div class="form-group">
-                        <label for="servicetype">Service Type</label>
-                        <select multiple class="form-control job-servicetypes" id="jobservicetype" name="jobservicetype" placeholder="Service Type" style="height:103px">
-                          {{#serviceTypes}}
-                          <option value="{{code}}">{{name}}</option>
-                          {{/serviceTypes}}                      
-                        </select>                       
-                      </div>
-                      <div class="form-group">
-                        <label for="note">Notes</label>        
-                        {{#job}}                    
-                          <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px">{{{note}}}</textarea>
-                        {{/job}}
-                        {{^job}}
-                          <textarea class="form-control" id="note" name="note" placeholder="Note" style="height:104px"></textarea>
-                        {{/job}}
-                      </div>
-                      <div class="form-group">
-                        <label for="note">Status</label>        
-                        <select class="form-control job-status" id="status" name="status" placeholder="Manufacturer">                          
-                            <option value="-">- select -</option>                          
-                            <option value="New">New</option>                          
-                            <option value="In Progress">In Progress</option>                          
-                            <option value="Completed">Completed</option>                          
-                            <option value="Picked Up">Picked Up</option>                          
-                        </select>                                                                  
-                      </div>
-                      <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
-                      <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
-                    </div>  	
-                  </div>          	
+        	          <div class="table-responsive">                
+                        <div class="row">
+                          <div class="col-xs-4">   
+                              {{#job}}                    
+                                <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                                <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
+                                <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value={{model}}>
+                                <input type="hidden" class="form-control" id="selectedStatus" name="selectedStatus" value={{status}}>
+                                <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value={{servicetypes}}>
+                              {{/job}}
+                              {{^job}}
+                                <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                                <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value="-1">
+                                <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value="-1">
+                                <input type="hidden" class="form-control" id="selectedStatus" name="selectedStatus" value="-1">
+                                <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value="-1">                          
+                              {{/job}}
+                              <div class="form-group">
+                                <label for="make">Manufacturer</label>
+                                <select class="form-control job-make" id="make" name="make" placeholder="Manufacturer">
+                                  <option value='-'>- select -</option>
+                                  {{#manufacturers}}
+                                  <option>{{name}}</option>
+                                  {{/manufacturers}}                      
+                                </select>                                            
+                              </div>
+                              <div class="form-group">
+                                <label for="model">Model</label>
+                                <select class="form-control job-models" id="model" name="model" placeholder="Model">
+                                  <option value='-'>- select -</option>
+                                  {{#models}}
+                                  <option>{{name}}</option>
+                                  {{/models}}                      
+                                </select>                                            
+                              </div>
+                              <div class="form-group">
+                                <label for="yom">Year or manufacture</label>
+                                {{#job}}                    
+                                  <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
+                                {{/job}}
+                                {{^job}}
+                                  <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
+                                {{/job}}
+                              </div>
+                              <div class="form-group">
+                                <label for="rego">Rego</label>
+                                {{#job}}                    
+                                  <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego" value="{{{rego}}}">
+                                {{/job}}
+                                {{^job}}
+                                  <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego">
+                                {{/job}}
+                              </div>
+                              <div class="form-group">
+                                <label for="odo">Millege</label>
+                                {{#job}}                    
+                                  <input type="input" class="form-control" id="yom" name="odo" placeholder="ODO meter" value="{{{odo}}}">
+                                {{/job}}
+                                {{^job}}
+                                  <input type="input" class="form-control" id="odo" name="odo" placeholder="ODO meter">
+                                {{/job}}
+                              </div>
+                          </div>
+                          <div class="col-xs-4">
+                            <div class="form-group">
+                              <label for="servicetype">Service Type</label>
+                              <select multiple class="form-control job-servicetypes" id="jobservicetype" name="jobservicetype" placeholder="Service Type" style="height:245px">
+                                {{#serviceTypes}}
+                                <option value="{{code}}">{{name}}</option>
+                                {{/serviceTypes}}                      
+                              </select>                       
+                            </div>
+                            <div class="form-group">
+                              <label for="note">Status</label>        
+                              <select class="form-control job-status" id="status" name="status" placeholder="Manufacturer">                          
+                                  <option value="-">- select -</option>                          
+                                  <option value="New">New</option>                          
+                                  <option value="In Progress">In Progress</option>                          
+                                  <option value="Completed">Completed</option>                          
+                                  <option value="Picked Up">Picked Up</option>                          
+                              </select>                                                                  
+                            </div>
+                          </div>  	
+                          <div class="col-xs-4">
+                            <div class="form-group">
+                              <label for="fname">First Name</label>
+                              {{#job}}                    
+                                <input type="input" class="form-control" id="fname" name="fname" placeholder="First Name" value="{{{fname}}}">
+                              {{/job}}
+                              {{^job}}
+                                <input type="input" class="form-control" id="fname" name="fname" placeholder="First Name">
+                              {{/job}}
+                            </div>
+                            <div class="form-group">
+                              <label for="lname">Last Name</label>
+                              {{#job}}                    
+                                <input type="input" class="form-control" id="lname" name="lname" placeholder="Last Name" value="{{{lname}}}">
+                              {{/job}}
+                              {{^job}}
+                                <input type="input" class="form-control" id="lname" name="lname" placeholder="Last Name">
+                              {{/job}}
+                            </div>
+                            <div class="form-group">
+                              <label for="contact">Contact</label>
+                              {{#job}}                    
+                                <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact" value="{{{contact}}}">
+                              {{/job}}
+                              {{^job}}
+                                <input type="input" class="form-control" id="contact" name="contact" placeholder="Contact">
+                              {{/job}}
+                            </div>    
+                            <div class="form-group">
+                              <label for="note">Address</label>        
+                              {{#job}}                    
+                                <textarea class="form-control" id="address" name="address" placeholder="Address" style="height:104px">{{{address}}}</textarea>
+                              {{/job}}
+                              {{^job}}
+                                <textarea class="form-control" id="address" name="address" placeholder="Address" style="height:104px"></textarea>
+                              {{/job}}
+                            </div>                                                
+                          </div>    
+                        </div>          	                
+        	          </div>
+                  </div>  
+                  <div class="row">
+                    <div class="table-responsive">                
+                        <div class="row">
+                          <div class="col-xs-12"> 
+                            <div class="form-group">
+                              <label for="note">Notes</label>        
+                              {{#job}}                    
+                                <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
+                              {{/job}}
+                              {{^job}}
+                                <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
+                              {{/job}}
+                            </div>
+
+                            <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
+                            <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
+                          </div>  
+                        </div>  
+                      </div>  
+                    </div>  
+                  </div>
                 </form> 
-  	          </div>  
+              <div class="table-responsive"> 
               <hr>
               <div class="modal fade" id="jobDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -454,7 +506,7 @@
     	                    <td><a href='/job/{{id}}'>{{{rego}}}</a></td>
                           <td>{{{make}}}</td>
                           <td>{{{model}}}</td>
-    	                    <td>{{{name}}}</td>
+    	                    <td>{{{fname}}} {{{lname}}}</td>
     	                    <td>{{{contact}}}</td>
     	                    <td>{{{status}}}</td>                          
                           <td><a class="remove-job-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>

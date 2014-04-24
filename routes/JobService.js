@@ -26,7 +26,8 @@ JobService.prototype.search = function(keyword, callback){
       job_collection.find(
         {
           $or: [
-                  {'name' : regex},
+                  {'fname' : regex},
+                  {'lname' : regex},
                   {'rego' : regex}
                ]
         }, 
@@ -106,9 +107,18 @@ JobService.prototype.update = function(job, callback){
         {'id': job.id},
         {
           $set: {
-                  'make': job.make, 'model': job.model, 'rego': job.rego, 'name': job.name, 
-                  'contact': job.contact, 'servicetypes': job.servicetypes, 'note': job.note,
-                  'status': job.status
+                  'make': job.make, 
+                  'model': job.model, 
+                  'yom': job.yom, 
+                  'rego': job.rego, 
+                  'odo': job.odo,                        
+                  'servicetypes': job.servicetypes, 
+                  'status': job.status,
+                  'fname': job.fname, 
+                  'lname': job.lname, 
+                  'contact': job.contact, 
+                  'address': job.address,
+                  'note': job.note,
                 }
         },
         function(err, result){
