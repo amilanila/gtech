@@ -397,9 +397,9 @@
                               <select class="form-control job-status" id="status" name="status" placeholder="Manufacturer">                          
                                   <option value="-">- select -</option>                          
                                   <option value="New">New</option>                          
-                                  <option value="In Progress">In Progress</option>                          
+                                  <option value="Inprogress">Inprogress</option>                          
                                   <option value="Completed">Completed</option>                          
-                                  <option value="Picked Up">Picked Up</option>                          
+                                  <option value="Pickedup">Pickedup</option>                          
                               </select>                                                                  
                             </div>
                           </div>  	
