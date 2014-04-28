@@ -10,3 +10,13 @@ a {
 .btn-cancel {
 	margin-left: 5px;
 }
+
+.note-textarea{ 
+  width: 600px; 
+  min-width: 600px;
+  max-width: 600px;
+  
+  height:104px; 
+  min-height:104px;  
+  max-height:300px;
+}

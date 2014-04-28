@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	$( ".datepicker" ).datepicker();
+
 	var pathName = $(location).attr('pathname');
 	if(pathName != undefined){
 		var tabName = '';

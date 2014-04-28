@@ -10,7 +10,9 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
     <script src='/javascript/jquery.min.js'></script>
+    <script src='/javascript/jquery-ui.min.js'></script>
     <script src='/javascript/bootstrap.min.js'></script>
     <script src='/javascript/gtech.js'></script>
     
@@ -316,8 +318,8 @@
                 <form role="newJobForm" method="post" action="/job/save">
                   <div class="row">
         	          <div class="table-responsive">                
-                        <div class="row">
-                          <div class="col-xs-4">   
+                        <div class="row">                            
+                          <div class="col-xs-4 well">   
                               {{#job}}                    
                                 <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
                                 <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
@@ -378,7 +380,7 @@
                                 {{/job}}
                               </div>
                           </div>
-                          <div class="col-xs-4">
+                          <div class="col-xs-4 well">
                             <div class="form-group">
                               <label for="servicetype">Service Type</label>
                               <select multiple class="form-control job-servicetypes" id="jobservicetype" name="jobservicetype" placeholder="Service Type" style="height:245px">
@@ -398,7 +400,7 @@
                               </select>                                                                  
                             </div>
                           </div>  	
-                          <div class="col-xs-4">
+                          <div class="col-xs-4 well">
                             <div class="form-group">
                               <label for="fname">First Name</label>
                               {{#job}}                    
@@ -441,27 +443,49 @@
                   </div>  
                   <div class="row">
                     <div class="table-responsive">                
-                      <div class="row">
-                        <div class="col-xs-4"> 
+                      <div class="row well">
+                        <div class="col-xs-8"> 
                           <div class="form-group">
                             <label for="note">Notes</label>        
                             {{#job}}                    
-                              <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
+                              <textarea class="form-control note-textarea" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
                             {{/job}}
                             {{^job}}
-                              <textarea class="form-control" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
+                              <textarea class="form-control note-textarea" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
                             {{/job}}
                           </div>
                         </div>
-                        <div class="col-xs-4"> 
+                        <div class="col-xs-2"> 
                           <div class="form-group">
-                            <label for="startDate">Start Date</label>                                    
+                            <label for="startdate">Start Date</label><br>        
+                            {{#job}}                    
+                              <input class="datepicker" id="startdate" name="startdate" type="text" value="{{startdate}}">                              
+                            {{/job}}
+                            {{^job}}
+                              <input class="datepicker" id="startdate" name="startdate" type="text">                              
+                            {{/job}}                            
                           </div>
+                          <br>
+                          <div class="form-group">
+                            <label for="completedate">Complete Date</label><br>        
+                            {{#job}}                                                                           
+                              <input class="datepicker" id="completedate" name="completedate" type="text" value="{{completedate}}">
+                            {{/job}}
+                            {{^job}}
+                              <input class="datepicker" id="completedate" name="completedate" type="text">
+                            {{/job}}                    
+                          </div>                          
                         </div>  
-                        <div class="col-xs-4"> 
-                          <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
-                          <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>
-                        </div>                        
+                        <div class="col-xs-2"> 
+                          <div class="row">
+                            <br><br>
+                            <a href="/job" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>                                                      
+                          </div>
+                          <div class="row">
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>                          
+                          </div>                          
+                        </div>  
                     </div>  
                     </div>                        
                   </div>  

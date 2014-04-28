@@ -281,6 +281,8 @@ app.post('/job/save', function(req, res){
     var contact = req.body.contact;
     var address = req.body.address;
     var note = req.body.note;
+    var startdate = req.body.startdate;
+    var completedate = req.body.completedate;
 
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
@@ -297,7 +299,9 @@ app.post('/job/save', function(req, res){
             'lname': lname,
             'contact': contact,
             'address': address,
-            'note': note
+            'note': note,
+            'startdate': startdate,
+            'completedate': completedate
         }, function( error, docs) {
             res.redirect('/job')
         });
@@ -315,7 +319,9 @@ app.post('/job/save', function(req, res){
             'lname': lname,
             'contact': contact,
             'address': address,
-            'note': note
+            'note': note,
+            'startdate': startdate,
+            'completedate': completedate
         }, function( error, docs) {
             res.redirect('/job')
         });                 

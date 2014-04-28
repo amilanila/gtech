@@ -119,6 +119,8 @@ JobService.prototype.update = function(job, callback){
                   'contact': job.contact, 
                   'address': job.address,
                   'note': job.note,
+                  'startdate': job.startdate,
+                  'completedate': job.completedate
                 }
         },
         function(err, result){
