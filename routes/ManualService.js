@@ -78,6 +78,9 @@ ManualService.prototype.remove = function(id, callback){
         {'id': id},
         {justOne: true},
         function(err, result){
+          var dir = __dirname + "/../public/uploads/" + id;
+          fs.unlinkSync(dir);
+
           callback(result);
         }
       );
