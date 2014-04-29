@@ -10,7 +10,9 @@ var express = require('express'),
     ManufactureService = require('./routes/ManufacturerService').ManufacturerService,
     ModelService = require('./routes/ModelService').ModelService,
     ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
-    JobService = require('./routes/JobService').JobService;   
+    JobService = require('./routes/JobService').JobService,
+    manualService = require('./routes/ManualService').ManualService,
+    fs = require("fs");   
 
 var app = express();
 
@@ -36,6 +38,7 @@ initService.db(function(error, db){
     this.modelService = new ModelService(db);
     this.serviceTypeService = new ServiceTypeService(db);
     this.jobService = new JobService(db);
+    this.manualService = new ManualService(db);
 });
 
 var varManufacturers = null;
@@ -377,6 +380,44 @@ app.get('/search', function(req, res){
             });                    
         });
     })
+});
+
+/////////////////////////////////////// Manual ////////////////////////////////
+app.get('/manual', function(req, res){
+    manualService.findAll(function( error, manuals) {        
+        res.render('index', {
+            'title': 'Manuals',
+            'manuals': manuals,
+            'manufacturers': varManufacturers,
+            'models': varModels,
+            'makeModelMap': JSON.stringify(makeModelMap)
+        });
+    });
+});
+
+app.post('/manual/save', function(req, res){
+    var id = crypto.randomBytes(20).toString('hex');
+    var make = req.body.make;
+    var model = req.body.model;
+    var data = fs.readFileSync(req.files.manualfile.path);
+    var fileName = req.files.manualfile.name;
+
+    manualService.save({
+        'id': id,
+        'make': make,
+        'model': model,
+        'data': data,
+        'filename': fileName
+    }, function( error, docs) {
+        res.redirect('/manual')
+    });
+});
+
+app.get('/manual/remove/:id', function(req, res){
+    var id = req.params.id; 
+    manualService.remove(id, function( error, docs) {
+        res.redirect('/manual')
+    });
 });
 
 // create server

@@ -10,6 +10,8 @@ $(document).ready(function () {
 			tabName = 'model';
 		} else if(pathName.indexOf('servicetype') > -1){
 			tabName = 'servicetype';
+		} else if(pathName.indexOf('manual') > -1){
+			tabName = 'manual';
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			tabName = 'job';
 		}
@@ -96,7 +98,12 @@ $(document).ready(function () {
      	$(".modal-footer #removeJobLink").attr('href', '/job/remove/' + id);
      	$('#jobDeleteModal').modal('show');
 	});
-
+	$('.remove-manual-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeManualLink").attr('href', '/manual/remove/' + id);
+     	$('#manualDeleteModal').modal('show');
+	});
 });
 
 
