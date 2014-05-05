@@ -133,7 +133,7 @@ app.get('/manufacturer/:id', function(req, res){
 	})
 });
 
-app.get('/manufacturer/remove/:id', function(req, res){
+app.post('/manufacturer/remove/:id', function(req, res){
     var id = req.params.id; 
     manufactureService.remove(id, function( error, docs) {
         res.redirect('/manufacturer')
@@ -205,7 +205,7 @@ app.get('/model/:id', function(req, res){
     })
 });
 
-app.get('/model/remove/:id', function(req, res){
+app.post('/model/remove/:id', function(req, res){
     var id = req.params.id; 
     modelService.remove(id, function( error, docs) {
         res.redirect('/model')
@@ -242,7 +242,7 @@ app.post('/servicetype/save', function(req, res){
 });
 
 app.get('/servicetype', function(req, res){
-    serviceTypeService.findAll(function( error, servicetypes) {
+	serviceTypeService.findAll(function( error, servicetypes) {
         varServiceTypes = servicetypes;
         res.render('index', {
             'title': 'Service Types',
@@ -262,7 +262,7 @@ app.get('/servicetype/:id', function(req, res){
     })
 });
 
-app.get('/servicetype/remove/:id', function(req, res){
+app.post('/servicetype/remove/:id', function(req, res){
     var id = req.params.id; 
     serviceTypeService.remove(id, function( error, docs) {
         res.redirect('/servicetype')
@@ -359,7 +359,7 @@ app.get('/job/:id', function(req, res){
     })
 });
 
-app.get('/job/remove/:id', function(req, res){
+app.post('/job/remove/:id', function(req, res){
     var id = req.params.id; 
     jobService.remove(id, function( error, docs) {
         res.redirect('/job')
@@ -413,11 +413,29 @@ app.post('/manual/save', function(req, res){
     });
 });
 
-app.get('/manual/remove/:id', function(req, res){
+app.post('/manual/remove/:id', function(req, res){
     var id = req.params.id; 
     manualService.remove(id, function( error, docs) {
         res.redirect('/manual')
     });
+});
+
+app.get('/manual/:id', function(req, res){
+    var id = req.params.id; 
+    manualService.findOne(id, function(error, manual){
+    	var file = __dirname + "\\public\\uploads\\" + manual.id + "\\" + manual.filename;
+        
+        console.log(">>>>>>>>>>>>> " + file);
+
+        fs.readFile(file, function (err,data){
+
+            res.setHeader('Content-disposition', 'attatchment; filename="' + manual.filename + '"');
+            res.setHeader('Content-type', 'application/pdf');
+
+            //res.contentType("application/pdf");
+            res.send(data);
+        });
+    })
 });
 
 // create server

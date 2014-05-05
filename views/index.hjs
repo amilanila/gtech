@@ -612,7 +612,7 @@
                   <tbody>
                     {{#manuals}}
                       <tr>
-                        <td><a href='/job/{{id}}'>{{{filename}}}</a></td>
+                        <td><a href='/manual/{{id}}'>{{{filename}}}</a></td>
                         <td>{{{make}}}</a></td>
                         <td>{{{model}}}</td>                         
                         <td><a class="remove-manual-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
