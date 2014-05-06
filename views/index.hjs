@@ -524,6 +524,7 @@
     	                  <th>Contact</th>  	                  
     	                  <th>Status</th>                      
                         <th></th>                      
+                        <th></th>                      
     	                </tr>
     	              </thead>
     	              <tbody>
@@ -535,6 +536,7 @@
     	                    <td>{{{fname}}} {{{lname}}}</td>
     	                    <td>{{{contact}}}</td>
     	                    <td>{{{status}}}</td>                          
+                          <td><a href="/job/print/{{id}}"><span class="glyphicon glyphicon-print"></span></a></td>
                           <td><a class="remove-job-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
     	                  </tr>
     	                {{/jobs}}

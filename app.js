@@ -2,7 +2,7 @@ var express = require('express'),
 	routes = require('./routes'),
 	http = require('http'),
 	path = require('path'),
-    crypto = require("crypto"),
+    crypto = require('crypto'),
     Db = require('mongodb').Db,
     Connection = require('mongodb').Connection,
     Server = require('mongodb').Server,
@@ -12,7 +12,9 @@ var express = require('express'),
     ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
     JobService = require('./routes/JobService').JobService,
     manualService = require('./routes/ManualService').ManualService,
-    fs = require("fs");   
+    fs = require("fs"),
+    PDFDocument = require('pdfkit'),
+    blobStream = require('blob-stream');   
 
 var app = express();
 
@@ -382,6 +384,27 @@ app.get('/search', function(req, res){
     })
 });
 
+app.get('/job/print/:id', function(req, res){
+    var id = req.params.id; 
+
+    jobService.findOne(id, function( error, job) {
+        var dir = __dirname + "\\public\\prints\\";
+        var path = dir + job.id + ".pdf";
+
+        var doc = new PDFDocument();                        
+        doc.pipe(fs.createWriteStream(path));  
+        doc.text(job.make, 100, 100);             
+        doc.end(); 
+
+        // read file and send to browser
+        fs.readFile(path, function (err,data){
+            res.setHeader('Content-disposition', 'attatchment; filename="' + job.id+ '"');
+            res.setHeader('Content-type', 'application/pdf');
+            res.send(data);
+        });
+    });
+});
+
 /////////////////////////////////////// Manual ////////////////////////////////
 app.get('/manual', function(req, res){
     manualService.findAll(function( error, manuals) {        
@@ -423,16 +446,11 @@ app.post('/manual/remove/:id', function(req, res){
 app.get('/manual/:id', function(req, res){
     var id = req.params.id; 
     manualService.findOne(id, function(error, manual){
+
     	var file = __dirname + "\\public\\uploads\\" + manual.id + "\\" + manual.filename;
-        
-        console.log(">>>>>>>>>>>>> " + file);
-
         fs.readFile(file, function (err,data){
-
             res.setHeader('Content-disposition', 'attatchment; filename="' + manual.filename + '"');
             res.setHeader('Content-type', 'application/pdf');
-
-            //res.contentType("application/pdf");
             res.send(data);
         });
     })
