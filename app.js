@@ -388,20 +388,27 @@ app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
 
     jobService.findOne(id, function( error, job) {
-        var dir = __dirname + "\\public\\prints\\";
-        var path = dir + job.id + ".pdf";
-
+        var filename = job.rego + ".pdf";
+        var file = __dirname + "\\public\\prints\\" + filename;
+    
         var doc = new PDFDocument();                        
-        doc.pipe(fs.createWriteStream(path));  
+        doc.pipe(fs.createWriteStream(file));  
         doc.text(job.make, 100, 100);             
         doc.end(); 
 
-        // read file and send to browser
-        fs.readFile(path, function (err,data){
-            res.setHeader('Content-disposition', 'attatchment; filename="' + job.id+ '"');
-            res.setHeader('Content-type', 'application/pdf');
-            res.send(data);
-        });
+        res.redirect('/job/download/'+ filename);
+    });
+});
+
+app.get('/job/download/:filename', function(req, res){
+    var filename = req.params.filename; 
+    var file = __dirname + "\\public\\prints\\" + filename;
+
+    // read file and send to browser
+    fs.readFile(file, function (err,data){
+        res.setHeader('Content-disposition', 'attatchment; filename="' + filename + '"');
+        res.setHeader('Content-type', 'application/pdf');
+        res.send(data);
     });
 });
 
