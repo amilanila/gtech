@@ -1,5 +1,7 @@
-var BSON = require('mongodb').BSON;
-var ObjectID = require('mongodb').ObjectID;
+var BSON = require('mongodb').BSON,
+    ObjectID = require('mongodb').ObjectID,
+    fs = require("fs"),
+    PDFDocument = require('pdfkit');    
 
 JobService = function(db) {
   this.db = db;
@@ -150,6 +152,56 @@ JobService.prototype.remove = function(id, callback){
       );
     }
   });
+}
+
+JobService.prototype.createPrint = function(job, callback){
+  var filename = job.rego + ".pdf";
+  var file = __dirname + "\\..\\public\\prints\\" + filename;
+
+  var doc = new PDFDocument();                        
+  doc.pipe(fs.createWriteStream(file));  
+
+  doc.fontSize(22);
+  doc.font('Times-Roman')
+    .text('GTech Auto Care');
+
+  doc.lineWidth(1)
+  doc.lineCap('butt')
+    .moveTo(60, 100)
+    .lineTo(550, 100)
+    .stroke();  
+
+  doc.moveDown();  
+
+  doc.fontSize(14); 
+  doc.text('Make', 60, 120);
+  doc.fontSize(12); 
+  doc.text(job.make, 140, 120);
+
+  doc.fontSize(14); 
+  doc.text('Model', 60, 140);
+  doc.fontSize(12); 
+  doc.text(job.model, 140, 140);
+
+  doc.fontSize(14); 
+  doc.text('YOM', 60, 160);
+  doc.fontSize(12); 
+  doc.text(job.yom, 140, 160);
+
+  doc.fontSize(14); 
+  doc.text('Rego', 60, 180);
+  doc.fontSize(12); 
+  doc.text(job.rego, 140, 180);
+
+  doc.fontSize(14); 
+  doc.text('ODO', 60, 200);
+  doc.fontSize(12); 
+  doc.text(job.odo, 140, 200);
+
+  
+  doc.end(); 
+
+  callback(doc);
 }
 
 exports.JobService = JobService;

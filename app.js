@@ -12,9 +12,7 @@ var express = require('express'),
     ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
     JobService = require('./routes/JobService').JobService,
     manualService = require('./routes/ManualService').ManualService,
-    fs = require("fs"),
-    PDFDocument = require('pdfkit'),
-    blobStream = require('blob-stream');   
+    fs = require("fs");
 
 var app = express();
 
@@ -388,15 +386,10 @@ app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
 
     jobService.findOne(id, function( error, job) {
-        var filename = job.rego + ".pdf";
-        var file = __dirname + "\\public\\prints\\" + filename;
-    
-        var doc = new PDFDocument();                        
-        doc.pipe(fs.createWriteStream(file));  
-        doc.text(job.make, 100, 100);             
-        doc.end(); 
-
-        res.redirect('/job/download/'+ filename);
+        jobService.createPrint(job, function(error, doc){
+            var filename = job.rego + ".pdf";
+            res.redirect('/job/download/'+ filename);
+        });                
     });
 });
 

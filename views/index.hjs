@@ -53,7 +53,7 @@
           <!-- Nav tabs -->
           <ul id="mainTab" class="nav nav-tabs">
             <li class="active"><a href="#job" data-toggle="tab">Job</a></li>
-            <li><a href="#manufacturer" data-toggle="tab">Manufacturer</a></li>
+            <li><a href="#manufacturer" data-toggle="tab">Make</a></li>
             <li><a href="#model" data-toggle="tab">Model</a></li>
             <li><a href="#servicetype" data-toggle="tab">Service Type</a></li>            
             <li><a href="#manual" data-toggle="tab">Manuals</a></li>            
@@ -64,7 +64,7 @@
 
             <!-- Manufacturers tab-->
             <div class="tab-pane" id="manufacturer">
-              <h2 class="sub-header">Manufacturers</h2>
+              <h2 class="sub-header">Make</h2>
               <div class="table-responsive">
                 <div class="row">
                   <form role="newManufacturerForm" method="post" action="/manufacturer/save">                
@@ -336,7 +336,7 @@
                                 <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value="-1">                          
                               {{/job}}
                               <div class="form-group">
-                                <label for="make">Manufacturer</label>
+                                <label for="make">Make</label>
                                 <select class="form-control job-make" id="make" name="make" placeholder="Manufacturer">
                                   <option value='-'>- select -</option>
                                   {{#manufacturers}}
@@ -555,7 +555,7 @@
               <div class="row">
                 <form action="/manual/save" method="post" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label for="make">Manufacturer</label>
+                    <label for="make">Make</label>
                     <select class="form-control job-make" id="make" name="make" placeholder="Manufacturer">
                       <option value='-'>- select -</option>
                       {{#manufacturers}}
