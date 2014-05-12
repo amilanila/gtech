@@ -171,40 +171,69 @@ JobService.prototype.createPrint = function(job, callback){
     .lineTo(550, 100)
     .stroke();  
 
-  var initY = 120; 
-  doc.moveDown();  
-
-  doc.fontSize(16); 
-  doc.text('Vehicle Information', 60, initY);
-
-  doc.fontSize(14); 
-  doc.text('Make', 60, initY + 20);
-  doc.fontSize(12); 
-  doc.text(job.make, 140, initY + 20);
-
-  doc.fontSize(14); 
-  doc.text('Model', 60, initY + 40);
-  doc.fontSize(12); 
-  doc.text(job.model, 140, initY + 40);
-
-  doc.fontSize(14); 
-  doc.text('YOM', 60, initY + 60);
-  doc.fontSize(12); 
-  doc.text(job.yom, 140, initY + 60);
-
-  doc.fontSize(14); 
-  doc.text('Rego', 60, initY + 80);
-  doc.fontSize(12); 
-  doc.text(job.rego, 140, initY + 80);
-
-  doc.fontSize(14); 
-  doc.text('ODO', 60, initY + 100);
-  doc.fontSize(12); 
-  doc.text(job.odo + ' km', 140, initY + 100);
-
+  var y = 120;
+  var vehicleInfoTitleX = 60;
+  var vehicleInfoValueX = 120;
   
-  doc.end(); 
+  var contactInfoTitleX = 300;
+  var contactInfoValueX = 420;
 
+  var titleFontSize = 14;
+  var valueFontSize = 12;
+
+  // headers
+  doc.fontSize(16); 
+  doc.text('Vehicle Information', vehicleInfoTitleX, y - 5);
+  doc.text('Contact Information', contactInfoTitleX, y - 5);
+  
+  // vehicle information
+  doc.fontSize(titleFontSize); 
+  doc.text('Make', vehicleInfoTitleX, y + 20);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.make, vehicleInfoValueX, y + 20);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('Model', vehicleInfoTitleX, y + 40);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.model, vehicleInfoValueX, y + 40);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('YOM', vehicleInfoTitleX, y + 60);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.yom, vehicleInfoValueX, y + 60);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('Rego', vehicleInfoTitleX, y + 80);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.rego, vehicleInfoValueX, y + 80);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('ODO', vehicleInfoTitleX, y + 100);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.odo + ' km', vehicleInfoValueX, y + 100);
+
+  // contact information
+  doc.fontSize(titleFontSize); 
+  doc.text('First Name', contactInfoTitleX, y + 20);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.fname, contactInfoValueX, y + 20);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('Last Name', contactInfoTitleX, y + 40);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.lname, contactInfoValueX, y + 40);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('Contact', contactInfoTitleX, y + 60);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.contact, contactInfoValueX, y + 60);
+
+  doc.fontSize(titleFontSize); 
+  doc.text('Address', contactInfoTitleX, y + 80);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.address, contactInfoValueX, y + 80);
+
+  doc.end(); 
   callback(doc);
 }
 

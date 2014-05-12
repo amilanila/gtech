@@ -133,7 +133,7 @@ app.get('/manufacturer/:id', function(req, res){
 	})
 });
 
-app.post('/manufacturer/remove/:id', function(req, res){
+app.get('/manufacturer/remove/:id', function(req, res){
     var id = req.params.id; 
     manufactureService.remove(id, function( error, docs) {
         res.redirect('/manufacturer')
@@ -205,7 +205,7 @@ app.get('/model/:id', function(req, res){
     })
 });
 
-app.post('/model/remove/:id', function(req, res){
+app.get('/model/remove/:id', function(req, res){
     var id = req.params.id; 
     modelService.remove(id, function( error, docs) {
         res.redirect('/model')
@@ -262,7 +262,7 @@ app.get('/servicetype/:id', function(req, res){
     })
 });
 
-app.post('/servicetype/remove/:id', function(req, res){
+app.get('/servicetype/remove/:id', function(req, res){
     var id = req.params.id; 
     serviceTypeService.remove(id, function( error, docs) {
         res.redirect('/servicetype')
@@ -359,7 +359,7 @@ app.get('/job/:id', function(req, res){
     })
 });
 
-app.post('/job/remove/:id', function(req, res){
+app.get('/job/remove/:id', function(req, res){
     var id = req.params.id; 
     jobService.remove(id, function( error, docs) {
         res.redirect('/job')
@@ -436,7 +436,7 @@ app.post('/manual/save', function(req, res){
     });
 });
 
-app.post('/manual/remove/:id', function(req, res){
+app.get('/manual/remove/:id', function(req, res){
     var id = req.params.id; 
     manualService.remove(id, function( error, docs) {
         res.redirect('/manual')
