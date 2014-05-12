@@ -320,7 +320,7 @@
                   <div class="row">
         	          <div class="table-responsive">                
                         <div class="row">                            
-                          <div class="col-xs-4 well">   
+                          <div class="col-xs-4 well job-main-col">   
                               {{#job}}                    
                                 <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
                                 <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
@@ -381,7 +381,7 @@
                                 {{/job}}
                               </div>
                           </div>
-                          <div class="col-xs-4 well">
+                          <div class="col-xs-4 well job-main-col">
                             <div class="form-group">
                               <label for="servicetype">Service Type</label>
                               <select multiple class="form-control job-servicetypes" id="jobservicetype" name="jobservicetype" placeholder="Service Type" style="height:245px">
@@ -401,7 +401,7 @@
                               </select>                                                                  
                             </div>
                           </div>  	
-                          <div class="col-xs-4 well">
+                          <div class="col-xs-4 well job-main-col">
                             <div class="form-group">
                               <label for="fname">First Name</label>
                               {{#job}}                    
@@ -432,10 +432,16 @@
                             <div class="form-group">
                               <label for="note">Address</label>        
                               {{#job}}                    
-                                <textarea class="form-control" id="address" name="address" placeholder="Address" style="height:104px">{{{address}}}</textarea>
+                                <input type="input" class="form-control" id="addressstreet" name="addressstreet" placeholder="Street Address" value="{{{addressstreet}}}">
+                                <input type="input" class="form-control" id="addresssuburb" name="addresssuburb" placeholder="Suburb" value="{{{addresssuburb}}}">
+                                <input type="input" class="form-control" id="addresspostcode" name="addresspostcode" placeholder="Postcode" value="{{{addresspostcode}}}">
+                                <input type="input" class="form-control" id="addressstate" name="addressstate" placeholder="State" value="{{{addressstate}}}">
                               {{/job}}
                               {{^job}}
-                                <textarea class="form-control" id="address" name="address" placeholder="Address" style="height:104px"></textarea>
+                                <input type="input" class="form-control" id="addressstreet" name="addressstreet" placeholder="Street Address">
+                                <input type="input" class="form-control" id="addresssuburb" name="addresssuburb" placeholder="Suburb">
+                                <input type="input" class="form-control" id="addresspostcode" name="addresspostcode" placeholder="Postcode">
+                                <input type="input" class="form-control" id="addressstate" name="addressstate" placeholder="State">
                               {{/job}}
                             </div>                                                
                           </div>    

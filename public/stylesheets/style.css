@@ -20,3 +20,7 @@ a {
 .datepicker {
   width: 100%;
 }
+
+.job-main-col {
+	height: 425px;
+}

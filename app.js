@@ -282,7 +282,10 @@ app.post('/job/save', function(req, res){
     var fname = req.body.fname;
     var lname = req.body.lname;
     var contact = req.body.contact;
-    var address = req.body.address;
+    var addressstreet = req.body.address;
+    var addresssuburb = req.body.address;
+    var addresspostcode = req.body.address;    
+    var addressstate = req.body.address;
     var note = req.body.note;
     var startdate = req.body.startdate;
     var completedate = req.body.completedate;
@@ -301,7 +304,10 @@ app.post('/job/save', function(req, res){
             'fname': fname,
             'lname': lname,
             'contact': contact,
-            'address': address,
+            'addressstreet': addressstreet,
+            'addresssuburb': addresssuburb,
+            'addresspostcode': addresspostcode,
+            'addresssuburb': addressstate,
             'note': note,
             'startdate': startdate,
             'completedate': completedate
@@ -321,7 +327,10 @@ app.post('/job/save', function(req, res){
             'fname': fname,
             'lname': lname,
             'contact': contact,
-            'address': address,
+            'addressstreet': addressstreet,
+            'addresssuburb': addresssuburb,
+            'addresspostcode': addresspostcode,
+            'addresssuburb': addressstate,
             'note': note,
             'startdate': startdate,
             'completedate': completedate
