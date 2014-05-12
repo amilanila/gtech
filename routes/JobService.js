@@ -171,32 +171,36 @@ JobService.prototype.createPrint = function(job, callback){
     .lineTo(550, 100)
     .stroke();  
 
+  var initY = 120; 
   doc.moveDown();  
 
-  doc.fontSize(14); 
-  doc.text('Make', 60, 120);
-  doc.fontSize(12); 
-  doc.text(job.make, 140, 120);
+  doc.fontSize(16); 
+  doc.text('Vehicle Information', 60, initY);
 
   doc.fontSize(14); 
-  doc.text('Model', 60, 140);
+  doc.text('Make', 60, initY + 20);
   doc.fontSize(12); 
-  doc.text(job.model, 140, 140);
+  doc.text(job.make, 140, initY + 20);
 
   doc.fontSize(14); 
-  doc.text('YOM', 60, 160);
+  doc.text('Model', 60, initY + 40);
   doc.fontSize(12); 
-  doc.text(job.yom, 140, 160);
+  doc.text(job.model, 140, initY + 40);
 
   doc.fontSize(14); 
-  doc.text('Rego', 60, 180);
+  doc.text('YOM', 60, initY + 60);
   doc.fontSize(12); 
-  doc.text(job.rego, 140, 180);
+  doc.text(job.yom, 140, initY + 60);
 
   doc.fontSize(14); 
-  doc.text('ODO', 60, 200);
+  doc.text('Rego', 60, initY + 80);
   doc.fontSize(12); 
-  doc.text(job.odo, 140, 200);
+  doc.text(job.rego, 140, initY + 80);
+
+  doc.fontSize(14); 
+  doc.text('ODO', 60, initY + 100);
+  doc.fontSize(12); 
+  doc.text(job.odo + ' km', 140, initY + 100);
 
   
   doc.end(); 
