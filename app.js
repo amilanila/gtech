@@ -282,13 +282,15 @@ app.post('/job/save', function(req, res){
     var fname = req.body.fname;
     var lname = req.body.lname;
     var contact = req.body.contact;
-    var addressstreet = req.body.address;
-    var addresssuburb = req.body.address;
-    var addresspostcode = req.body.address;    
-    var addressstate = req.body.address;
+    var addressstreet = req.body.addressstreet;
+    var addresssuburb = req.body.addresssuburb;
+    var addresspostcode = req.body.addresspostcode;    
+    var addressstate = req.body.addressstate;
     var note = req.body.note;
     var startdate = req.body.startdate;
     var completedate = req.body.completedate;
+
+    console.log(addressstreet + " : " + addresssuburb + " : " + addresspostcode + " : " + addressstate);
 
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
@@ -307,7 +309,7 @@ app.post('/job/save', function(req, res){
             'addressstreet': addressstreet,
             'addresssuburb': addresssuburb,
             'addresspostcode': addresspostcode,
-            'addresssuburb': addressstate,
+            'addressstate': addressstate,
             'note': note,
             'startdate': startdate,
             'completedate': completedate
@@ -330,7 +332,7 @@ app.post('/job/save', function(req, res){
             'addressstreet': addressstreet,
             'addresssuburb': addresssuburb,
             'addresspostcode': addresspostcode,
-            'addresssuburb': addressstate,
+            'addressstate': addressstate,
             'note': note,
             'startdate': startdate,
             'completedate': completedate

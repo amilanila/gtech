@@ -119,7 +119,10 @@ JobService.prototype.update = function(job, callback){
                   'fname': job.fname, 
                   'lname': job.lname, 
                   'contact': job.contact, 
-                  'address': job.address,
+                  'addressstreet': job.addressstreet,
+                  'addresssuburb': job.addresssuburb,
+                  'addresspostcode': job.addresspostcode,
+                  'addressstate': job.addressstate,
                   'note': job.note,
                   'startdate': job.startdate,
                   'completedate': job.completedate
@@ -231,7 +234,10 @@ JobService.prototype.createPrint = function(job, callback){
   doc.fontSize(titleFontSize); 
   doc.text('Address', contactInfoTitleX, y + 80);
   doc.fontSize(valueFontSize); 
-  doc.text(job.address, contactInfoValueX, y + 80);
+  doc.text(job.addressstreet, contactInfoValueX, y + 80);
+  doc.text(job.addresssuburb, contactInfoValueX, y + 100);
+  doc.text(job.addressstate, contactInfoValueX, y + 120);
+  doc.text(job.addresspostcode, contactInfoValueX + 25, y + 120);  
 
   doc.end(); 
   callback(doc);
