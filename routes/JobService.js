@@ -239,6 +239,11 @@ JobService.prototype.createPrint = function(job, callback){
   doc.text(job.addressstate, contactInfoValueX, y + 120);
   doc.text(job.addresspostcode, contactInfoValueX + 25, y + 120);  
 
+  doc.fontSize(16); 
+  doc.text('Job Information', vehicleInfoTitleX, y + 140);
+  doc.fontSize(valueFontSize); 
+  doc.text(job.servicetypes, vehicleInfoTitleX, y + 160);
+  
   doc.end(); 
   callback(doc);
 }
