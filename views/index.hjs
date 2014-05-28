@@ -372,7 +372,7 @@
                                 {{/job}}
                               </div>
                               <div class="form-group">
-                                <label for="odo">Millege</label>
+                                <label for="odo">Millege (km)</label>
                                 {{#job}}                    
                                   <input type="input" class="form-control" id="yom" name="odo" placeholder="ODO meter" value="{{{odo}}}">
                                 {{/job}}
