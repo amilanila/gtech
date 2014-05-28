@@ -397,6 +397,7 @@ app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
 
     jobService.findOne(id, function( error, job) {
+        job.serviceTypesDetailed = varServiceTypes;
         jobService.createPrint(job, function(error, doc){
             var filename = job.rego + ".pdf";
             res.redirect('/job/download/'+ filename);
