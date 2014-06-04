@@ -16,6 +16,7 @@ $(document).ready(function () {
 			tabName = 'job';
 		}
 		
+		// job edit
 		var selectedMake = $('#selectedMake').val();
 		var selectedModel = $('#selectedModel').val();
 		var selectedStatus = $('#selectedStatus').val();
@@ -24,10 +25,10 @@ $(document).ready(function () {
 		if(selectedMake != "-1"){
 			$('.job-make').val(selectedMake);			
 		}
-		if(selectedMake != "-1"){
+		if(selectedModel != "-1"){
 			$('.job-models').val(selectedModel);			
 		}
-		if(selectedMake != "-1"){
+		if(selectedStatus != "-1"){
 			$('.job-status').val(selectedStatus);			
 		}
 		if(selectedServiceTypes != "-1"){
@@ -43,6 +44,12 @@ $(document).ready(function () {
 					}					
 				});
 			});			
+		}
+
+		// model edit
+		var selectedMakeModel = $('#selectedMakeModel').val();
+		if(selectedMakeModel != "-1"){
+			$('.model-make').val(selectedMakeModel);
 		}
 
 		var selector = "#mainTab a[href=\"#" + tabName + "\"]";
