@@ -238,15 +238,6 @@
                       <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
                     {{/servicetype}}
                     <div class="form-group">
-                      <label for="code">Code</label>
-                      {{#servicetype}}
-                        <input type="text" class="form-control" id="code" name="code" placeholder="Code" value="{{{code}}}">
-                      {{/servicetype}}
-                      {{^servicetype}}
-                        <input type="text" class="form-control" id="code" name="code" placeholder="Code">
-                      {{/servicetype}}                    
-                    </div>
-                    <div class="form-group">
                       <label for="name">Name</label>
                       {{#servicetype}}
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
@@ -292,7 +283,6 @@
                   <table class="table table-striped">
                     <thead>                
                       <tr>
-                        <th>Code</th>
                         <th>Name</th>
                         <th>Description</th>                      
                         <th></th>                      
@@ -300,8 +290,7 @@
                     </thead>
                     <tbody>
                       {{#servicetypes}}
-                        <tr>
-                          <td>{{{code}}}</td>
+                        <tr>                          
                           <td><a href='/servicetype/{{id}}'>{{{name}}}</a></td>
                           <td>{{{description}}}</td>                        
                           <td><a class="remove-servicetype-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>      
@@ -389,7 +378,7 @@
                               <div class="checkbox service-type-container">
                                 <ul class="nav nav-list job-servicetypes">
                                   {{#serviceTypes}}
-                                    <li><input type="checkbox" name="jobservicetype" id="jobservicetype" value="{{code}}">{{name}}</input></li>
+                                    <li><input type="checkbox" name="jobservicetype" id="jobservicetype" value="{{id}}">{{name}}</input></li>
                                   {{/serviceTypes}}                                                    
                                 </ui>
                               </div>

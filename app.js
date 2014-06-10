@@ -222,8 +222,7 @@ app.post('/servicetype/save', function(req, res){
     if(id == '-1'){
         id = crypto.randomBytes(20).toString('hex');
         serviceTypeService.save({
-            'id': id,
-            'code': code,
+            'id': id,            
             'name': name,
             'description': description
         }, function( error, docs) {
@@ -232,7 +231,6 @@ app.post('/servicetype/save', function(req, res){
     } else {
         serviceTypeService.update({
             'id': id,
-            'code': code,
             'name': name,
             'description': description
         }, function( error, docs) {
