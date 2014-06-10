@@ -290,8 +290,6 @@ app.post('/job/save', function(req, res){
     var startdate = req.body.startdate;
     var completedate = req.body.completedate;
 
-    console.log(addressstreet + " : " + addresssuburb + " : " + addresspostcode + " : " + addressstate);
-
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
         jobService.save({

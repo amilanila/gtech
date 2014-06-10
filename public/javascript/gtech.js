@@ -33,14 +33,13 @@ $(document).ready(function () {
 		}
 		if(selectedServiceTypes != "-1"){
 			var arr = selectedServiceTypes.split(',');
-
-			$('.job-servicetypes > option').each(function(){
+			$('.job-servicetypes > li > input').each(function(){
 				var self = this;
-				var stype = this.value;				
+				var stype = this.value;		
 				$(arr).each(function(){
 					var selectedType = this;
 					if(stype == selectedType){
-						$(self).attr('selected','selected');
+						$(self).attr('checked', true);
 					}					
 				});
 			});			
@@ -56,6 +55,9 @@ $(document).ready(function () {
 		$(selector).tab('show');			
 	}
 
+	//////////////////// event handling ////////////////////
+
+	// tab selection -->
 	$('#mainTab a').click(function (e) {
 	  e.preventDefault();
 	  var href = $(this).attr('href').replace('#','');	  
@@ -79,32 +81,61 @@ $(document).ready(function () {
 			$('.job-models').append($("<option></option>").attr("value", selectedModel).text(selectedModel));
 	  	});
 	  } 
-	})
+	});
 
+	// parameter validation
+	$('.job-save-button').click(function(e){
+		e.preventDefault();
+		var make = $('.job-make').val();
+	    var model = $('.job-models').val();
+	    var rego = $('#rego').val();	    
+	    var fname = $('#fname').val();	    
+
+	    if(make == undefined || make == '-' || 
+	       	model == undefined || model == '-' ||
+	       	rego == undefined || rego == '' ||
+	       	fname == undefined || fname == ''){
+	       	// show warning dialog box
+	       	$('#jobSaveErrorAlert').modal({
+  				keyboard: false
+			});
+	       	return;
+	    } else {
+	    	$('#newJobForm').submit();
+	    }
+	});
+
+
+
+	// remove links -->
 	$('.remove-manufacturer-link').click(function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
      	$(".modal-footer #removeManufacturerLink").attr('href', '/manufacturer/remove/' + id);
      	$('#manufacturerDeleteModal').modal('show');
 	});
+
 	$('.remove-model-link').click(function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
      	$(".modal-footer #removeModelLink").attr('href', '/model/remove/' + id);
      	$('#modelDeleteModal').modal('show');
 	});
+
 	$('.remove-servicetype-link').click(function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
      	$(".modal-footer #removeServiceTypeLink").attr('href', '/servicetype/remove/' + id);
      	$('#serviceTypeDeleteModal').modal('show');
 	});
+
 	$('.remove-job-link').click(function(e){
 		e.preventDefault();
 		var id = $(this).data('id');
      	$(".modal-footer #removeJobLink").attr('href', '/job/remove/' + id);
      	$('#jobDeleteModal').modal('show');
 	});
+
 	$('.remove-manual-link').click(function(e){
 		e.preventDefault();
 		var id = $(this).data('id');

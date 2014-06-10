@@ -316,9 +316,9 @@
             <!-- Jobs tab-->
             <div class="tab-pane active" id="job">     
               <input type="hidden" name="makeModelMap" id="makeModelMap" value="{{makeModelMap}}"/>         
-  	          <h2 class="sub-header">Jobs</h2>          
+  	          <h2 class="sub-header">Jobs</h2>              
               <div class="table-responsive"> 
-                <form role="newJobForm" method="post" action="/job/save">
+                <form role="newJobForm" id="newJobForm" method="post" action="/job/save">
                   <div class="row">
         	          <div class="table-responsive">                
                         <div class="row">                            
@@ -338,7 +338,7 @@
                                 <input type="hidden" class="form-control" id="selectedServiceTypes" name="selectedServiceTypes" value="-1">                          
                               {{/job}}
                               <div class="form-group">
-                                <label for="make">Make</label>
+                                <label for="make">Make</label><label class="mandatory-field">&nbsp;*</label>
                                 <select class="form-control job-make" id="make" name="make" placeholder="Manufacturer">
                                   <option value='-'>- select -</option>
                                   {{#manufacturers}}
@@ -347,7 +347,7 @@
                                 </select>                                            
                               </div>
                               <div class="form-group">
-                                <label for="model">Model</label>
+                                <label for="model">Model</label><label class="mandatory-field">&nbsp;*</label>
                                 <select class="form-control job-models" id="model" name="model" placeholder="Model">
                                   <option value='-'>- select -</option>
                                   {{#models}}
@@ -365,7 +365,7 @@
                                 {{/job}}
                               </div>
                               <div class="form-group">
-                                <label for="rego">Rego</label>
+                                <label for="rego">Rego</label><label class="mandatory-field">&nbsp;*</label>
                                 {{#job}}                    
                                   <input type="input" class="form-control" id="rego" name="rego" placeholder="Rego" value="{{{rego}}}">
                                 {{/job}}
@@ -384,13 +384,15 @@
                               </div>
                           </div>
                           <div class="col-xs-4 well job-main-col">
-                            <div class="form-group">
-                              <label for="servicetype">Service Type</label>
-                              <select multiple class="form-control job-servicetypes" id="jobservicetype" name="jobservicetype" placeholder="Service Type" style="height:245px">
-                                {{#serviceTypes}}
-                                <option value="{{code}}">{{name}}</option>
-                                {{/serviceTypes}}                      
-                              </select>                       
+                            <div class="form-group">                              
+                              <label for="servicetype"><strong>Service Type</strong></label>                              
+                              <div class="checkbox service-type-container">
+                                <ul class="nav nav-list job-servicetypes">
+                                  {{#serviceTypes}}
+                                    <li><input type="checkbox" name="jobservicetype" id="jobservicetype" value="{{code}}">{{name}}</input></li>
+                                  {{/serviceTypes}}                                                    
+                                </ui>
+                              </div>
                             </div>
                             <div class="form-group">
                               <label for="note">Status</label>        
@@ -405,7 +407,7 @@
                           </div>  	
                           <div class="col-xs-4 well job-main-col">
                             <div class="form-group">
-                              <label for="fname">First Name</label>
+                              <label for="fname">First Name</label><label class="mandatory-field">&nbsp;*</label>
                               {{#job}}                    
                                 <input type="input" class="form-control" id="fname" name="fname" placeholder="First Name" value="{{{fname}}}">
                               {{/job}}
@@ -492,7 +494,7 @@
                           </div>
                           <div class="row">
                             <br>
-                            <button type="submit" class="btn btn-primary btn-sml pull-right">Save Job</button>                          
+                            <button type="submit" class="btn btn-primary btn-sml pull-right job-save-button">Save Job</button>                          
                           </div>                          
                         </div>                        
                       </div>  
@@ -516,6 +518,29 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                       <a id="removeJobLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="jobSaveErrorAlert">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Missing information</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Following information is mandatory to save a job</p>
+                      <ul>
+                          <li>Make</li>
+                          <li>Model</li>
+                          <li>Rego</li>
+                          <li>First Name</li>                          
+                      </ul>  
+                      <p>Please enter above information and try again</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                      
                     </div>
                   </div>
                 </div>
