@@ -267,7 +267,7 @@ app.get('/servicetype/remove/:id', function(req, res){
     });
 });
 
-/////////////////////////////////////// Services //////////////////////////////////////
+/////////////////////////////////////// Jobs //////////////////////////////////////
 app.post('/job/save', function(req, res){
 	var id = req.body.id;
     var make = req.body.make;
@@ -391,13 +391,15 @@ app.get('/search', function(req, res){
 
 app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
-
-    jobService.findOne(id, function( error, job) {
-        job.serviceTypesDetailed = varServiceTypes;
-        jobService.createPrint(job, function(error, doc){
-            var filename = job.rego + ".pdf";
-            res.redirect('/job/download/'+ filename);
-        });                
+    jobService.findOne(id, function( error, job) {        
+        res.render('printjob', {
+            'job': job
+        }, function(err, html){
+            jobService.convertToPdf('http://www.yahoo.com', function(error, doc){                
+                var filename = "test.pdf";
+                res.redirect('/job/download/'+ filename);                
+            });
+        });
     });
 });
 

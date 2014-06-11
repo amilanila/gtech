@@ -83,7 +83,9 @@ $(document).ready(function () {
 	  } 
 	});
 
-	// parameter validation
+	/////////////////// Validation //////////////////////
+
+	// job parameter validation
 	$('.job-save-button').click(function(e){
 		e.preventDefault();
 		var make = $('.job-make').val();
@@ -104,7 +106,6 @@ $(document).ready(function () {
 	    	$('#newJobForm').submit();
 	    }
 	});
-
 
 
 	// remove links -->
@@ -143,5 +144,3 @@ $(document).ready(function () {
      	$('#manualDeleteModal').modal('show');
 	});
 });
-
-

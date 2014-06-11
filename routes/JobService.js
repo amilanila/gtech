@@ -1,7 +1,11 @@
 var BSON = require('mongodb').BSON,
     ObjectID = require('mongodb').ObjectID,
     fs = require("fs"),
-    PDFDocument = require('pdfkit');    
+    PDFDocument = require('pdfkit'),
+    path = require('path'),
+    childProcess = require('child_process'),
+    phantomjs = require('phantomjs'),
+    binPath = phantomjs.path;    
 
 JobService = function(db) {
   this.db = db;
@@ -154,6 +158,16 @@ JobService.prototype.remove = function(id, callback){
         }
       );
     }
+  });
+}
+
+JobService.prototype.convertToPdf = function(url, callback){  
+  var childArgs = [path.join(__dirname, 'PrintService.js')];
+  console.log("*************** " + childArgs);
+
+  childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
+    console.log("i am goinig to call back");
+    callback();   
   });
 }
 
