@@ -395,8 +395,8 @@ app.get('/job/print/:id', function(req, res){
         res.render('printjob', {
             'job': job
         }, function(err, html){
-            jobService.convertToPdf('http://www.yahoo.com', function(error, doc){                
-                var filename = "test.pdf";
+            jobService.convertToPdf(job, 'http://localhost:3000/manufacturer', function(error, doc){                
+                var filename = job.rego + ".pdf";
                 res.redirect('/job/download/'+ filename);                
             });
         });

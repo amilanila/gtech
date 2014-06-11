@@ -161,12 +161,9 @@ JobService.prototype.remove = function(id, callback){
   });
 }
 
-JobService.prototype.convertToPdf = function(url, callback){  
-  var childArgs = [path.join(__dirname, 'PrintService.js')];
-  console.log("*************** " + childArgs);
-
+JobService.prototype.convertToPdf = function(job, url, callback){  
+  var childArgs = [path.join(__dirname, 'PrintService.js'), job.rego, url];
   childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
-    console.log("i am goinig to call back");
     callback();   
   });
 }
