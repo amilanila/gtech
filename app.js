@@ -395,10 +395,20 @@ app.get('/job/print/:id', function(req, res){
         res.render('printjob', {
             'job': job
         }, function(err, html){
-            jobService.convertToPdf(job, 'http://localhost:3000/manufacturer', function(error, doc){                
+            var url = 'http://localhost:3000/printjob/' + id;
+            jobService.convertToPdf(job, url , function(error, doc){                
                 var filename = job.rego + ".pdf";
                 res.redirect('/job/download/'+ filename);                
             });
+        });
+    });
+});
+
+app.get('/printjob/:id', function(req, res){
+    var id = req.params.id; 
+    jobService.findOne(id, function( error, job) {        
+        res.render('printjob', {
+            'job': job
         });
     });
 });
