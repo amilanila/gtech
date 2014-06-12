@@ -12,6 +12,7 @@ var express = require('express'),
     ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
     JobService = require('./routes/JobService').JobService,
     manualService = require('./routes/ManualService').ManualService,
+    taskService = require('./routes/TaskService').TaskService,
     fs = require("fs");
 
 var app = express();
@@ -39,12 +40,14 @@ initService.db(function(error, db){
     this.serviceTypeService = new ServiceTypeService(db);
     this.jobService = new JobService(db);
     this.manualService = new ManualService(db);
+    this.taskService = new TaskService(db);
 });
 
 var varManufacturers = null;
 var varModels = null;
 var varServiceTypes = null;
 var varJobs = null;
+var varTasks = null;
 var makeModelMap = {};
 
 /////////////////////////////////////// Root ////////////////////////////////////////
@@ -215,7 +218,6 @@ app.get('/model/remove/:id', function(req, res){
 /////////////////////////////////////// Service Types ////////////////////////////////
 app.post('/servicetype/save', function(req, res){
     var id = req.body.id;
-    var code = req.body.code;
     var name = req.body.name;
     var description = req.body.description;
     
@@ -470,6 +472,60 @@ app.get('/manual/:id', function(req, res){
             res.send(data);
         });
     })
+});
+
+/////////////////////////////////////// Task ////////////////////////////////
+app.post('/task/save', function(req, res){
+    var id = req.body.id;    
+    var name = req.body.name;
+    var description = req.body.description;
+        
+    if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        taskService.save({
+            'id': id,            
+            'name': name,
+            'description': description            
+        }, function( error, docs) {
+            res.redirect('/task')
+        });
+    } else {
+        taskService.update({
+            'id': id,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/task')
+        });    
+    }   
+});
+
+app.get('/task', function(req, res){
+    taskService.findAll(function( error, tasks) {
+        varTasks = tasks;
+        res.render('index', {
+            'title': 'Tasks',
+            'tasks': tasks
+        });
+    });
+});
+
+app.get('/task/:id', function(req, res){
+    var id = req.params.id; 
+    taskService.findOne(id, function(error, task){
+        res.render('index', {
+            'title': 'Tasks',
+            'task': task,
+            'tasks': varTasks
+        });
+    })
+});
+
+app.get('/task/remove/:id', function(req, res){
+    var id = req.params.id; 
+    taskService.remove(id, function( error, docs) {
+        res.redirect('/task')
+    });
 });
 
 // create server

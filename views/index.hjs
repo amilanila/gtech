@@ -57,6 +57,7 @@
             <li><a href="#model" data-toggle="tab">Model</a></li>
             <li><a href="#servicetype" data-toggle="tab">Service Type</a></li>            
             <li><a href="#manual" data-toggle="tab">Manuals</a></li>            
+            <li><a href="#task" data-toggle="tab">Tasks</a></li>            
           </ul>
 
           <!-- Tab panes -->
@@ -647,7 +648,84 @@
               </div>
             </div>     
           </div>          
-        </div>       
+        </div>  
+
+        <!-- Task tab-->
+        <div class="tab-pane" id="task">
+          <h2 class="sub-header">Tasks</h2>
+          <div class="table-responsive">
+            <div class="row">
+              <form role="newServiceTypeForm" method="post" action="/task/save">
+                {{#task}}                    
+                  <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                {{/task}}
+                {{^task}}
+                  <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                {{/task}}
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  {{#task}}
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                  {{/task}}
+                  {{^task}}
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                  {{/task}}                    
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  {{#task}}
+                    <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                  {{/task}}
+                  {{^task}}
+                    <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                  {{/task}}                    
+                </div>      
+                <a href="/task" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>            
+                <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
+            </form> 
+            </div>
+          </div>
+          <hr>
+           <div class="modal fade" id="taskDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Remove Task</h4>
+                </div>
+                <div class="modal-body">
+                  Do you want to remove this task?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                  <a id="removeTaskLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                </div>
+              </div>
+            </div>
+          </div>       
+          <div class="table-responsive">
+            <div class="row">
+              <table class="table table-striped">
+                <thead>                
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>                      
+                    <th></th>                      
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#tasks}}
+                    <tr>                          
+                      <td><a href='/task/{{id}}'>{{{name}}}</a></td>
+                      <td>{{{description}}}</td>                        
+                      <td><a class="remove-task-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>      
+                    </tr>
+                  {{/tasks}}
+                </tbody>
+              </table>
+            </div>
+          </div>     
+        </div>             
       </div>
     </div>
   </body>

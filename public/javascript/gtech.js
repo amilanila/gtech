@@ -12,6 +12,8 @@ $(document).ready(function () {
 			tabName = 'servicetype';
 		} else if(pathName.indexOf('manual') > -1){
 			tabName = 'manual';
+		} else if(pathName.indexOf('task') > -1){
+			tabName = 'task';
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			tabName = 'job';
 		}
@@ -143,4 +145,11 @@ $(document).ready(function () {
      	$(".modal-footer #removeManualLink").attr('href', '/manual/remove/' + id);
      	$('#manualDeleteModal').modal('show');
 	});
+
+	$('.remove-task-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeTaskLink").attr('href', '/task/remove/' + id);
+     	$('#taskDeleteModal').modal('show');
+	});	
 });
