@@ -392,14 +392,10 @@ app.get('/search', function(req, res){
 app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
     jobService.findOne(id, function( error, job) {        
-        res.render('printjob', {
-            'job': job
-        }, function(err, html){
-            var url = 'http://localhost:3000/printjob/' + id;
-            jobService.convertToPdf(job, url , function(error, doc){                
-                var filename = job.rego + ".pdf";
-                res.redirect('/job/download/'+ filename);                
-            });
+        var url = 'http://localhost:3000/printjob/' + id;
+        jobService.convertToPdf(job, url , function(error, doc){                
+            var filename = job.rego + ".pdf";
+            res.redirect('/job/download/'+ filename);                
         });
     });
 });
