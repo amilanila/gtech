@@ -307,7 +307,10 @@
             <!-- Jobs tab-->
             <div class="tab-pane active" id="job">     
               <input type="hidden" name="makeModelMap" id="makeModelMap" value="{{makeModelMap}}"/>         
-  	          <h2 class="sub-header">Jobs</h2>              
+              <h2 class="sub-header">Jobs</h2>
+              {{#job}}                      
+                <h3>{{jobnumber}}</h3>
+              {{/job}}
               <div class="table-responsive"> 
                 <form role="newJobForm" id="newJobForm" method="post" action="/job/save">
                   <div class="row">
