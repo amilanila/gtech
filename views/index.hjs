@@ -58,6 +58,7 @@
             <li><a href="#servicetype" data-toggle="tab">Service Type</a></li>            
             <li><a href="#manual" data-toggle="tab">Manuals</a></li>            
             <li><a href="#task" data-toggle="tab">Tasks</a></li>            
+            <li><a href="#jobcard" data-toggle="tab">Job Card</a></li>                        
           </ul>
 
           <!-- Tab panes -->
@@ -727,7 +728,95 @@
               </table>
             </div>
           </div>     
-        </div>             
+        </div> 
+
+        <!-- Job Card-->
+        <div class="tab-pane" id="jobcard">
+          <h2 class="sub-header">Job Card</h2>
+          <div class="table-responsive">
+            <div class="row">
+              <form role="jobCardForm" method="post" action="/jobcard/save">
+                {{#jobcard}}                    
+                  <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                  <input type="hidden" class="form-control" id="selectedTasks" name="selectedTasks" value={{task}}>
+                {{/jobcard}}
+                {{^jobcard}}
+                  <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                  <input type="hidden" class="form-control" id="selectedTasks" name="selectedTasks" value="-1">                          
+                {{/jobcard}}
+                <div class="form-group">
+                  <label for="jobnumber">Job Number</label>
+                  {{#jobcard}}
+                    <input type="text" class="form-control" id="jobnumber" name="jobnumber" placeholder="Job Number" value="{{{jobnumber}}}">
+                  {{/jobcard}}
+                  {{^jobcard}}
+                    <input type="text" class="form-control" id="jobnumber" name="jobnumber" placeholder="Job Number">
+                  {{/jobcard}}                    
+                </div>
+                <div class="form-group">                              
+                  <label for="task"><strong>Task</strong></label>                              
+                  <div class="checkbox jobcard-task-container">
+                    <ul class="nav nav-list jobcard-task">
+                      {{#tasks}}
+                        <li><input type="checkbox" name="task" id="task" value="{{id}}">{{name}}</input></li>
+                      {{/tasks}}                                                    
+                    </ui>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="note">Notes</label>        
+                  {{#jobcard}}                    
+                    <textarea class="form-control note-textarea" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
+                  {{/jobcard}}
+                  {{^jobcard}}
+                    <textarea class="form-control note-textarea" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
+                  {{/jobcard}}
+                </div>
+                <a href="/jobcard" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>            
+                <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
+            </form> 
+            </div>
+          </div>
+          <hr>
+           <div class="modal fade" id="jobcardDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Remove Job Card</h4>
+                </div>
+                <div class="modal-body">
+                  Do you want to remove this job card?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                  <a id="removeJobCardLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                </div>
+              </div>
+            </div>
+          </div>       
+          <div class="table-responsive">
+            <div class="row">
+              <table class="table table-striped">
+                <thead>                
+                  <tr>
+                    <th>Job Number</th>
+                    <th></th>                      
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#jobcards}}
+                    <tr>                          
+                      <td><a href='/jobcard/{{id}}'>{{{jobnumber}}}</a></td>
+                      <td><a class="remove-jobcard-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>      
+                    </tr>
+                  {{/jobcards}}
+                </tbody>
+              </table>
+            </div>
+          </div>     
+        </div> 
+
       </div>
     </div>
   </body>

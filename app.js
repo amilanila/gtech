@@ -14,6 +14,7 @@ var express = require('express'),
     manualService = require('./routes/ManualService').ManualService,
     taskService = require('./routes/TaskService').TaskService,
     idGenerationService = require('./routes/IDGenerationService').IDGenerationService,
+    jobcardService = require('./routes/JobCardService').JobCardService,    
     fs = require("fs");
 
 var app = express();
@@ -43,6 +44,7 @@ initService.db(function(error, db){
     this.manualService = new ManualService(db);
     this.taskService = new TaskService(db);
     this.idGenerationService = new IDGenerationService(db);
+    this.jobcardService = new JobCardService(db);
 });
 
 var varManufacturers = null;
@@ -50,6 +52,7 @@ var varModels = null;
 var varServiceTypes = null;
 var varJobs = null;
 var varTasks = null;
+var varJobCards = null;
 var makeModelMap = {};
 
 /////////////////////////////////////// Root ////////////////////////////////////////
@@ -88,6 +91,10 @@ app.get('/', function(req, res){
             'serviceTypes': varServiceTypes,
             'makeModelMap': JSON.stringify(makeModelMap)
         });
+    });
+
+    taskService.findAll(function( error, tasks) {
+        varTasks = tasks;       
     });
 });
 
@@ -564,6 +571,65 @@ app.get('/task/remove/:id', function(req, res){
     var id = req.params.id; 
     taskService.remove(id, function( error, docs) {
         res.redirect('/task')
+    });
+});
+
+/////////////////////////////////////// Job Card ////////////////////////////////
+app.post('/jobcard/save', function(req, res){
+    var id = req.body.id;    
+    var jobnumber = req.body.jobnumber;
+    var task = req.body.task;
+    var note = req.body.note;
+        
+    if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        jobcardService.save({
+            'id': id,            
+            'jobnumber': jobnumber,
+            'task': task,
+            'note': note            
+        }, function( error, docs) {
+            res.redirect('/jobcard')
+        });
+    } else {
+        jobcardService.update({
+            'id': id,
+            'jobnumber': jobnumber,
+            'task': task,
+            'note': note
+        }, function( error, docs) {
+            res.redirect('/jobcard')
+        });    
+    }   
+});
+
+app.get('/jobcard', function(req, res){
+    jobcardService.findAll(function( error, jobcards) {
+        varJobCards = jobcards;
+        res.render('index', {
+            'title': 'Job Card',
+            'jobcards': jobcards,
+            'tasks': varTasks
+        });
+    });
+});
+
+app.get('/jobcard/:id', function(req, res){
+    var id = req.params.id; 
+    jobcardService.findOne(id, function(error, jobcard){
+        res.render('index', {
+            'title': 'Job Card',
+            'jobcard': jobcard,
+            'tasks': varTasks,
+            'jobcards': varJobCards
+        });
+    })
+});
+
+app.get('/jobcard/remove/:id', function(req, res){
+    var id = req.params.id; 
+    jobcardService.remove(id, function( error, docs) {
+        res.redirect('/jobcard')
     });
 });
 

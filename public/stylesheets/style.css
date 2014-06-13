@@ -34,6 +34,16 @@ a {
 	scroll; 
 }
 
+.jobcard-task-container { 
+	border:2px solid #ccc; 	
+	background-color: #fff;
+	height: 300px;
+	width: 50%;
+	margin-top: 0px; 
+	overflow-y: 
+	scroll; 
+}
+
 .mandatory-field {
 	color: red;
 }

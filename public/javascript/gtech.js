@@ -14,6 +14,8 @@ $(document).ready(function () {
 			tabName = 'manual';
 		} else if(pathName.indexOf('task') > -1){
 			tabName = 'task';
+		} else if(pathName.indexOf('jobcard') > -1){
+			tabName = 'jobcard';
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			tabName = 'job';
 		}
@@ -36,6 +38,22 @@ $(document).ready(function () {
 		if(selectedServiceTypes != "-1"){
 			var arr = selectedServiceTypes.split(',');
 			$('.job-servicetypes > li > input').each(function(){
+				var self = this;
+				var stype = this.value;		
+				$(arr).each(function(){
+					var selectedType = this;
+					if(stype == selectedType){
+						$(self).attr('checked', true);
+					}					
+				});
+			});			
+		}
+
+		// job card edit
+		var selectedTasks = $('#selectedTasks').val();
+		if(selectedTasks != "-1"){
+			var arr = selectedTasks.split(',');
+			$('.jobcard-task > li > input').each(function(){
 				var self = this;
 				var stype = this.value;		
 				$(arr).each(function(){
