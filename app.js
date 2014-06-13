@@ -12,6 +12,8 @@ var express = require('express'),
     ServiceTypeService = require('./routes/ServiceTypeService').ServiceTypeService,
     JobService = require('./routes/JobService').JobService,
     manualService = require('./routes/ManualService').ManualService,
+    taskService = require('./routes/TaskService').TaskService,
+    idGenerationService = require('./routes/IDGenerationService').IDGenerationService,
     fs = require("fs");
 
 var app = express();
@@ -39,12 +41,15 @@ initService.db(function(error, db){
     this.serviceTypeService = new ServiceTypeService(db);
     this.jobService = new JobService(db);
     this.manualService = new ManualService(db);
+    this.taskService = new TaskService(db);
+    this.idGenerationService = new IDGenerationService(db);
 });
 
 var varManufacturers = null;
 var varModels = null;
 var varServiceTypes = null;
 var varJobs = null;
+var varTasks = null;
 var makeModelMap = {};
 
 /////////////////////////////////////// Root ////////////////////////////////////////
@@ -215,15 +220,13 @@ app.get('/model/remove/:id', function(req, res){
 /////////////////////////////////////// Service Types ////////////////////////////////
 app.post('/servicetype/save', function(req, res){
     var id = req.body.id;
-    var code = req.body.code;
     var name = req.body.name;
     var description = req.body.description;
     
     if(id == '-1'){
         id = crypto.randomBytes(20).toString('hex');
         serviceTypeService.save({
-            'id': id,
-            'code': code,
+            'id': id,            
             'name': name,
             'description': description
         }, function( error, docs) {
@@ -232,7 +235,6 @@ app.post('/servicetype/save', function(req, res){
     } else {
         serviceTypeService.update({
             'id': id,
-            'code': code,
             'name': name,
             'description': description
         }, function( error, docs) {
@@ -269,7 +271,7 @@ app.get('/servicetype/remove/:id', function(req, res){
     });
 });
 
-/////////////////////////////////////// Services //////////////////////////////////////
+/////////////////////////////////////// Jobs //////////////////////////////////////
 app.post('/job/save', function(req, res){
 	var id = req.body.id;
     var make = req.body.make;
@@ -290,31 +292,66 @@ app.post('/job/save', function(req, res){
     var startdate = req.body.startdate;
     var completedate = req.body.completedate;
 
-    console.log(addressstreet + " : " + addresssuburb + " : " + addresspostcode + " : " + addressstate);
-
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
-        jobService.save({
-            'id': id,
-            'make': make,
-            'model': model,
-            'yom': yom,
-            'rego': rego,
-            'odo': odo,            
-            'servicetypes': servicetype,
-            'status': status,
-            'fname': fname,
-            'lname': lname,
-            'contact': contact,
-            'addressstreet': addressstreet,
-            'addresssuburb': addresssuburb,
-            'addresspostcode': addresspostcode,
-            'addressstate': addressstate,
-            'note': note,
-            'startdate': startdate,
-            'completedate': completedate
-        }, function( error, docs) {
-            res.redirect('/job')
+
+        // get id custom identification number
+        var now = new Date();
+        var strYear = '' + now.getFullYear();
+        var strMonth = (now.getMonth()+1) < 10 ? '0' + (now.getMonth()+1) : '' + (now.getMonth()+1);
+        var strDate = now.getDate() < 10 ? '0' + now.getDate() : '' + now.getDate();
+        var timestamp = strYear + strMonth + strDate;
+        
+        idGenerationService.findAll(function(error, idnumbers){
+
+            var index = 1;
+            var jobNumber = '';
+
+            if(idnumbers != null && idnumbers.length == 1 ){
+                var obj = idnumbers[0];
+                index = parseInt(obj.jobnumber) + 1;
+                idnumbers[0].jobnumber = index;
+
+                jobNumber = 'J' + timestamp + '-' + index;                
+            } else {
+                jobNumber = 'J' + timestamp + '-' + 1; 
+            }
+
+            jobService.save({
+                'id': id,
+                'jobnumber': jobNumber,
+                'make': make,
+                'model': model,
+                'yom': yom,
+                'rego': rego,
+                'odo': odo,            
+                'servicetypes': servicetype,
+                'status': status,
+                'fname': fname,
+                'lname': lname,
+                'contact': contact,
+                'addressstreet': addressstreet,
+                'addresssuburb': addresssuburb,
+                'addresspostcode': addresspostcode,
+                'addressstate': addressstate,
+                'note': note,
+                'startdate': startdate,
+                'completedate': completedate
+
+            }, function( error, docs) {
+                if(idnumbers != null && idnumbers.length == 1){
+                     idGenerationService.update(idnumbers[0], function(error, docs){
+                        res.redirect('/job')
+                    });     
+                } else {
+                    idGenerationService.save({
+                        'id': crypto.randomBytes(20).toString('hex'),
+                        'jobnumber' : index
+                    }, function(error, docs){
+                        res.redirect('/job')
+                    });                
+                }                
+            });            
         });
     } else {
         jobService.update({
@@ -395,12 +432,21 @@ app.get('/search', function(req, res){
 
 app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
-
-    jobService.findOne(id, function( error, job) {
-        jobService.createPrint(job, function(error, doc){
+    jobService.findOne(id, function( error, job) {        
+        var url = 'http://localhost:3000/printjob/' + id;
+        jobService.convertToPdf(job, url , function(error, doc){                
             var filename = job.rego + ".pdf";
-            res.redirect('/job/download/'+ filename);
-        });                
+            res.redirect('/job/download/'+ filename);                
+        });
+    });
+});
+
+app.get('/printjob/:id', function(req, res){
+    var id = req.params.id; 
+    jobService.findOne(id, function( error, job) {        
+        res.render('printjob', {
+            'job': job
+        });
     });
 });
 
@@ -465,6 +511,60 @@ app.get('/manual/:id', function(req, res){
             res.send(data);
         });
     })
+});
+
+/////////////////////////////////////// Task ////////////////////////////////
+app.post('/task/save', function(req, res){
+    var id = req.body.id;    
+    var name = req.body.name;
+    var description = req.body.description;
+        
+    if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        taskService.save({
+            'id': id,            
+            'name': name,
+            'description': description            
+        }, function( error, docs) {
+            res.redirect('/task')
+        });
+    } else {
+        taskService.update({
+            'id': id,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/task')
+        });    
+    }   
+});
+
+app.get('/task', function(req, res){
+    taskService.findAll(function( error, tasks) {
+        varTasks = tasks;
+        res.render('index', {
+            'title': 'Tasks',
+            'tasks': tasks
+        });
+    });
+});
+
+app.get('/task/:id', function(req, res){
+    var id = req.params.id; 
+    taskService.findOne(id, function(error, task){
+        res.render('index', {
+            'title': 'Tasks',
+            'task': task,
+            'tasks': varTasks
+        });
+    })
+});
+
+app.get('/task/remove/:id', function(req, res){
+    var id = req.params.id; 
+    taskService.remove(id, function( error, docs) {
+        res.redirect('/task')
+    });
 });
 
 // create server

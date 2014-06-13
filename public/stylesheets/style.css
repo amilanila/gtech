@@ -24,3 +24,16 @@ a {
 .job-main-col {
 	height: 425px;
 }
+
+.service-type-container { 
+	border:2px solid #ccc; 	
+	background-color: #fff;
+	height: 300px;
+	margin-top: 0px; 
+	overflow-y: 
+	scroll; 
+}
+
+.mandatory-field {
+	color: red;
+}

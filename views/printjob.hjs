@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
+    <script src='/javascript/jquery.min.js'></script>
+    <script src='/javascript/jquery-ui.min.js'></script>
+    <script src='/javascript/bootstrap.min.js'></script>
+    <script src='/javascript/gtech.js'></script>
+    
+  </head>
+  <body>       
+    {{#job}}  
+      First name = {{fname}}
+    {{/job}} 
+  </body>
+</html>
