@@ -13,6 +13,7 @@ var express = require('express'),
     JobService = require('./routes/JobService').JobService,
     manualService = require('./routes/ManualService').ManualService,
     taskService = require('./routes/TaskService').TaskService,
+    idGenerationService = require('./routes/IDGenerationService').IDGenerationService,
     fs = require("fs");
 
 var app = express();
@@ -41,6 +42,7 @@ initService.db(function(error, db){
     this.jobService = new JobService(db);
     this.manualService = new ManualService(db);
     this.taskService = new TaskService(db);
+    this.idGenerationService = new IDGenerationService(db);
 });
 
 var varManufacturers = null;
@@ -292,27 +294,64 @@ app.post('/job/save', function(req, res){
 
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
-        jobService.save({
-            'id': id,
-            'make': make,
-            'model': model,
-            'yom': yom,
-            'rego': rego,
-            'odo': odo,            
-            'servicetypes': servicetype,
-            'status': status,
-            'fname': fname,
-            'lname': lname,
-            'contact': contact,
-            'addressstreet': addressstreet,
-            'addresssuburb': addresssuburb,
-            'addresspostcode': addresspostcode,
-            'addressstate': addressstate,
-            'note': note,
-            'startdate': startdate,
-            'completedate': completedate
-        }, function( error, docs) {
-            res.redirect('/job')
+
+        // get id custom identification number
+        var now = new Date();
+        var strYear = '' + now.getFullYear();
+        var strMonth = (now.getMonth()+1) < 10 ? '0' + (now.getMonth()+1) : '' + (now.getMonth()+1);
+        var strDate = now.getDate() < 10 ? '0' + now.getDate() : '' + now.getDate();
+        var timestamp = strYear + strMonth + strDate;
+        
+        idGenerationService.findAll(function(error, idnumbers){
+
+            var index = 1;
+            var jobNumber = '';
+
+            if(idnumbers != null && idnumbers.length == 1 ){
+                var obj = idnumbers[0];
+                index = parseInt(obj.jobnumber) + 1;
+                idnumbers[0].jobnumber = index;
+
+                jobNumber = 'J' + timestamp + '-' + index;                
+            } else {
+                jobNumber = 'J' + timestamp + '-' + 1; 
+            }
+
+            jobService.save({
+                'id': id,
+                'jobnumber': jobNumber,
+                'make': make,
+                'model': model,
+                'yom': yom,
+                'rego': rego,
+                'odo': odo,            
+                'servicetypes': servicetype,
+                'status': status,
+                'fname': fname,
+                'lname': lname,
+                'contact': contact,
+                'addressstreet': addressstreet,
+                'addresssuburb': addresssuburb,
+                'addresspostcode': addresspostcode,
+                'addressstate': addressstate,
+                'note': note,
+                'startdate': startdate,
+                'completedate': completedate
+
+            }, function( error, docs) {
+                if(idnumbers != null && idnumbers.length == 1){
+                     idGenerationService.update(idnumbers[0], function(error, docs){
+                        res.redirect('/job')
+                    });     
+                } else {
+                    idGenerationService.save({
+                        'id': crypto.randomBytes(20).toString('hex'),
+                        'jobnumber' : index
+                    }, function(error, docs){
+                        res.redirect('/job')
+                    });                
+                }                
+            });            
         });
     } else {
         jobService.update({

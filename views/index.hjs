@@ -540,6 +540,7 @@
     	            <table class="table table-striped">
     	              <thead>                
     	                <tr>
+                        <th>Job Number</th>
     	                  <th>Rego</th>
                         <th>Make</th>
                         <th>Model</th>
@@ -553,6 +554,7 @@
     	              <tbody>
     	                {{#jobs}}
     	                  <tr>
+                          <td><a href='/job/{{id}}'>{{{jobnumber}}}</a></td>
     	                    <td><a href='/job/{{id}}'>{{{rego}}}</a></td>
                           <td>{{{make}}}</td>
                           <td>{{{model}}}</td>
