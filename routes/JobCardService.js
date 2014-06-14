@@ -94,7 +94,6 @@ JobCardService.prototype.update = function(jobcard, callback){
   });
 };
 
-
 // delete a job card
 JobCardService.prototype.remove = function(id, callback){
   this.getCollection(function(error, jobcard_collection){
@@ -111,5 +110,26 @@ JobCardService.prototype.remove = function(id, callback){
     }
   });
 }
+
+//search for job card with job number
+JobCardService.prototype.search = function(jobnumber, callback){
+  this.getCollection(function(error, jobcard_collection){
+    if(error){
+      callback(error);
+    } else {
+      jobcard_collection.find(
+        {
+          'jobnumber' : jobnumber
+        }, 
+        function(error, result){
+        if(error){
+          callback(error);
+        } else {          
+          callback(null, result);
+        }
+      });
+    }   
+  });
+};
 
 exports.JobCardService = JobCardService;

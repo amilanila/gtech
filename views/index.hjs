@@ -553,6 +553,7 @@
     	                  <th>Status</th>                      
                         <th></th>                      
                         <th></th>                      
+                        <th></th>                      
     	                </tr>
     	              </thead>
     	              <tbody>
@@ -564,7 +565,8 @@
                           <td>{{{model}}}</td>
     	                    <td>{{{fname}}} {{{lname}}}</td>
     	                    <td>{{{contact}}}</td>
-    	                    <td>{{{status}}}</td>                          
+    	                    <td>{{{status}}}</td>        
+                          <th><a href="/jobcard/search/{{jobnumber}}">Job Card</a></th>                                        
                           <td><a href="/job/print/{{id}}"><span class="glyphicon glyphicon-print"></span></a></td>
                           <td><a class="remove-job-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
     	                  </tr>
@@ -753,7 +755,12 @@
                     <input type="text" class="form-control" id="jobnumber" name="jobnumber" placeholder="Job Number" value="{{{jobnumber}}}">
                   {{/jobcard}}
                   {{^jobcard}}
-                    <input type="text" class="form-control" id="jobnumber" name="jobnumber" placeholder="Job Number">
+                    {{#jobnumberTmp}}
+                      <input type="text" class="form-control" id="jobnumber" name="jobnumber" placeholder="Job Number" value={{{jobnumberTmp}}}>
+                    {{/jobnumberTmp}}
+                    {{^jobnumberTmp}}
+                      <input type="text" class="form-control" id="jobnumber" name="jobnumber" placeholder="Job Number">
+                    {{/jobnumberTmp}}                                        
                   {{/jobcard}}                    
                 </div>
                 <div class="form-group">                              

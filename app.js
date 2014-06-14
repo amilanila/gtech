@@ -96,6 +96,10 @@ app.get('/', function(req, res){
     taskService.findAll(function( error, tasks) {
         varTasks = tasks;       
     });
+
+    jobcardService.findAll(function( error, jobcards) {
+        varJobCards = jobcards;       
+    });
 });
 
 /////////////////////////////////////// Manufactures ////////////////////////////////
@@ -631,6 +635,41 @@ app.get('/jobcard/remove/:id', function(req, res){
     jobcardService.remove(id, function( error, docs) {
         res.redirect('/jobcard')
     });
+});
+
+app.get('/jobcard/search/:jobnumber', function(req, res){    
+    var jobnumber = req.params.jobnumber; 
+    jobcardService.search(jobnumber, function(error, result){
+        result.toArray(function(err, jobcards){
+            if(jobcards.length > 0){                
+                var jc = jobcards[0];
+                if(jc == undefined){
+                    res.render('index', {
+                        'title': 'Job Card',
+                        'jobcard': null,
+                        'jobnumberTmp': jobnumber,
+                        'tasks': varTasks,
+                        'jobcards': varJobCards
+                    });
+                } else {
+                    res.render('index', {
+                        'title': 'Job Card',
+                        'jobcard': jc,
+                        'tasks': varTasks,
+                        'jobcards': varJobCards
+                    });
+                }
+            } else {
+                res.render('index', {
+                    'title': 'Job Card',
+                    'jobcard': null,
+                    'jobnumberTmp': jobnumber,
+                    'tasks': varTasks,
+                    'jobcards': varJobCards
+                });
+            }            
+        });
+    })
 });
 
 // create server
