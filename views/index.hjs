@@ -53,12 +53,12 @@
           <!-- Nav tabs -->
           <ul id="mainTab" class="nav nav-tabs">
             <li class="active"><a href="#job" data-toggle="tab">Job</a></li>
+            <li><a href="#jobcard" data-toggle="tab">Job Card</a></li>                        
+            <li><a href="#manual" data-toggle="tab">Manuals</a></li>        
             <li><a href="#manufacturer" data-toggle="tab">Make</a></li>
             <li><a href="#model" data-toggle="tab">Model</a></li>
-            <li><a href="#servicetype" data-toggle="tab">Service Type</a></li>            
-            <li><a href="#manual" data-toggle="tab">Manuals</a></li>            
+            <li><a href="#servicetype" data-toggle="tab">Service Type</a></li>                            
             <li><a href="#task" data-toggle="tab">Tasks</a></li>            
-            <li><a href="#jobcard" data-toggle="tab">Job Card</a></li>                        
           </ul>
 
           <!-- Tab panes -->

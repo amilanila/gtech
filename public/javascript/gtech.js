@@ -170,4 +170,12 @@ $(document).ready(function () {
      	$(".modal-footer #removeTaskLink").attr('href', '/task/remove/' + id);
      	$('#taskDeleteModal').modal('show');
 	});	
+
+	$('.remove-jobcard-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removeJobCardLink").attr('href', '/jobcard/remove/' + id);
+     	$('#jobcardDeleteModal').modal('show');
+	});	
+
 });
