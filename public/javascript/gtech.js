@@ -6,22 +6,27 @@ $(document).ready(function () {
 	var pathName = $(location).attr('pathname');
 	if(pathName != undefined){
 		var tabName = '';
+		var selector = '';
 		if(pathName.indexOf('manufacturer') > -1){
-			tabName = 'manufacturer'; 
+			selector = "#mainTab a[href=\"#manufacturer\"]";			
 		} else if(pathName.indexOf('model') > -1){
-			tabName = 'model';
+			selector = "#mainTab a[href=\"#model\"]";			
 		} else if(pathName.indexOf('servicetype') > -1){
-			tabName = 'servicetype';
+			selector = "#mainTab a[href=\"#servicetype\"]";		
 		} else if(pathName.indexOf('manual') > -1){
-			tabName = 'manual';
+			selector = "#mainTab a[href=\"#manual\"]";			
 		} else if(pathName.indexOf('task') > -1){
-			tabName = 'task';
+			selector = "#mainTab a[href=\"#task\"]";			
 		} else if(pathName.indexOf('jobcard') > -1){
-			tabName = 'jobcard';
+			selector = "#mainTab a[href=\"#jobcard\"]";			
+		} else if(pathName.indexOf('part') > -1){
+			selector = "#mainTab a[href=\"#part\"]";			
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
-			tabName = 'job';
+			selector = "#mainTab a[href=\"#job\"]";			
 		}
 		
+		$(selector).tab('show');
+
 		// job edit
 		var selectedMake = $('#selectedMake').val();
 		var selectedModel = $('#selectedModel').val();
@@ -72,9 +77,6 @@ $(document).ready(function () {
 		if(selectedMakeModel != undefined && selectedMakeModel != "-1"){
 			$('.model-make').val(selectedMakeModel);
 		}
-
-		var selector = "#mainTab a[href=\"#" + tabName + "\"]";
-		$(selector).tab('show');			
 	}
 
 	//////////////////// event handling ////////////////////
@@ -180,10 +182,10 @@ $(document).ready(function () {
      	$('#jobcardDeleteModal').modal('show');
 	});	
 
-	$(".nav-sidebar li a").click(function(e){
-		$(".nav-sidebar li").each(function() {		
-			$(this).parent().removeClass("active");				
-		});
-		$(e.target).parent().addClass("active");
-	});
+	$('.remove-part-link').click(function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+     	$(".modal-footer #removePartLink").attr('href', '/part/remove/' + id);
+     	$('#partDeleteModal').modal('show');
+	});		
 });

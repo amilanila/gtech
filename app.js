@@ -15,6 +15,7 @@ var express = require('express'),
     taskService = require('./routes/TaskService').TaskService,
     idGenerationService = require('./routes/IDGenerationService').IDGenerationService,
     jobcardService = require('./routes/JobCardService').JobCardService,    
+    partService = require('./routes/PartService').PartService,    
     fs = require("fs");
 
 var app = express();
@@ -45,6 +46,7 @@ initService.db(function(error, db){
     this.taskService = new TaskService(db);
     this.idGenerationService = new IDGenerationService(db);
     this.jobcardService = new JobCardService(db);
+    this.partService = new PartService(db);
 });
 
 var varManufacturers = null;
@@ -673,11 +675,70 @@ app.get('/jobcard/search/:jobnumber', function(req, res){
 });
 
 /////////////////////////////////////// Spare parts ////////////////////////////////
-app.get('/sparepart', function(req, res){
-    res.render('parts', {
-        'title': 'Spare parts'
-    });    
+app.post('/part/save', function(req, res){
+    var id = req.body.id;
+    var make = req.body.make;
+    var model = req.body.model;
+    var yom = req.body.yom;
+    var name = req.body.name;
+    var description = req.body.description;
+
+    if(id == '-1'){
+        id = crypto.randomBytes(20).toString('hex');
+        partService.save({
+            'id': id,
+            'make': make,
+            'model': model,
+            'yom': yom,
+            'name': name,
+            'description': description        
+        }, function( error, docs) {
+            res.redirect('/part')
+        });
+    } else {
+        partService.update({
+            'id': id,
+            'make': make,
+            'model': model,
+            'yom': yom,
+            'name': name,
+            'description': description
+        }, function( error, docs) {
+            res.redirect('/part')
+        });    
+    }   
 });
+
+app.get('/part', function(req, res){
+    partService.findAll(function( error, parts) {
+        varParts = parts;
+        res.render('parts', {
+            'title': 'Spare parts',
+            'parts': parts,
+            'manufacturers': varManufacturers,
+            'models': varModels
+        });
+    });
+});
+
+app.get('/part/:id', function(req, res){
+    var id = req.params.id; 
+    partService.findOne(id, function(error, model){
+        res.render('parts', {
+            'title': 'Spare parts',
+            'part': part,
+            'parts': varParts
+        });
+    })
+});
+
+app.get('/part/remove/:id', function(req, res){
+    var id = req.params.id; 
+    partService.remove(id, function( error, docs) {
+        res.redirect('/part')
+    });
+});
+
 
 // create server
 http.createServer(app).listen(app.get('port'), function(){

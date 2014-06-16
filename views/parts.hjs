@@ -45,68 +45,99 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="/job">Dashboard</a></li>
-            <li><a href="/sparepart">Reports</a></li>            
+            <li><a href="/part">Stock</a></li>            
           </ul>          
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
           <!-- Nav tabs -->
           <ul id="mainTab" class="nav nav-tabs">
-            <li><a href="#" data-toggle="tab">Spare Part</a></li>            
+            <li><a href="#part" data-toggle="tab">Spare Part</a></li>            
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
 
-            <!-- Manufacturers tab-->
-            <div class="tab-pane" id="manufacturer">
-              <h2 class="sub-header">Make</h2>
+            <!-- Spare part tab-->
+            <div class="tab-pane" id="part">
+              <h2 class="sub-header">Spare part</h2>
               <div class="table-responsive">
                 <div class="row">
-                  <form role="newManufacturerForm" method="post" action="/manufacturer/save">                
-                    {{#manufacturer}}                    
+                  <form role="newPartForm" method="post" action="/part/save">                
+                    {{#part}}                    
                       <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                    {{/manufacturer}}
-                    {{^manufacturer}}
+                      <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
+                      <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value={{model}}>
+                    {{/part}}
+                    {{^part}}
                       <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                    {{/manufacturer}}
+                      <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value="-1">
+                      <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value="-1">
+                    {{/part}}
+                    <div class="form-group">
+                      <label for="make">Make</label><label class="mandatory-field">&nbsp;*</label>
+                      <select class="form-control part-make" id="make" name="make" placeholder="Manufacturer">
+                        <option value='-'>- select -</option>
+                        {{#manufacturers}}
+                        <option>{{name}}</option>
+                        {{/manufacturers}}                      
+                      </select>                                            
+                    </div>
+                    <div class="form-group">
+                      <label for="model">Model</label><label class="mandatory-field">&nbsp;*</label>
+                      <select class="form-control part-models" id="model" name="model" placeholder="Model">
+                        <option value='-'>- select -</option>
+                        {{#models}}
+                        <option>{{name}}</option>
+                        {{/models}}                      
+                      </select>                                            
+                    </div>
+                    <div class="form-group">
+                      <label for="yom">Year or manufacture</label>
+                      {{#job}}                    
+                        <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
+                      {{/job}}
+                      {{^job}}
+                        <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
+                      {{/job}}
+                    </div>
                     <div class="form-group">                    
                       <label for="name">Name</label>
-                      {{#manufacturer}}                    
+                      {{#part}}                    
                       	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
-                      {{/manufacturer}}
-                      {{^manufacturer}}
+                      {{/part}}
+                      {{^part}}
                       	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                      {{/manufacturer}}
+                      {{/part}}
                     </div>
                     <div class="form-group">
                       <label for="description">Description</label>
-                      {{#manufacturer}}                    
+                      {{#part}}                    
                       	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
-                      {{/manufacturer}}
-                      {{^manufacturer}}
+                      {{/part}}
+                      {{^part}}
                       	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
-                      {{/manufacturer}}                    
+                      {{/part}}                    
                     </div>                  
-                    <a href="/manufacturer" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
+                    <a href="/part" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
                     <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                                      
                   </form> 
                 </div>
               </div>  
               <hr>  
-              <div class="modal fade" id="manufacturerDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal fade" id="partDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Remove Manufacturer</h4>
+                      <h4 class="modal-title">Remove Part</h4>
                     </div>
                     <div class="modal-body">
-                      Do you want to remove this manufacturer?
+                      Do you want to remove this spare part?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                      <a id="removeManufacturerLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                      <a id="removePartLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
                     </div>
                   </div>
                 </div>
@@ -118,15 +149,22 @@
                       <tr>
                         <th>Name</th>
                         <th>Description</th>                            
+                        <th>Make</th>                            
+                        <th>Model</th>                            
+                        <th>Year</th>                            
                       </tr>
                     </thead>
                     <tbody>
-                      {{#manufacturers}}
+                      {{#parts}}
                         <tr>
-                          <td><a href='/manufacturer/{{id}}'>{{{name}}}</a></td>
+                          <td><a href='/part/{{id}}'>{{{name}}}</a></td>
                           <td>{{{description}}}</td>                        
+                          <td>{{{make}}}</td>                        
+                          <td>{{{model}}}</td>                        
+                          <td>{{{yom}}}</td>                        
+                          <td><a class="remove-part-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
-                      {{/manufacturers}}
+                      {{/parts}}
                     </tbody>
                   </table>
                 </div>
