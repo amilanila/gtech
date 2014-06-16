@@ -64,63 +64,110 @@
               <div class="table-responsive">
                 <div class="row">
                   <form role="newPartForm" method="post" action="/part/save">                
-                    {{#part}}                    
-                      <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                      <input type="hidden" class="form-control" id="selectedPartMake" name="selectedPartMake" value={{make}}>
-                      <input type="hidden" class="form-control" id="selectedPartModel" name="selectedPartModel" value={{model}}>
-                    {{/part}}
-                    {{^part}}
-                      <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                      <input type="hidden" class="form-control" id="selectedPartMake" name="selectedPartMake" value="-1">
-                      <input type="hidden" class="form-control" id="selectedPartModel" name="selectedPartModel" value="-1">
-                    {{/part}}
-                    <div class="form-group">
-                      <label for="make">Make</label><label class="mandatory-field">&nbsp;*</label>
-                      <select class="form-control part-make" id="make" name="make" placeholder="Manufacturer">
-                        <option value='-'>- select -</option>
-                        {{#manufacturers}}
-                        <option>{{name}}</option>
-                        {{/manufacturers}}                      
-                      </select>                                            
-                    </div>
-                    <div class="form-group">
-                      <label for="model">Model</label><label class="mandatory-field">&nbsp;*</label>
-                      <select class="form-control part-models" id="model" name="model" placeholder="Model">
-                        <option value='-'>- select -</option>
-                        {{#models}}
-                        <option>{{name}}</option>
-                        {{/models}}                      
-                      </select>                                            
-                    </div>
-                    <div class="form-group">
-                      <label for="yom">Year or manufacture</label>
+                    <div class="col-xs-6 well part-main-col">                       
                       {{#part}}                    
-                        <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
+                        <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                        <input type="hidden" class="form-control" id="selectedPartMake" name="selectedPartMake" value={{make}}>
+                        <input type="hidden" class="form-control" id="selectedPartModel" name="selectedPartModel" value={{model}}>
                       {{/part}}
                       {{^part}}
-                        <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
+                        <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                        <input type="hidden" class="form-control" id="selectedPartMake" name="selectedPartMake" value="-1">
+                        <input type="hidden" class="form-control" id="selectedPartModel" name="selectedPartModel" value="-1">
                       {{/part}}
+                      <div class="form-group">
+                        <label for="make">Make</label><label class="mandatory-field">&nbsp;*</label>
+                        <select class="form-control part-make" id="make" name="make" placeholder="Manufacturer">
+                          <option value='-'>- select -</option>
+                          {{#manufacturers}}
+                          <option>{{name}}</option>
+                          {{/manufacturers}}                      
+                        </select>                                            
+                      </div>
+                      <div class="form-group">
+                        <label for="model">Model</label><label class="mandatory-field">&nbsp;*</label>
+                        <select class="form-control part-models" id="model" name="model" placeholder="Model">
+                          <option value='-'>- select -</option>
+                          {{#models}}
+                          <option>{{name}}</option>
+                          {{/models}}                      
+                        </select>                                            
+                      </div>
+                      <div class="form-group">
+                        <label for="yom">Year or manufacture</label>
+                        {{#part}}                    
+                          <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
+                        {{/part}}
+                        {{^part}}
+                          <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
+                        {{/part}}
+                      </div>
+                      <div class="form-group">
+                        <label for="yom">Model code</label>
+                        {{#part}}                    
+                          <input type="input" class="form-control" id="modelcode" name="modelcode" placeholder="Model Code" value="{{{modelcode}}}">
+                        {{/part}}
+                        {{^part}}
+                          <input type="input" class="form-control" id="modelcode" name="modelcode" placeholder="Model Code">
+                        {{/part}}
+                      </div>
+                      <div class="form-group">
+                        <label for="yom">Engine Code</label>
+                        {{#part}}                    
+                          <input type="input" class="form-control" id="enginecode" name="enginecode" placeholder="Engine Code" value="{{{enginecode}}}">
+                        {{/part}}
+                        {{^part}}
+                          <input type="input" class="form-control" id="enginecode" name="enginecode" placeholder="Engine Code">
+                        {{/part}}
+                      </div>
                     </div>
-                    <div class="form-group">                    
-                      <label for="name">Name</label>
-                      {{#part}}                    
-                      	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
-                      {{/part}}
-                      {{^part}}
-                      	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                      {{/part}}
+                    <div class="col-xs-6 well part-main-col">   
+                      <div class="form-group">                    
+                        <label for="transmission">Transmission</label>
+                        <select id="transmission" name="transmission" placeholder="Transmission"> 
+                          <option value='-'>- select -</option>
+                          <option value="manual">Manual</option>
+                          <option value="auto">Automatic</option>
+                        </select>
+                      </div>
+                      <div class="form-group">                    
+                        <label for="bodytype">Body type</label>
+                        <select id="bodytype" name="bodytype" placeholder="Body Type"> 
+                          <option value='-'>- select -</option>
+                          <option value="cabChassis">Cab Chassis</option>
+                          <option value="coupe">Coupe</option>
+                          <option value="lightTruck">Light Truck</option>
+                          <option value="sedan">Sedan</option>
+                          <option value="ute">Ute</option>
+                          <option value="wagon">Wagon</option>
+                          <option value="convertible">Convertible</option>
+                          <option value="hatch">Hatch</option>                          
+                          <option value="peopleMover">People Mover</option>                          
+                          <option value="suv">SUV</option>                          
+                          <option value="van">Van</option>                          
+                        </select>
+                      </div>
+                      <div class="form-group">                    
+                        <label for="name">Name</label>
+                        {{#part}}                    
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                        {{/part}}
+                        {{^part}}
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        {{/part}}
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        {{#part}}                    
+                          <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                        {{/part}}
+                        {{^part}}
+                          <input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                        {{/part}}                    
+                      </div>                  
+                      <a href="/part" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
+                      <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                                                          
                     </div>
-                    <div class="form-group">
-                      <label for="description">Description</label>
-                      {{#part}}                    
-                      	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
-                      {{/part}}
-                      {{^part}}
-                      	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
-                      {{/part}}                    
-                    </div>                  
-                    <a href="/part" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
-                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                                      
                   </form> 
                 </div>
               </div>  
