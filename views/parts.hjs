@@ -66,13 +66,13 @@
                   <form role="newPartForm" method="post" action="/part/save">                
                     {{#part}}                    
                       <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
-                      <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value={{make}}>
-                      <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value={{model}}>
+                      <input type="hidden" class="form-control" id="selectedPartMake" name="selectedPartMake" value={{make}}>
+                      <input type="hidden" class="form-control" id="selectedPartModel" name="selectedPartModel" value={{model}}>
                     {{/part}}
                     {{^part}}
                       <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
-                      <input type="hidden" class="form-control" id="selectedMake" name="selectedMake" value="-1">
-                      <input type="hidden" class="form-control" id="selectedModel" name="selectedModel" value="-1">
+                      <input type="hidden" class="form-control" id="selectedPartMake" name="selectedPartMake" value="-1">
+                      <input type="hidden" class="form-control" id="selectedPartModel" name="selectedPartModel" value="-1">
                     {{/part}}
                     <div class="form-group">
                       <label for="make">Make</label><label class="mandatory-field">&nbsp;*</label>
@@ -94,12 +94,12 @@
                     </div>
                     <div class="form-group">
                       <label for="yom">Year or manufacture</label>
-                      {{#job}}                    
+                      {{#part}}                    
                         <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
-                      {{/job}}
-                      {{^job}}
+                      {{/part}}
+                      {{^part}}
                         <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
-                      {{/job}}
+                      {{/part}}
                     </div>
                     <div class="form-group">                    
                       <label for="name">Name</label>
@@ -170,6 +170,8 @@
                 </div>
               </div> 
             </div>
+
+
           </div>
         </div>
       </div>  

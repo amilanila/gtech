@@ -80,7 +80,7 @@ PartService.prototype.update = function(part, callback){
       part_collection.update(
         {'id': part.id},
         {
-          $set: {'make': part.make,  'name': part.name, 'description': part.description}
+          $set: {'make': part.make, 'model': part.model, 'yom': part.yom, 'name': part.name, 'description': part.description}
         },
         function(err, result){
           if(err){

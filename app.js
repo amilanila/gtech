@@ -723,10 +723,12 @@ app.get('/part', function(req, res){
 
 app.get('/part/:id', function(req, res){
     var id = req.params.id; 
-    partService.findOne(id, function(error, model){
+    partService.findOne(id, function(error, part){
         res.render('parts', {
             'title': 'Spare parts',
             'part': part,
+            'manufacturers': varManufacturers,
+            'models': varModels,
             'parts': varParts
         });
     })

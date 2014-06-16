@@ -77,6 +77,17 @@ $(document).ready(function () {
 		if(selectedMakeModel != undefined && selectedMakeModel != "-1"){
 			$('.model-make').val(selectedMakeModel);
 		}
+
+		// part edit
+		var selectedPartMake = $('#selectedPartMake').val();
+		var selectedPartModel = $('#selectedPartModel').val();
+		
+		if(selectedPartMake != undefined && selectedPartMake != "-1"){
+			$('.part-make').val(selectedPartMake);			
+		}
+		if(selectedPartModel != undefined && selectedPartModel != "-1"){
+			$('.part-models').val(selectedPartModel);			
+		}
 	}
 
 	//////////////////// event handling ////////////////////
