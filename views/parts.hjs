@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{{{ title }}}</title>        
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
+    <script src='/javascript/jquery.min.js'></script>
+    <script src='/javascript/jquery-ui.min.js'></script>
+    <script src='/javascript/bootstrap.min.js'></script>
+    <script src='/javascript/gtech.js'></script>
+    
+  </head>
+  <body>    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">GTech Auto Care</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" action="/search" method="GET">
+            <input type="text" class="form-control" placeholder="Search..." name="keyword" id="keyword">
+            <button type="submit" class="btn btn-default" >Search</button>          
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="/job">Dashboard</a></li>
+            <li><a href="/sparepart">Reports</a></li>            
+          </ul>          
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <!-- Nav tabs -->
+          <ul id="mainTab" class="nav nav-tabs">
+            <li><a href="#" data-toggle="tab">Spare Part</a></li>            
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+
+            <!-- Manufacturers tab-->
+            <div class="tab-pane" id="manufacturer">
+              <h2 class="sub-header">Make</h2>
+              <div class="table-responsive">
+                <div class="row">
+                  <form role="newManufacturerForm" method="post" action="/manufacturer/save">                
+                    {{#manufacturer}}                    
+                      <input type="hidden" class="form-control" id="id" name="id" value={{id}}>
+                    {{/manufacturer}}
+                    {{^manufacturer}}
+                      <input type="hidden" class="form-control" id="id" name="id" value="-1"}>
+                    {{/manufacturer}}
+                    <div class="form-group">                    
+                      <label for="name">Name</label>
+                      {{#manufacturer}}                    
+                      	<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{{name}}}">
+                      {{/manufacturer}}
+                      {{^manufacturer}}
+                      	<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                      {{/manufacturer}}
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      {{#manufacturer}}                    
+                      	<input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
+                      {{/manufacturer}}
+                      {{^manufacturer}}
+                      	<input type="input" class="form-control" id="description" name="description" placeholder="Description">
+                      {{/manufacturer}}                    
+                    </div>                  
+                    <a href="/manufacturer" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>
+                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                                      
+                  </form> 
+                </div>
+              </div>  
+              <hr>  
+              <div class="modal fade" id="manufacturerDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Remove Manufacturer</h4>
+                    </div>
+                    <div class="modal-body">
+                      Do you want to remove this manufacturer?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                      <a id="removeManufacturerLink" href="#" class="btn btn-primary btn-sml" role="button">Yes</a>                      
+                    </div>
+                  </div>
+                </div>
+              </div>          
+              <div class="table-responsive">
+                <div class="row">
+                  <table class="table table-striped">
+                    <thead>                
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>                            
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#manufacturers}}
+                        <tr>
+                          <td><a href='/manufacturer/{{id}}'>{{{name}}}</a></td>
+                          <td>{{{description}}}</td>                        
+                        </tr>
+                      {{/manufacturers}}
+                    </tbody>
+                  </table>
+                </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>  
+  </body>
+</html>

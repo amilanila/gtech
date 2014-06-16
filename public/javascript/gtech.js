@@ -1,6 +1,8 @@
 $(document).ready(function () {
 	$( ".datepicker" ).datepicker();
 
+	$("#leftNav").load("left-nav.html"); 
+
 	var pathName = $(location).attr('pathname');
 	if(pathName != undefined){
 		var tabName = '';
@@ -26,16 +28,16 @@ $(document).ready(function () {
 		var selectedStatus = $('#selectedStatus').val();
 		var selectedServiceTypes = $('#selectedServiceTypes').val();
 		
-		if(selectedMake != "-1"){
+		if(selectedMake != undefined && selectedMake != "-1"){
 			$('.job-make').val(selectedMake);			
 		}
-		if(selectedModel != "-1"){
+		if(selectedModel != undefined && selectedModel != "-1"){
 			$('.job-models').val(selectedModel);			
 		}
-		if(selectedStatus != "-1"){
+		if(selectedStatus != undefined && selectedStatus != "-1"){
 			$('.job-status').val(selectedStatus);			
 		}
-		if(selectedServiceTypes != "-1"){
+		if(selectedServiceTypes != undefined && selectedServiceTypes != "-1"){
 			var arr = selectedServiceTypes.split(',');
 			$('.job-servicetypes > li > input').each(function(){
 				var self = this;
@@ -51,7 +53,7 @@ $(document).ready(function () {
 
 		// job card edit
 		var selectedTasks = $('#selectedTasks').val();
-		if(selectedTasks != "-1"){
+		if(selectedTasks != undefined && selectedTasks != "-1"){
 			var arr = selectedTasks.split(',');
 			$('.jobcard-task > li > input').each(function(){
 				var self = this;
@@ -67,7 +69,7 @@ $(document).ready(function () {
 
 		// model edit
 		var selectedMakeModel = $('#selectedMakeModel').val();
-		if(selectedMakeModel != "-1"){
+		if(selectedMakeModel != undefined && selectedMakeModel != "-1"){
 			$('.model-make').val(selectedMakeModel);
 		}
 
@@ -178,4 +180,10 @@ $(document).ready(function () {
      	$('#jobcardDeleteModal').modal('show');
 	});	
 
+	$(".nav-sidebar li a").click(function(e){
+		$(".nav-sidebar li").each(function() {		
+			$(this).parent().removeClass("active");				
+		});
+		$(e.target).parent().addClass("active");
+	});
 });

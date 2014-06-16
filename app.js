@@ -672,6 +672,13 @@ app.get('/jobcard/search/:jobnumber', function(req, res){
     })
 });
 
+/////////////////////////////////////// Spare parts ////////////////////////////////
+app.get('/sparepart', function(req, res){
+    res.render('parts', {
+        'title': 'Spare parts'
+    });    
+});
+
 // create server
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
