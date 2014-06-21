@@ -94,12 +94,12 @@
                         </select>                                            
                       </div>
                       <div class="form-group">
-                        <label for="yom">Year or manufacture</label>
+                        <label for="yom">Year</label>
                         {{#part}}                    
-                          <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
+                          <input type="input" class="form-control" id="yom" name="yom" placeholder="Year" value="{{{yom}}}">
                         {{/part}}
                         {{^part}}
-                          <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
+                          <input type="input" class="form-control" id="yom" name="yom" placeholder="Year">
                         {{/part}}
                       </div>
                       <div class="form-group">

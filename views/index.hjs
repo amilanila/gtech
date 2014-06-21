@@ -172,6 +172,15 @@
                       {{/model}}                    
                     </div>
                     <div class="form-group">
+                      <label for="yom">Year</label>
+                      {{#model}}                    
+                        <input type="input" class="form-control" id="yom" name="yom" placeholder="Year" value="{{{yom}}}">
+                      {{/model}}
+                      {{^model}}
+                        <input type="input" class="form-control" id="yom" name="yom" placeholder="Year">
+                      {{/model}}                    
+                    </div>                  
+                    <div class="form-group">
                       <label for="description">Description</label>
                       {{#model}}                    
                         <input type="input" class="form-control" id="description" name="description" placeholder="Description" value="{{{description}}}">
@@ -210,14 +219,16 @@
                       <tr>
                         <th>Make</th>
                         <th>Name</th>
+                        <th>Year</th>
                         <th>Description</th>                      
                       </tr>
                     </thead>
                     <tbody>
                       {{#models}}
                         <tr>
-                          <td>{{{make}}}</td>
+                          <td>{{{make}}}</td>                          
                           <td><a href='/model/{{id}}'>{{{name}}}</a></td>
+                          <td>{{{yom}}}</td>
                           <td>{{{description}}}</td>      
                         </tr>
                       {{/models}}
@@ -350,12 +361,12 @@
                                 </select>                                            
                               </div>
                               <div class="form-group">
-                                <label for="yom">Year or manufacture</label>
+                                <label for="yom">Year</label>
                                 {{#job}}                    
-                                  <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature" value="{{{yom}}}">
+                                  <input type="input" class="form-control" id="yom" name="yom" placeholder="Year" value="{{{yom}}}">
                                 {{/job}}
                                 {{^job}}
-                                  <input type="input" class="form-control" id="yom" name="yom" placeholder="Year of manafucature">
+                                  <input type="input" class="form-control" id="yom" name="yom" placeholder="Year">
                                 {{/job}}
                               </div>
                               <div class="form-group">
@@ -374,6 +385,15 @@
                                 {{/job}}
                                 {{^job}}
                                   <input type="input" class="form-control" id="odo" name="odo" placeholder="ODO meter">
+                                {{/job}}
+                              </div>
+                              <div class="form-group">
+                                <label for="odo">VIN</label>
+                                {{#job}}                    
+                                  <input type="input" class="form-control" id="vin" name="vin" placeholder="VIN" value="{{{vin}}}">
+                                {{/job}}
+                                {{^job}}
+                                  <input type="input" class="form-control" id="vin" name="vin" placeholder="VIN">
                                 {{/job}}
                               </div>
                           </div>
@@ -397,6 +417,15 @@
                                   <option value="Completed">Completed</option>                          
                                   <option value="Pickedup">Pickedup</option>                          
                               </select>                                                                  
+                            </div>
+                            <div class="form-group">
+                              <label for="eno">Engine Number</label>
+                              {{#job}}                    
+                                <input type="input" class="form-control" id="eno" name="eno" placeholder="Engine Number" value="{{{eno}}}">
+                              {{/job}}
+                              {{^job}}
+                                <input type="input" class="form-control" id="eno" name="eno" placeholder="Engine Number">
+                              {{/job}}
                             </div>
                           </div>  	
                           <div class="col-xs-4 well job-main-col">
@@ -449,7 +478,7 @@
                   <div class="row">
                     <div class="table-responsive">                
                       <div class="row well row">                        
-                        <div class="col-xs-8">                                                     
+                        <div class="col-xs-6">                                                     
                           <div class="form-group">
                             <label for="note">Notes</label>        
                             {{#job}}                    
@@ -480,7 +509,21 @@
                               <input class="datepicker" id="completedate" name="completedate" type="text">
                             {{/job}}                    
                           </div>                          
-                        </div>  
+                        </div> 
+                        <div class="col-xs-2"> 
+                          <div class="row">
+                            <div class="job-total">
+                              <label>Total</label><br>        
+                              {{#job}}                                                                           
+                                <strong>$ <input id="total" name="total" type="text" value="{{total}}"></strong>
+                              {{/job}}
+                              {{^job}}
+                                <strong>$ <input id="total" name="total" type="text"></strong>
+                              {{/job}}                    
+                            </div>                          
+                          </div>
+                        </div>                        
+
                         <div class="col-xs-2"> 
                           <div class="row">
                             <br><br>
@@ -548,6 +591,7 @@
     	                  <th>Rego</th>
                         <th>Make</th>
                         <th>Model</th>
+                        <th>Year</th>
     	                  <th>Name</th>
     	                  <th>Contact</th>  	                  
     	                  <th>Status</th>                      
@@ -563,6 +607,7 @@
     	                    <td><a href='/job/{{id}}'>{{{rego}}}</a></td>
                           <td>{{{make}}}</td>
                           <td>{{{model}}}</td>
+                          <td>{{{yom}}}</td>
     	                    <td>{{{fname}}} {{{lname}}}</td>
     	                    <td>{{{contact}}}</td>
     	                    <td>{{{status}}}</td>        

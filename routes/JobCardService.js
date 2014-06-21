@@ -22,7 +22,7 @@ JobCardService.prototype.findAll = function(callback) {
       if( error ) {        
         callback(error);
       } else {
-        jobcard_collection.find().toArray(function(error, results) {
+        jobcard_collection.find().sort({created_at: -1}).toArray(function(error, results) {
           if( error ) {
             callback(error);
           } else {         

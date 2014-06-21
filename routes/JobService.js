@@ -34,7 +34,8 @@ JobService.prototype.search = function(keyword, callback){
           $or: [
                   {'fname' : regex},
                   {'lname' : regex},
-                  {'rego' : regex}
+                  {'rego' : regex},
+                  {'jobnumber' : regex}
                ]
         }, 
         function(error, result){
@@ -54,7 +55,7 @@ JobService.prototype.findAll = function(callback) {
       if( error ) {
         callback(error);
       } else {
-        job_collection.find().toArray(function(error, results) {
+        job_collection.find().sort({created_at: -1}).toArray(function(error, results) {
           if( error ) {
             callback(error)
           } else {
@@ -117,7 +118,9 @@ JobService.prototype.update = function(job, callback){
                   'model': job.model, 
                   'yom': job.yom, 
                   'rego': job.rego, 
-                  'odo': job.odo,                        
+                  'odo': job.odo,
+                  'vin': job.vin,
+                  'eno': job.eno,                        
                   'servicetypes': job.servicetypes, 
                   'status': job.status,
                   'fname': job.fname, 
@@ -129,7 +132,8 @@ JobService.prototype.update = function(job, callback){
                   'addressstate': job.addressstate,
                   'note': job.note,
                   'startdate': job.startdate,
-                  'completedate': job.completedate
+                  'completedate': job.completedate,
+                  'total': job.total
                 }
         },
         function(err, result){

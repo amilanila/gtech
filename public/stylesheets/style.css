@@ -22,13 +22,13 @@ a {
 }
 
 .job-main-col {
-	height: 425px;
+	height: 435px;
 }
 
 .service-type-container { 
 	border:2px solid #ccc; 	
 	background-color: #fff;
-	height: 300px;
+	height: 245px;
 	margin-top: 0px; 
 	overflow-y: 
 	scroll; 
@@ -46,4 +46,31 @@ a {
 
 .mandatory-field {
 	color: red;
+}
+
+.job-total {
+	margin: 25px;
+}
+
+.job-total label {
+	font-size: 20px;
+}
+
+.job-total input {
+	height: 40px;
+}
+
+/* bootstrap overridden */
+
+.well {
+	margin-bottom: 8px;
+}
+
+hr {
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox] {
+	margin-left: -13px;
 }

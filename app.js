@@ -163,6 +163,7 @@ app.post('/model/save', function(req, res){
     var id = req.body.id;
     var make = req.body.make;
     var name = req.body.name;
+    var yom = req.body.yom;
     var description = req.body.description;
 
     if(id == '-1'){
@@ -171,7 +172,8 @@ app.post('/model/save', function(req, res){
             'id': id,
             'make': make,
             'name': name,
-            'description': description        
+            'description': description,
+            'yom': yom        
         }, function( error, docs) {
             res.redirect('/model')
         });
@@ -180,7 +182,8 @@ app.post('/model/save', function(req, res){
             'id': id,
             'make': make,
             'name': name,
-            'description': description
+            'description': description,
+            'yom': yom
         }, function( error, docs) {
             res.redirect('/model')
         });    
@@ -292,6 +295,8 @@ app.post('/job/save', function(req, res){
     var yom = req.body.yom;
     var rego = req.body.rego;
     var odo = req.body.odo;
+    var vin = req.body.vin;
+    var eno = req.body.eno;
     var servicetype = req.body.jobservicetype;
     var status = req.body.status;
     var fname = req.body.fname;
@@ -304,6 +309,7 @@ app.post('/job/save', function(req, res){
     var note = req.body.note;
     var startdate = req.body.startdate;
     var completedate = req.body.completedate;
+    var total = req.body.total;
 
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
@@ -338,6 +344,8 @@ app.post('/job/save', function(req, res){
                 'yom': yom,
                 'rego': rego,
                 'odo': odo,            
+                'vin': vin,            
+                'eno': eno,
                 'servicetypes': servicetype,
                 'status': status,
                 'fname': fname,
@@ -349,7 +357,8 @@ app.post('/job/save', function(req, res){
                 'addressstate': addressstate,
                 'note': note,
                 'startdate': startdate,
-                'completedate': completedate
+                'completedate': completedate,
+                'total': total
 
             }, function( error, docs) {
                 if(idnumbers != null && idnumbers.length == 1){
@@ -373,7 +382,9 @@ app.post('/job/save', function(req, res){
             'model': model,
             'yom': yom,
             'rego': rego,
-            'odo': odo,            
+            'odo': odo,  
+            'vin': vin,     
+            'eno': eno,     
             'servicetypes': servicetype,
             'status': status,
             'fname': fname,
@@ -385,7 +396,8 @@ app.post('/job/save', function(req, res){
             'addressstate': addressstate,
             'note': note,
             'startdate': startdate,
-            'completedate': completedate
+            'completedate': completedate,
+            'total': total
         }, function( error, docs) {
             res.redirect('/job')
         });                 

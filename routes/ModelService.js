@@ -80,7 +80,7 @@ ModelService.prototype.update = function(model, callback){
       model_collection.update(
         {'id': model.id},
         {
-          $set: {'make': model.make,  'name': model.name, 'description': model.description}
+          $set: {'make': model.make,  'name': model.name, 'yom':model.yom, 'description': model.description}
         },
         function(err, result){
           if(err){
