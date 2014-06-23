@@ -596,6 +596,7 @@ app.get('/task/remove/:id', function(req, res){
 app.post('/jobcard/save', function(req, res){
     var id = req.body.id;    
     var jobnumber = req.body.jobnumber;
+    var clientrequest = req.body.clientrequest;
     var task = req.body.task;
     var note = req.body.note;
         
@@ -604,6 +605,7 @@ app.post('/jobcard/save', function(req, res){
         jobcardService.save({
             'id': id,            
             'jobnumber': jobnumber,
+            'clientrequest': clientrequest,
             'task': task,
             'note': note            
         }, function( error, docs) {
@@ -613,6 +615,7 @@ app.post('/jobcard/save', function(req, res){
         jobcardService.update({
             'id': id,
             'jobnumber': jobnumber,
+            'clientrequest': clientrequest,
             'task': task,
             'note': note
         }, function( error, docs) {

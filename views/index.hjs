@@ -808,29 +808,46 @@
                     {{/jobnumberTmp}}                                        
                   {{/jobcard}}                    
                 </div>
-                <div class="form-group">                              
-                  <label for="task"><strong>Task</strong></label>                              
-                  <div class="checkbox jobcard-task-container">
-                    <ul class="nav nav-list jobcard-task">
-                      {{#tasks}}
-                        <li><input type="checkbox" name="task" id="task" value="{{id}}">{{name}}</input></li>
-                      {{/tasks}}                                                    
-                    </ui>
+                <div class="col-xs-4"> 
+                  <div class="form-group">
+                    <label for="note">Client Request</label>        
+                    {{#jobcard}}                    
+                      <textarea class="form-control request-textarea" id="clientrequest" name="clientrequest" placeholder="Client Request" style="height:300px">{{{clientrequest}}}</textarea>
+                    {{/jobcard}}
+                    {{^jobcard}}
+                      <textarea class="form-control request-textarea" id="clientrequest" name="clientrequest" placeholder="Client Request" style="height:300px"></textarea>
+                    {{/jobcard}}
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="note">Notes</label>        
-                  {{#jobcard}}                    
-                    <textarea class="form-control note-textarea" id="note" name="note" placeholder="Notes" style="height:104px">{{{note}}}</textarea>
-                  {{/jobcard}}
-                  {{^jobcard}}
-                    <textarea class="form-control note-textarea" id="note" name="note" placeholder="Notes" style="height:104px"></textarea>
-                  {{/jobcard}}
-                </div>
+                </div>  
+                <div class="col-xs-4"> 
+                  <div class="form-group">                              
+                    <label for="task"><strong>Task</strong></label>                              
+                    <div class="checkbox jobcard-task-container">
+                      <ul class="nav nav-list jobcard-task">
+                        {{#tasks}}
+                          <li><input type="checkbox" name="task" id="task" value="{{id}}">{{name}}</input></li>
+                        {{/tasks}}                                                    
+                      </ui>
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-xs-4"> 
+                  <div class="form-group">
+                    <label for="note">Notes</label>        
+                    {{#jobcard}}                    
+                      <textarea class="form-control jobcard-note-textarea" id="note" name="note" placeholder="Notes" style="height:300px">{{{note}}}</textarea>
+                    {{/jobcard}}
+                    {{^jobcard}}
+                      <textarea class="form-control jobcard-note-textarea" id="note" name="note" placeholder="Notes" style="height:300px"></textarea>
+                    {{/jobcard}}
+                  </div>
+                </div>  
+              </div>
+              <div class="row">
                 <a href="/jobcard" class="btn btn-primary btn-sml pull-right btn-cancel" role="button">Cancel</a>            
                 <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>
+              </div>
             </form> 
-            </div>
           </div>
           <hr>
            <div class="modal fade" id="jobcardDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

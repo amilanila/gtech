@@ -80,7 +80,7 @@ JobCardService.prototype.update = function(jobcard, callback){
       jobcard_collection.update(
         {'id': jobcard.id},
         {
-          $set: {'jobnumber': jobcard.jobnumber, 'task': jobcard.task, 'note': jobcard.note}
+          $set: {'jobnumber': jobcard.jobnumber, 'clientrequest': jobcard.clientrequest, 'task': jobcard.task, 'note': jobcard.note}
         },
         function(err, result){
           if(err){
