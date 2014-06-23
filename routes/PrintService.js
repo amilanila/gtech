@@ -1,6 +1,12 @@
 var page = require('webpage').create(),
     system = require('system');
 
+page.paperSize = {
+  format: 'A4',
+  orientation: 'portrait',
+  border: '1cm'
+}
+
 var filename = system.args[1];
 var url = system.args[2];
 

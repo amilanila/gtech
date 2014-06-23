@@ -1,23 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-  	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
-    <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
-    <script src='/javascript/jquery.min.js'></script>
-    <script src='/javascript/jquery-ui.min.js'></script>
-    <script src='/javascript/bootstrap.min.js'></script>
-    <script src='/javascript/gtech.js'></script>
+    <meta charset="utf-8">
+    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+    <meta name="dcterms.created" content="Mon, 23 Jun 2014 07:09:03 GMT">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>invoice</title>
     
+    <style type="text/css">
+    <!--
+    body {
+      color:#000000;
+      background-color:#FFFFFF;
+      background-image:url('Background Image');
+      background-repeat:no-repeat;
+    }
+    a  { color:#0000FF; }
+    a:visited { color:#800080; }
+    a:hover { color:#008000; }
+    a:active { color:#FF0000; }
+    -->
+    </style>
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-  <body>       
-    {{#job}}  
-      First name = {{fname}}
-    {{/job}} 
+  <body>
+    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+      <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+        <tr valign="top">
+          <td style="border-width : 1px;"><br />
+          <img src="public/images/logo.jpg" width="272" height="117" alt="" title="" />
+          </td>
+          <td style="border-width : 1px;"><br />
+          <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+              <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:right;">
+                <tr valign="top">
+                  <td style="border-width : 0px;"><font size="2">ABN 81 051 802 437</font></td>
+                </tr>
+                <tr valign="top">
+                  <td style="border-width : 0px;">TAX INVOICE</td>
+                </tr>
+                <tr valign="top">
+                  <td style="border-width : 0px;"><font color="#FF0000">G2014-052701</font></td>
+                </tr>
+              </table>
+              </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+      <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:center;">
+         <tr valign="top">
+           <td style="border-width : 0px;">75 Triholm Avenue Laverton VIC 3028 Australia</td>
+         </tr>
+         <tr valign="top">
+           <td style="border-width : 0px;">Phone: (03) 9931 1123 - Mobile: 0420 47 17 62 - Email: gtechautocare@gmail.com</td>
+         </tr>
+      </table>
+    </div>
+  
+    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+    <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+      <tr valign="top">
+        <td style="border-width : 0px;">INVOICE TO</td>
+        <td style="border-width : 0px;">VEHICLE</td>
+        <td style="border-width : 0px;">DATE</td>
+      </tr>
+      <tr valign="top">
+        <td style="border-width : 0px;"><input type="text" name="" value="Janaka"></td>
+        <td style="border-width : 0px;"><input type="text" name="" value="Ford Falcon"></td>
+        <td style="border-width : 0px;"><input type="text" name="" value="27 May 2014"></td>
+      </tr>
+      </table>
+    </div>
+
   </body>
 </html>
