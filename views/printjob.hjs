@@ -28,14 +28,14 @@
   </head>
   <body>
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-      <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
         <tr valign="top">
           <td style="border-width : 1px;"><br />
-          <img src="public/images/logo.jpg" width="272" height="117" alt="" title="" />
+          <img src="/images/logo.jpg" width="720" height="88" alt="" title="" />
           </td>
           <td style="border-width : 1px;"><br />
           <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-              <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:right;">
+              <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:right;">
                 <tr valign="top">
                   <td style="border-width : 0px;"><font size="2">ABN 81 051 802 437</font></td>
                 </tr>
@@ -52,7 +52,7 @@
       </table>
     </div>
   <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-      <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:center;">
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:center;">
          <tr valign="top">
            <td style="border-width : 0px;">75 Triholm Avenue Laverton VIC 3028 Australia</td>
          </tr>
@@ -61,21 +61,147 @@
          </tr>
       </table>
     </div>
-  
+  	<hr/>
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-    <table width="100%" border="1" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+    <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
       <tr valign="top">
-        <td style="border-width : 0px;">INVOICE TO</td>
-        <td style="border-width : 0px;">VEHICLE</td>
-        <td style="border-width : 0px;">DATE</td>
+        <td style="border-width : 0px;"><b>INVOICE TO</b></td>
+        <td style="border-width : 0px;"><b>VEHICLE</b></td>
+        <td style="border-width : 0px;"><b>DATE</b></td>
       </tr>
       <tr valign="top">
-        <td style="border-width : 0px;"><input type="text" name="" value="Janaka"></td>
-        <td style="border-width : 0px;"><input type="text" name="" value="Ford Falcon"></td>
-        <td style="border-width : 0px;"><input type="text" name="" value="27 May 2014"></td>
+        <td style="border-width : 0px;"><input type="text" style="height:50px; border:groove;" value="Janaka"></td>
+        <td style="border-width : 0px;"><input type="text" style="height:50px; border:groove;" value="Ford Falcon"></td>
+        <td style="border-width : 0px;"><input type="text" style="height:50px; border:groove;" value="27 May 2014"></td>
       </tr>
       </table>
     </div>
-
+	<hr/>
+    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+        <tr valign="top">
+        	<td style="border-width : 0px; text-align:center;"><b><h2>PAYMENT STATEMENT</h2></b></td>
+        </tr>
+      </table>
+    </div>
+	<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+        <tr valign="top">
+		    <td style="border-width : 0px; text-align:center;">INVOICE DATE</td>
+			<td style="border-width : 0px; text-align:center;">INVOICE NUMBER</td>
+			<td style="border-width : 0px; text-align:center;">CUSTOMER ABN</td>
+			<td style="border-width : 0px; text-align:center;">INVOICE AMOUNT</td>
+        </tr>
+        <tr valign="top">
+		    <td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
+			<td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
+			<td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
+			<td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
+        </tr>
+      </table>
+    </div>
+	<br/>
+	<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; min-height:350px">
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+	  	<thead>
+		    <tr style="">
+				<td><b>Item</b></td>
+				<td><b>Description</b></td>
+				<td><b>Qty</b></td>
+				<td><b>Unit Price</b></td>
+				<td><b>Sub Total</b></td>
+			</tr>	  
+		</thead> 
+        <tbody>
+		   <tr>
+		   	   <td>1</td>
+			   <td>Transmission Change</td>
+			   <td>1.0</td>
+			   <td>$500.00</td>
+			   <td>$500.00</td>
+ 		   </tr>	
+		</tbody>
+      </table>
+	</div>
+	<br/>
+	<hr />
+    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+  	  <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+          <tr valign="top">
+  		    <td style="border-width : 0px;" width="57%">
+  				<b>Deliver to</b> <br/><br />
+  				Amila Nilantha <br/>
+  				17 Northbridge Drive <br/>
+  				Tarneit <br />
+  				VIC 3029
+  			</td>
+          	<td style="border-width : 0px;">				
+                <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+                  <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+                    <tr valign="top">
+                      <td style="border-width : 0px; text-align:right;">Sub Total:</td>
+                      <td style="border-width : 0px;">$ 1000.00</td>
+                    </tr>
+                    <tr valign="top">
+                      <td style="border-width : 0px; text-align:right;">Delivery:</td>
+                      <td style="border-width : 0px;">$ 25.00</td>
+                    </tr>
+                    <tr valign="top">
+                      <td style="border-width : 0px; text-align:right;">GST 0%:</td>
+                      <td style="border-width : 0px;">-</td>
+                    </tr>
+                    <tr valign="top">
+                      <td style="border-width : 0px; text-align:right;">Total due:</td>
+                      <td style="border-width : 0px;">$ 1000.00</td>
+                    </tr>
+                    <tr valign="top">
+                      <td style="border-width : 0px; text-align:right;">Total paid:</td>
+                      <td style="border-width : 0px;">$ 1000.00</td>
+                    </tr>
+                  </table>
+                </div>
+  			</td>
+          </tr>
+        </table>
+      </div>
+	<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+	  	<thead>
+		    <tr>
+				<td width="30%"><u>Notes</u></td>
+				<td width="40%"><u>Accounts</u></td>
+				<td width="20%"><u>Payment status</u></td>
+				<td width="10%"><u>Date</u></td>
+			</tr>				  
+		</thead> 
+        <tbody>
+		   <tr>
+		   	   <td></td>
+			   <td>
+			   	   * Account details <br />
+				   	 <table>
+					 	<tr><td style="text-align:right;">NAB account:</td><td>Gtech Auto Care</td></tr>
+						<tr><td style="text-align:right;">BSB:</td><td>083-152</td></tr>
+						<tr><td style="text-align:right;">Account:</td><td>84-320-0916</td></tr>
+					 </table>
+					 <br/>
+				   * Cheque payable to: Gtech Auto Care	   
+			   </td>
+			   <td></td>
+			   <td></td>
+ 		   </tr>	
+		</tbody>
+      </table>
+	</div>
+	<br />
+	<table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+	    <tr><td>** must bring the car for an inspection in one month or 1000kms</td></tr>
+	    <tr style="text-align: center;"><td><span style="font-family: Tahoma; font-weight: normal; font-style: italic; text-decoration: none;">Thank you for your patronage - May we have the pleasure of service you again...</span></td></tr>
+	</table>
+    </div>
+	<hr noshade />
+	<table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+	    <tr style="text-align: center;"><td>GTECH AUTO CARE - The Quality Workshop - All types of Motor Vehicles - MECHANICAL REPAIRS & SERVICES</td></tr>
+	</table>
   </body>
 </html>

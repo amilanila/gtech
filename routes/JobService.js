@@ -166,11 +166,11 @@ JobService.prototype.remove = function(id, callback){
 }
 
 JobService.prototype.convertToPdf = function(job, url, callback){  
-  //url = 'http://www.yahoo.com';
-
-  console.log('>>>>>>>>>>>>>>> ' + url);
-
   var childArgs = [path.join(__dirname, 'PrintService.js'), job.rego, url];
+
+  console.log('>>>>>>>>>>>>>>> ' + binPath);
+  console.log('>>>>>>>>>>>>>>> ' + childArgs);
+  
   childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
     callback();   
   });
