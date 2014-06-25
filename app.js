@@ -314,29 +314,21 @@ app.post('/job/save', function(req, res){
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
 
-        // get id custom identification number
-        var now = new Date();
-        var strYear = '' + now.getFullYear();
-        var strMonth = (now.getMonth()+1) < 10 ? '0' + (now.getMonth()+1) : '' + (now.getMonth()+1);
-        var strDate = now.getDate() < 10 ? '0' + now.getDate() : '' + now.getDate();
-        var timestamp = strYear + strMonth + strDate;
-        
+        var timestamp = getDateString();
         idGenerationService.findAll(function(error, idnumbers){
 
             var jobIndex = 1;
             var jobNumber = '';
 
             if(idnumbers != null && idnumbers.length == 1 ){
-                var obj = idnumbers[0];
-                
+                var obj = idnumbers[0];                
                 if(obj.jobnumber != undefined){
                     jobIndex = parseInt(obj.jobnumber) + 1;    
                 } else {
                     jobIndex = 1;
                 }
-                
-                idnumbers[0].jobnumber = jobIndex;
 
+                idnumbers[0].jobnumber = jobIndex;
                 jobNumber = 'J' + timestamp + '-' + jobIndex;                
             } else {
                 jobNumber = 'J' + timestamp + '-' + 1; 
@@ -374,7 +366,8 @@ app.post('/job/save', function(req, res){
                 } else {
                     idGenerationService.save({
                         'id': crypto.randomBytes(20).toString('hex'),
-                        'jobnumber' : jobIndex
+                        'jobnumber' : jobIndex,
+                        'invnumber' : '1'
                     }, function(error, docs){
                         res.redirect('/job')
                     });                
@@ -463,11 +456,34 @@ app.get('/search', function(req, res){
 
 app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
-    jobService.findOne(id, function( error, job) {        
-        var url = 'http://localhost:3000/printjob/' + id;
-        jobService.convertToPdf(job, url , function(error, doc){                
-            var filename = job.rego + ".pdf";
-            res.redirect('/job/download/'+ filename);                
+    var dateStr = getDateString();
+
+    jobService.findOne(id, function( error, job) {       
+        idGenerationService.findAll(function(error, idnumbers){
+            var invIndex = 1;
+            var invNumber = '';
+
+            if(idnumbers != null && idnumbers.length == 1 ){
+                var obj = idnumbers[0];
+                invIndex = parseInt(obj.invnumber) + 1;
+                
+                idnumbers[0].invnumber = invIndex;
+                invNumber = 'INV' + dateStr + '-' + invIndex;
+            } else {
+                invNumber = 'INV' + dateStr + '-' + 1;
+            }
+
+            idGenerationService.update(idnumbers[0], function(error, docs){
+                job.invnumber = invNumber;
+                jobService.update(job, function(err, docs){
+                    var url = 'http://localhost:3000/printjob/' + id;
+
+                    jobService.convertToPdf(job, url , function(error, doc){                
+                        var filename = job.rego + ".pdf";
+                        res.redirect('/job/download/'+ filename);                
+                    });
+                });
+            });             
         });
     });
 });
@@ -479,38 +495,12 @@ app.get('/printjob/:id', function(req, res){
 
     var now = new Date();
     var timestamp = now.getDate() + ' ' + monthNames[now.getMonth()] + ' ' + now.getFullYear();
-
-    var dateStr = getDateString();
-
-    idGenerationService.findAll(function(error, idnumbers){
-        var invIndex = 1;
-        var invNumber = '';
-
-        if(idnumbers != null && idnumbers.length == 1 ){
-            var obj = idnumbers[0];
-
-            if(obj.invnumber != undefined){
-                invIndex = parseInt(obj.invnumber) + 1;
-            } else {
-                invIndex = 1;
-            }
-            
-            idnumbers[0].invnumber = invIndex;
-
-            invNumber = 'INV' + dateStr + '-' + invIndex;
-        } else {
-            invNumber = 'INV' + dateStr + '-' + 1;
-        }
-
-        idGenerationService.update(idnumbers[0], function(error, docs){
-            jobService.findOne(id, function( error, job) {        
-                res.render('printjob', {
-                    'job': job,
-                    'timestamp': timestamp,
-                    'invNumber' : invNumber
-                });
-            });
-        });             
+    
+    jobService.findOne(id, function( error, job) {     
+        res.render('printjob', {
+            'job': job,
+            'timestamp': timestamp
+        });
     });
 });
 

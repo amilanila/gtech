@@ -133,7 +133,8 @@ JobService.prototype.update = function(job, callback){
                   'note': job.note,
                   'startdate': job.startdate,
                   'completedate': job.completedate,
-                  'total': job.total
+                  'total': job.total,
+                  'invnumber': job.invnumber
                 }
         },
         function(err, result){

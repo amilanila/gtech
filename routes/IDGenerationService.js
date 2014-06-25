@@ -63,7 +63,7 @@ IDGenerationService.prototype.update = function(idnumber, callback){
       idnumber_collection.update(
         {'id': idnumber.id},
         {
-          $set: {'jobnumber': idnumber.jobnumber, 'invoicenumber': idnumber.invoicenumber}
+          $set: {'jobnumber': idnumber.jobnumber, 'invnumber': idnumber.invnumber}
         },
         function(err, result){
           if(err){
