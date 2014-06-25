@@ -785,6 +785,13 @@ app.get('/part/remove/:id', function(req, res){
     });
 });
 
+/////////////////////////////////////// Reports ////////////////////////////////
+app.get('/report', function(req, res){
+    res.render('report', {
+        
+    });    
+});
+
 ///////////////////////////// utils //////////////////////////
 function getDateString(){
     // get id custom identification number

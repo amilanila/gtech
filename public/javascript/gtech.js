@@ -21,6 +21,8 @@ $(document).ready(function () {
 			selector = "#mainTab a[href=\"#jobcard\"]";			
 		} else if(pathName.indexOf('part') > -1){
 			selector = "#mainTab a[href=\"#part\"]";			
+		} else if(pathName.indexOf('report') > -1){
+			selector = "#mainTab a[href=\"#report\"]";			
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			selector = "#mainTab a[href=\"#job\"]";			
 		}
@@ -89,6 +91,29 @@ $(document).ready(function () {
 			$('.part-models').val(selectedPartModel);			
 		}
 	}
+
+	var now = Date.today();
+	$('#reportStartDate').val(now.getTime());
+    $('#reportEndDate').val(now.getTime());
+	$('#reportrange span').html(now.toString('MMMM d, yyyy') + ' - ' + now.toString('MMMM d, yyyy'));
+
+	$('#reportrange').daterangepicker(
+		{
+			ranges: {
+				'Today': ['today', 'today'],
+				'Yesterday': ['yesterday', 'yesterday'],
+				'Last 7 Days': [Date.today().add({ days: -6 }), 'today'],
+				'Last 30 Days': [Date.today().add({ days: -29 }), 'today'],
+				'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
+				'Last Month': [Date.today().moveToFirstDayOfMonth().add({ months: -1 }), Date.today().moveToFirstDayOfMonth().add({ days: -1 })]
+			}
+		}, 
+		function(start, end) {
+			$('#reportrange span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
+	        $('#reportStartDate').val(start.getTime());
+	        $('#reportEndDate').val(end.getTime());
+		}
+	);
 
 	//////////////////// event handling ////////////////////
 
