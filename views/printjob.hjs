@@ -85,16 +85,15 @@
       </tr>
       </table>
     </div>
-	  <hr/>
-    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; height:75px">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
         <tr valign="top">
         	<td style="border-width : 0px; text-align:center;"><b><h2>PAYMENT STATEMENT</h2></b></td>
         </tr>
       </table>
     </div>
 	  <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
         <tr valign="top">
   		    <td style="border-width : 0px; text-align:center;">INVOICE DATE</td>
   			  <td style="border-width : 0px; text-align:center;">INVOICE NUMBER</td>
@@ -114,30 +113,240 @@
       </table>
     </div>
 	  <br/>
-	  <div class="item-list-table" style="min-height:350px">
-      <table width="100%">
-  	  	<thead>
-  		    <tr>
-  				<td><b>Item</b></td>
-  				<td><b>Description</b></td>
-  				<td><b>Qty</b></td>
-  				<td><b>Unit Price</b></td>
-  				<td><b>Sub Total</b></td>
-  			</tr>	  
-  		  </thead> 
-        <tbody>
-  		   <tr>
-  		   	 <td>1</td>
-  			   <td>Transmission Change</td>
-  			   <td>1.0</td>
-  			   <td>$500.00</td>
-  			   <td>$500.00</td>
-   		   </tr>	
-  		  </tbody>
-      </table>
-	  </div>
+	 
+<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="1" cellpadding="0" cellspacing="0" style="border-color: #c0c0c0; border-style: solid; background-color: #ffffff;">
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><b><div align="center">Item</div></b>
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><b><div align="center">Description</div></b>
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><b><div align="center">Qty</div></b>
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><b><div align="center">Unit Price</div></b>
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><b><div align="center">Sub total</div></b>
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+<tr valign="top">
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+<td style="border-color : #c0c0c0 #c0c0c0 #c0c0c0 #c0c0c0; border-style: solid;"><br />
+</td>
+</tr>
+</table>
+</div>
+
 	  <br/>
-	  <hr />
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
   	  <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
         <tr valign="top">
@@ -192,16 +401,15 @@
 		  </thead> 
       <tbody>
 		   <tr>
-		     <td></td>
+		     <td></td>			 	
 			   <td>
-			   	   * Account details <br />
+			   	   <font size="2">* Account details</font> <br />
 				   	<table>
-  					 	<tr><td style="text-align:right;">NAB account:</td><td>Gtech Auto Care</td></tr>
-  						<tr><td style="text-align:right;">BSB:</td><td>083-152</td></tr>
-  						<tr><td style="text-align:right;">Account:</td><td>84-320-0916</td></tr>
-					  </table>
-					  <br/>
-				    * Cheque payable to: Gtech Auto Care	   
+  					 	<tr><td style="text-align:right;"><font size="2">NAB account:</font></td><td><font size="2">Gtech Auto Care</font></td></tr>
+  						<tr><td style="text-align:right;"><font size="2">BSB:</font></td><td><font size="2">083-152</font></td></tr>
+  						<tr><td style="text-align:right;"><font size="2">Account:</font></td><td><font size="2">84-320-0916</font></td></tr>
+				  </table>
+				    <font size="2">* Cheque payable to: Gtech Auto Care</font>						   
 			   </td>
 			   <td></td>
 			   <td></td>
@@ -211,13 +419,13 @@
 	  </div>
 	  <br/>
 	  <table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-	    <tr><td>** must bring the car for an inspection in one month or 1000kms</td></tr>
-	    <tr style="text-align: center;"><td><span style="font-family: Tahoma; font-weight: normal; font-style: italic; text-decoration: none;">Thank you for your patronage - May we have the pleasure of service you again...</span></td></tr>
+	    <tr><td><font size="2">** must bring the car for an inspection in one month or 1000kms</font></td></tr>
+	    <tr style="text-align: center;"><td><span style="font-family: Tahoma; font-weight: normal; font-style: italic; text-decoration: none;"><font size="2">Thank you for your patronage - May we have the pleasure of service you again...</font></span></td></tr>
 	  </table>
   </div>
 	<hr noshade />
   <table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-    <tr style="text-align: center;"><td>GTECH AUTO CARE - The Quality Workshop - All types of Motor Vehicles - MECHANICAL REPAIRS & SERVICES</td></tr>
+    <tr style="text-align: center;"><td><font size="2">GTECH AUTO CARE - The Quality Workshop - All types of Motor Vehicles - MECHANICAL REPAIRS & SERVICES</font></td></tr>
   </table>
   </body>
 </html>
