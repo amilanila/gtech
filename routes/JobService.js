@@ -167,15 +167,12 @@ JobService.prototype.remove = function(id, callback){
 
 JobService.prototype.convertToPdf = function(job, url, callback){  
   var childArgs = [path.join(__dirname, 'PrintService.js'), job.rego, url];
-
-  console.log('>>>>>>>>>>>>>>> ' + binPath);
-  console.log('>>>>>>>>>>>>>>> ' + childArgs);
-  
   childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
     callback();   
   });
 }
 
+/* This is no longer being used. Keep it as a reference */
 JobService.prototype.createPrint = function(job, callback){
   var filename = job.rego + ".pdf";
   var file = __dirname + "\\..\\public\\prints\\" + filename;

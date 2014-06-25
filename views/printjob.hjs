@@ -16,10 +16,11 @@
       background-image:url('Background Image');
       background-repeat:no-repeat;
     }
-    a  { color:#0000FF; }
-    a:visited { color:#800080; }
-    a:hover { color:#008000; }
-    a:active { color:#FF0000; }
+
+    .print-input {
+       border:groove; 
+       text-indent:5px; 
+    }
     -->
     </style>
     <!--[if IE]>
@@ -43,7 +44,7 @@
                   <td style="border-width : 0px;">TAX INVOICE</td>
                 </tr>
                 <tr valign="top">
-                  <td style="border-width : 0px;"><font color="#FF0000">G2014-052701</font></td>
+                  <td style="border-width : 0px;"><font color="#FF0000">{{#invNumber}}{{invNumber}}{{/invNumber}}</font></td>
                 </tr>
               </table>
               </div>
@@ -51,7 +52,7 @@
         </tr>
       </table>
     </div>
-  <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+    <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff; text-align:center;">
          <tr valign="top">
            <td style="border-width : 0px;">75 Triholm Avenue Laverton VIC 3028 Australia</td>
@@ -70,13 +71,17 @@
         <td style="border-width : 0px;"><b>DATE</b></td>
       </tr>
       <tr valign="top">
-        <td style="border-width : 0px;"><input type="text" style="height:50px; border:groove;" value="Janaka"></td>
-        <td style="border-width : 0px;"><input type="text" style="height:50px; border:groove;" value="Ford Falcon"></td>
-        <td style="border-width : 0px;"><input type="text" style="height:50px; border:groove;" value="27 May 2014"></td>
+        {{#job}}
+        <td style="border-width : 0px;"><input type="text" style="height:50px; width:95%;" class="print-input" value="{{fname}} {{lname}}"></td>
+        <td style="border-width : 0px;"><input type="text" style="height:50px; width:95%;" class="print-input" value="{{rego}} - {{make}} {{model}} {{yom}}"></td>
+        {{/job}}
+        {{#timestamp}}
+        <td style="border-width : 0px;"><input type="text" style="height:50px; width:95%;" class="print-input" value="{{timestamp}}"></td>
+        {{/timestamp}}        
       </tr>
       </table>
     </div>
-	<hr/>
+	  <hr/>
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
         <tr valign="top">
@@ -84,124 +89,130 @@
         </tr>
       </table>
     </div>
-	<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+	  <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
         <tr valign="top">
-		    <td style="border-width : 0px; text-align:center;">INVOICE DATE</td>
-			<td style="border-width : 0px; text-align:center;">INVOICE NUMBER</td>
-			<td style="border-width : 0px; text-align:center;">CUSTOMER ABN</td>
-			<td style="border-width : 0px; text-align:center;">INVOICE AMOUNT</td>
+  		    <td style="border-width : 0px; text-align:center;">INVOICE DATE</td>
+  			  <td style="border-width : 0px; text-align:center;">INVOICE NUMBER</td>
+  			  <td style="border-width : 0px; text-align:center;">CUSTOMER ABN</td>
+  			  <td style="border-width : 0px; text-align:center;">INVOICE AMOUNT</td>
         </tr>
         <tr valign="top">
-		    <td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
-			<td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
-			<td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
-			<td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" value=""></td>
+          {{#timestamp}}
+  		    <td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" class="print-input" value="{{timestamp}}"></td>
+          {{/timestamp}}
+          {{#invNumber}}
+  			  <td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" class="print-input" value="{{invNumber}}"></td>
+          {{/invNumber}}
+          {{#job}}
+  			  <td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" class="print-input" value="{{abn}}"></td>
+  			  <td style="border-width : 0px; text-align:center;"><input type="text" style="border:groove;" class="print-input" value="{{total}}"></td>
+          {{/job}}
         </tr>
       </table>
     </div>
-	<br/>
-	<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; min-height:350px">
+	  <br/>
+	  <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; min-height:350px">
       <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-	  	<thead>
-		    <tr style="">
-				<td><b>Item</b></td>
-				<td><b>Description</b></td>
-				<td><b>Qty</b></td>
-				<td><b>Unit Price</b></td>
-				<td><b>Sub Total</b></td>
-			</tr>	  
-		</thead> 
+  	  	<thead>
+  		    <tr style="">
+  				<td><b>Item</b></td>
+  				<td><b>Description</b></td>
+  				<td><b>Qty</b></td>
+  				<td><b>Unit Price</b></td>
+  				<td><b>Sub Total</b></td>
+  			</tr>	  
+  		  </thead> 
         <tbody>
-		   <tr>
-		   	   <td>1</td>
-			   <td>Transmission Change</td>
-			   <td>1.0</td>
-			   <td>$500.00</td>
-			   <td>$500.00</td>
- 		   </tr>	
-		</tbody>
+  		   <tr>
+  		   	   <td>1</td>
+  			   <td>Transmission Change</td>
+  			   <td>1.0</td>
+  			   <td>$500.00</td>
+  			   <td>$500.00</td>
+   		   </tr>	
+  		  </tbody>
       </table>
-	</div>
-	<br/>
-	<hr />
+	  </div>
+	  <br/>
+	  <hr />
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
   	  <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-          <tr valign="top">
+        <tr valign="top">
   		    <td style="border-width : 0px;" width="57%">
-  				<b>Deliver to</b> <br/><br />
-  				Amila Nilantha <br/>
-  				17 Northbridge Drive <br/>
-  				Tarneit <br />
-  				VIC 3029
-  			</td>
-          	<td style="border-width : 0px;">				
-                <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-                  <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-                    <tr valign="top">
-                      <td style="border-width : 0px; text-align:right;">Sub Total:</td>
-                      <td style="border-width : 0px;">$ 1000.00</td>
-                    </tr>
-                    <tr valign="top">
-                      <td style="border-width : 0px; text-align:right;">Delivery:</td>
-                      <td style="border-width : 0px;">$ 25.00</td>
-                    </tr>
-                    <tr valign="top">
-                      <td style="border-width : 0px; text-align:right;">GST 0%:</td>
-                      <td style="border-width : 0px;">-</td>
-                    </tr>
-                    <tr valign="top">
-                      <td style="border-width : 0px; text-align:right;">Total due:</td>
-                      <td style="border-width : 0px;">$ 1000.00</td>
-                    </tr>
-                    <tr valign="top">
-                      <td style="border-width : 0px; text-align:right;">Total paid:</td>
-                      <td style="border-width : 0px;">$ 1000.00</td>
-                    </tr>
-                  </table>
-                </div>
-  			</td>
-          </tr>
-        </table>
-      </div>
-	<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+    				<b>Deliver to</b> <br/><br />
+    				Amila Nilantha <br/>
+    				17 Northbridge Drive <br/>
+    				Tarneit <br />
+    				VIC 3029
+  			  </td>
+          <td style="border-width : 0px;">				
+            <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
+              <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+                <tr valign="top">
+                  <td style="border-width : 0px; text-align:right;">Sub Total:</td>
+                  <td style="border-width : 0px;">$ 1000.00</td>
+                </tr>
+                <tr valign="top">
+                  <td style="border-width : 0px; text-align:right;">Delivery:</td>
+                  <td style="border-width : 0px;">$ 25.00</td>
+                </tr>
+                <tr valign="top">
+                  <td style="border-width : 0px; text-align:right;">GST 0%:</td>
+                  <td style="border-width : 0px;">-</td>
+                </tr>
+                <tr valign="top">
+                  <td style="border-width : 0px; text-align:right;">Total due:</td>
+                  <td style="border-width : 0px;">$ 1000.00</td>
+                </tr>
+                <tr valign="top">
+                  <td style="border-width : 0px; text-align:right;">Total paid:</td>
+                  <td style="border-width : 0px;">$ 1000.00</td>
+                </tr>
+              </table>
+            </div>
+  			  </td>
+        </tr>
+      </table>
+    </div>
+	  <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
       <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
 	  	<thead>
 		    <tr>
-				<td width="30%"><u>Notes</u></td>
-				<td width="40%"><u>Accounts</u></td>
-				<td width="20%"><u>Payment status</u></td>
-				<td width="10%"><u>Date</u></td>
-			</tr>				  
-		</thead> 
-        <tbody>
+  				<td width="30%"><u>Notes</u></td>
+  				<td width="40%"><u>Accounts</u></td>
+  				<td width="20%"><u>Payment status</u></td>
+  				<td width="10%"><u>Date</u></td>
+			  </tr>				  
+		  </thead> 
+      <tbody>
 		   <tr>
-		   	   <td></td>
+		     <td></td>
 			   <td>
 			   	   * Account details <br />
-				   	 <table>
-					 	<tr><td style="text-align:right;">NAB account:</td><td>Gtech Auto Care</td></tr>
-						<tr><td style="text-align:right;">BSB:</td><td>083-152</td></tr>
-						<tr><td style="text-align:right;">Account:</td><td>84-320-0916</td></tr>
-					 </table>
-					 <br/>
-				   * Cheque payable to: Gtech Auto Care	   
+				   	<table>
+  					 	<tr><td style="text-align:right;">NAB account:</td><td>Gtech Auto Care</td></tr>
+  						<tr><td style="text-align:right;">BSB:</td><td>083-152</td></tr>
+  						<tr><td style="text-align:right;">Account:</td><td>84-320-0916</td></tr>
+					  </table>
+					  <br/>
+				    * Cheque payable to: Gtech Auto Care	   
 			   </td>
 			   <td></td>
 			   <td></td>
  		   </tr>	
-		</tbody>
+		  </tbody>
       </table>
-	</div>
-	<br />
-	<table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+	  </div>
+	  <br/>
+	  <table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
 	    <tr><td>** must bring the car for an inspection in one month or 1000kms</td></tr>
 	    <tr style="text-align: center;"><td><span style="font-family: Tahoma; font-weight: normal; font-style: italic; text-decoration: none;">Thank you for your patronage - May we have the pleasure of service you again...</span></td></tr>
-	</table>
-    </div>
+	  </table>
+  </div>
 	<hr noshade />
-	<table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-	    <tr style="text-align: center;"><td>GTECH AUTO CARE - The Quality Workshop - All types of Motor Vehicles - MECHANICAL REPAIRS & SERVICES</td></tr>
-	</table>
+  <table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+    <tr style="text-align: center;"><td>GTECH AUTO CARE - The Quality Workshop - All types of Motor Vehicles - MECHANICAL REPAIRS & SERVICES</td></tr>
+  </table>
   </body>
 </html>
