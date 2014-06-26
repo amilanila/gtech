@@ -454,90 +454,6 @@ app.get('/search', function(req, res){
     })
 });
 
-app.get('/job/print/:id', function(req, res){
-    var id = req.params.id; 
-    var dateStr = getDateString();
-
-    jobService.findOne(id, function( error, job) {       
-        idGenerationService.findAll(function(error, idnumbers){
-            var invIndex = 1;
-            var invNumber = '';
-
-            if(idnumbers != null && idnumbers.length == 1 ){
-                var obj = idnumbers[0];
-                invIndex = parseInt(obj.invnumber) + 1;
-                
-                idnumbers[0].invnumber = invIndex;
-                invNumber = 'INV' + dateStr + '-' + invIndex;
-            } else {
-                invNumber = 'INV' + dateStr + '-' + 1;
-            }
-
-            idGenerationService.update(idnumbers[0], function(error, docs){
-                job.invnumber = invNumber;
-                jobService.update(job, function(err, docs){
-                    var url = 'http://localhost:3000/printjob/' + id;
-
-                    var filename = job.rego;
-                    jobService.convertToPdf(filename, url , function(error, doc){                                        
-                        res.redirect('/job/download/'+ filename + '.pdf');                
-                    });
-                });
-            });             
-        });
-    });
-});
-
-app.get('/printjob/:id', function(req, res){
-    var id = req.params.id; 
-    
-    var now = new Date();
-    var timestamp = now.getDate() + ' ' + monthNames[now.getMonth()] + ' ' + now.getFullYear();
-    
-    jobService.findOne(id, function( error, job) {     
-        res.render('printjob', {
-            'job': job,
-            'timestamp': timestamp
-        });
-    });
-});
-
-app.get('/report/jobsummary', function(req, res){
-    var url = 'http://localhost:3000/jobsummary';
-
-    var filename = 'job-summary-report';
-    jobService.convertToPdf(filename, url , function(error, doc){                        
-        res.redirect('/job/download/'+ filename + '.pdf');                
-    });
-});
-
-app.get('/jobsummary', function(req, res){
-    var parameters = {};
-    var status = req.params.status;
-
-    var now = new Date();
-    var timestamp = now.getDate() + ' ' + monthNames[now.getMonth()] + ' ' + now.getFullYear();
-
-    jobService.getJobsSummary(parameters, function(error, jobs){
-        res.render('jobsummary', {
-            'jobs': jobs,
-            'timestamp': timestamp
-        });
-    });
-});
-
-app.get('/job/download/:filename', function(req, res){
-    var filename = req.params.filename; 
-    var file = __dirname + "\\public\\prints\\" + filename;
-
-    // read file and send to browser
-    fs.readFile(file, function (err,data){
-        res.setHeader('Content-disposition', 'attatchment; filename="' + filename + '"');
-        res.setHeader('Content-type', 'application/pdf');
-        res.send(data);
-    });
-});
-
 /////////////////////////////////////// Manual ////////////////////////////////
 app.get('/manual', function(req, res){
     manualService.findAll(function( error, manuals) {        
@@ -810,8 +726,119 @@ app.get('/part/remove/:id', function(req, res){
 /////////////////////////////////////// Reports ////////////////////////////////
 app.get('/report', function(req, res){
     res.render('report', {
-        
+
     });    
+});
+
+app.get('/job/print/:id', function(req, res){
+    var id = req.params.id; 
+    var dateStr = getDateString();
+
+    jobService.findOne(id, function( error, job) {       
+        idGenerationService.findAll(function(error, idnumbers){
+            var invIndex = 1;
+            var invNumber = '';
+
+            if(idnumbers != null && idnumbers.length == 1 ){
+                var obj = idnumbers[0];
+                invIndex = parseInt(obj.invnumber) + 1;
+                
+                idnumbers[0].invnumber = invIndex;
+                invNumber = 'INV' + dateStr + '-' + invIndex;
+            } else {
+                invNumber = 'INV' + dateStr + '-' + 1;
+            }
+
+            idGenerationService.update(idnumbers[0], function(error, docs){
+                job.invnumber = invNumber;
+                jobService.update(job, function(err, docs){
+                    var url = 'http://localhost:3000/printjob/' + id;
+
+                    var filename = job.rego;
+                    jobService.convertToPdf(filename, url , function(error, doc){                                        
+                        res.redirect('/job/download/'+ filename + '.pdf');                
+                    });
+                });
+            });             
+        });
+    });
+});
+
+app.get('/printjob/:id', function(req, res){
+    var id = req.params.id; 
+    
+    var now = new Date();
+    var timestamp = getDescriptiveDateString(now);
+    
+    jobService.findOne(id, function( error, job) {     
+        res.render('printjob', {
+            'job': job,
+            'timestamp': timestamp
+        });
+    });
+});
+
+app.get('/report/jobsummary', function(req, res){
+    var s = req.query.start;
+    var e = req.query.end;
+
+    var url = 'http://localhost:3000/jobsummary?start=' + s + '&end=' + e;
+
+    var filename = 'job-summary-report';
+    jobService.convertToPdf(filename, url , function(error, doc){                        
+        res.redirect('/job/download/'+ filename + '.pdf');                
+    });
+});
+
+app.get('/jobsummary', function(req, res){
+    var s = req.query.start;
+    var e = req.query.end;
+    var status = req.query.status;
+
+    var parameters = {};
+    parameters['start'] = s;
+    parameters['end'] = e;
+    parameters['status'] = status;
+
+    var startDate = new Date(parseInt(s));
+    var endDate = new Date(parseInt(e));
+
+    var startStr = getDescriptiveDateString(startDate);
+    var endStr = getDescriptiveDateString(endDate);
+
+    //jobService.getJobsSummary(parameters, function(error, jobs){
+    jobService.findAll(function(error, jobs){
+
+        var len = 0;
+        if(jobs != undefined && jobs != null){
+            len = jobs.length;
+        }
+
+        for(var i=0; i<len; i++){
+            var createDate = getDescriptiveDateString(jobs[i].created_at);
+            //var completeDate = getDescriptiveDateString(jobs[i].completedate);
+            jobs[i].created_at = createDate;
+            //jobs[i].completedate = completeDate;
+        }
+
+        res.render('jobsummary', {
+            'jobs': jobs,
+            'start': startStr,
+            'end': endStr
+        });
+    });
+});
+
+app.get('/job/download/:filename', function(req, res){
+    var filename = req.params.filename; 
+    var file = __dirname + "\\public\\prints\\" + filename;
+
+    // read file and send to browser
+    fs.readFile(file, function (err,data){
+        res.setHeader('Content-disposition', 'attatchment; filename="' + filename + '"');
+        res.setHeader('Content-type', 'application/pdf');
+        res.send(data);
+    });
 });
 
 ///////////////////////////// utils //////////////////////////
@@ -828,6 +855,10 @@ function getDateString(){
 
 var monthNames = [ "January", "February", "March", "April", "May", "June",
                        "July", "August", "September", "October", "November", "December" ];
+
+function getDescriptiveDateString(date){
+    return date.getDate() + ' ' + monthNames[date.getMonth()] + ' ' + date.getFullYear();
+}
 
 // create server
 http.createServer(app).listen(app.get('port'), function(){

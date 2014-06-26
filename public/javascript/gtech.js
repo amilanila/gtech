@@ -232,6 +232,10 @@ $(document).ready(function () {
 		e.preventDefault();
 		var form = $('#jobSummaryForm');
 		var action = form.attr('action')
-		window.location.href = action;
+
+		var start = $('#reportStartDate').val();
+		var end = $('#reportEndDate').val();
+
+		window.location.href = action + '?start=' + start + '&end=' + end;
 	});
 });

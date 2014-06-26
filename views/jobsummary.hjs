@@ -48,7 +48,7 @@
                   <td style="border-width : 0px;">JOB SUMMARY</td>
                 </tr>
                 <tr valign="top">
-                  <td style="border-width : 0px;"><font color="#FF0000">{{#job}}{{invnumber}}{{/job}}</font></td>
+                  <td style="border-width : 0px;">{{#timestamp}}{{timestamp}}{{/timestamp}}</td>
                 </tr>
               </table>
               </div>
@@ -71,14 +71,36 @@
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px; height:75px">
       <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
         <tr valign="top">
-        	<td style="border-width : 0px; text-align:center;"><b><h2>JOB SUMMARY</h2></b></td>
+        	<td style="border-width : 0px;"><b>JOB SUMMARY</b></td>
+            <td style="border-width : 0px;"><b>From</b> {{#start}}{{start}}{{/start}} <b>To</b> {{#end}}{{end}}{{/end}}</td>
         </tr>
       </table>
     </div>
  	
     <div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-      <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff;">
-        
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+        <thead>
+            <th>Job Number</th>
+            <th>Rego</th>
+            <th>Customer</th>
+            <th>Create Date</th>
+            <th>Complete Date</th>
+            <th>Status</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            {{#jobs}}
+            <tr>
+                <td>{{jobnumber}}</td>
+                <td>{{rego}}</td>
+                <td>{{fname}} {{lname}}</td>
+                <td>{{created_at}}</td>
+                <td>{{completedate}}</td>
+                <td>{{status}}</td>
+                <td>$ {{total}}</td>
+            <tr>
+            {{/jobs}}    
+        </tbody>
       </table>
     </div>
 
