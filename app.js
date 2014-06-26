@@ -478,9 +478,9 @@ app.get('/job/print/:id', function(req, res){
                 jobService.update(job, function(err, docs){
                     var url = 'http://localhost:3000/printjob/' + id;
 
-                    jobService.convertToPdf(job, url , function(error, doc){                
-                        var filename = job.rego + ".pdf";
-                        res.redirect('/job/download/'+ filename);                
+                    var filename = job.rego;
+                    jobService.convertToPdf(filename, url , function(error, doc){                                        
+                        res.redirect('/job/download/'+ filename + '.pdf');                
                     });
                 });
             });             
@@ -490,15 +490,37 @@ app.get('/job/print/:id', function(req, res){
 
 app.get('/printjob/:id', function(req, res){
     var id = req.params.id; 
-    var monthNames = [ "January", "February", "March", "April", "May", "June",
-                       "July", "August", "September", "October", "November", "December" ];
-
+    
     var now = new Date();
     var timestamp = now.getDate() + ' ' + monthNames[now.getMonth()] + ' ' + now.getFullYear();
     
     jobService.findOne(id, function( error, job) {     
         res.render('printjob', {
             'job': job,
+            'timestamp': timestamp
+        });
+    });
+});
+
+app.get('/report/jobsummary', function(req, res){
+    var url = 'http://localhost:3000/jobsummary';
+
+    var filename = 'job-summary-report';
+    jobService.convertToPdf(filename, url , function(error, doc){                        
+        res.redirect('/job/download/'+ filename + '.pdf');                
+    });
+});
+
+app.get('/jobsummary', function(req, res){
+    var parameters = {};
+    var status = req.params.status;
+
+    var now = new Date();
+    var timestamp = now.getDate() + ' ' + monthNames[now.getMonth()] + ' ' + now.getFullYear();
+
+    jobService.getJobsSummary(parameters, function(error, jobs){
+        res.render('jobsummary', {
+            'jobs': jobs,
             'timestamp': timestamp
         });
     });
@@ -803,6 +825,10 @@ function getDateString(){
 
     return timestamp;
 }
+
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+                       "July", "August", "September", "October", "November", "December" ];
+
 // create server
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));

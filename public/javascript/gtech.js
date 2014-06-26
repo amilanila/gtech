@@ -92,6 +92,8 @@ $(document).ready(function () {
 		}
 	}
 
+	///////////////////// Date range picker ///////////////////////
+
 	var now = Date.today();
 	$('#reportStartDate').val(now.getTime());
     $('#reportEndDate').val(now.getTime());
@@ -224,4 +226,12 @@ $(document).ready(function () {
      	$(".modal-footer #removePartLink").attr('href', '/part/remove/' + id);
      	$('#partDeleteModal').modal('show');
 	});		
+
+	//////////////////////// report generation ////////////////////////
+	$('#reportJobSummary').click(function(e){
+		e.preventDefault();
+		var form = $('#jobSummaryForm');
+		var action = form.attr('action')
+		window.location.href = action;
+	});
 });

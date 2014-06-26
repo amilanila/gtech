@@ -166,8 +166,32 @@ JobService.prototype.remove = function(id, callback){
   });
 }
 
-JobService.prototype.convertToPdf = function(job, url, callback){  
-  var childArgs = [path.join(__dirname, 'PrintService.js'), job.rego, url];
+JobService.prototype.getJobsSummary = function(params, callback){
+  this.getCollection(function(error, job_collection){
+
+    if(error){
+      callback(error);
+    } else {
+      var start = new Date(2014, 3, 1);
+      var end = new Date(2014, 6, 1);
+
+      job_collection.find(
+        {
+          created_at: {$gte: start, $lt: end}
+        }, 
+        function(error, result){
+        if(error){
+          callback(error);
+        } else {          
+          callback(null, result);
+        }
+      });
+    }   
+  });
+}
+
+JobService.prototype.convertToPdf = function(filename, url, callback){  
+  var childArgs = [path.join(__dirname, 'PrintService.js'), filename, url];
   childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
     callback();   
   });

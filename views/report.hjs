@@ -67,15 +67,31 @@
               <h2 class="sub-header">Job Summary</h2>
               <div class="table-responsive">
                 <div class="row">
-                  <a id="reportGenBtn" class="btn btn-primary pull-right" style="margin-left:15px;" href="#">Generate Report</a>
-                  <div id="reportrange" > 
-                    <div>
-                      <i class="icon-calendar icon-large"></i>
-                      <span>
-                        January 1, 2013 - January 31, 2013
-                      </span> <b class="caret"></b>       
-                    </div>                  
-                  </div>        
+
+                  <form role="form" id="jobSummaryForm" method="post" action="/report/jobsummary">               
+                    <div class="form-group">
+                      <label for="note">Status</label>        
+                      <select class="form-control job-status" id="status" name="status" placeholder="Job Status" style="width:250px;">                          
+                          <option value="-">- select job status -</option>                          
+                          <option value="New">New</option>                          
+                          <option value="Inprogress">Inprogress</option>                          
+                          <option value="Completed">Completed</option>                          
+                          <option value="Pickedup">Pickedup</option>                          
+                      </select>                                                                  
+                    </div>
+                    <div class="form-group">
+                      <label for="note">Date Range</label><br/>        
+                      <div id="reportrange" > 
+                        <div>
+                          <i class="icon-calendar icon-large"></i>
+                          <span>
+                            January 1, 2013 - January 31, 2013
+                          </span> <b class="caret"></b>       
+                        </div>                  
+                      </div>        
+                    </div>
+                    <a id="reportJobSummary" class="btn btn-primary pull-right" style="margin-left:15px;" href="#">Generate Report</a>
+                  </form>  
                 </div>
               </div>  
             </div>
