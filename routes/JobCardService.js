@@ -1,8 +1,10 @@
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
+var JobService = require('./JobService').JobService;
 
 JobCardService = function(db) {
-  this.db = db;
+  this.db = db;  
+  this.jobService = new JobService(db);
 };
 
 
@@ -129,6 +131,20 @@ JobCardService.prototype.search = function(jobnumber, callback){
         }
       });
     }   
+  });
+};
+
+//search for job card with job number
+JobCardService.prototype.findJobcardAndJob = function(id, callback){
+  this.getCollection(function(error, jobcard_collection){
+    jobcard_collection.findOne({'id': id}, function(err1, jobcard){
+
+      this.jobService.findByJobNumber(jobcard.jobnumber, function(err2, result){
+        result.toArray(function(err, jobs){
+          callback(null, jobcard, jobs[0]);
+        });
+      });      
+    });
   });
 };
 

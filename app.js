@@ -723,13 +723,14 @@ app.get('/part/remove/:id', function(req, res){
     });
 });
 
-/////////////////////////////////////// Reports ////////////////////////////////
+/////////////////////////////////////// Reports & Printing////////////////////////////////
 app.get('/report', function(req, res){
     res.render('report', {
 
     });    
 });
 
+// --> Print job invoice
 app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
     var dateStr = getDateString();
@@ -778,6 +779,7 @@ app.get('/printjob/:id', function(req, res){
     });
 });
 
+// --> Print job summaries
 app.get('/report/jobsummary', function(req, res){
     var s = req.query.start;
     var e = req.query.end;
@@ -829,6 +831,36 @@ app.get('/jobsummary', function(req, res){
     });
 });
 
+// --> Print job card
+app.get('/jobcard/print/:id', function(req, res){
+    var id = req.params.id; 
+
+    jobcardService.findOne(id, function(error, jobcard){
+        var url = 'http://localhost:3000/jobcardprint/' + id;
+
+        var filename = jobcard.jobnumber + '-jobcard';
+        jobService.convertToPdf(filename, url , function(error, doc){                                        
+            res.redirect('/job/download/'+ filename + '.pdf');                
+        });  
+    })
+});
+
+app.get('/jobcardprint/:id', function(req, res){
+    var id = req.params.id; 
+
+    if(id != 'Background Image'){
+        jobcardService.findJobcardAndJob(id, function(error, jobcard, job) {     
+            res.render('printjobcard', {
+                'jobcard': jobcard,
+                'job': job
+            });
+        });    
+    } else {
+        res.redirect('/jobcard');
+    }
+});
+
+// --> Download pdf
 app.get('/job/download/:filename', function(req, res){
     var filename = req.params.filename; 
     var file = __dirname + "\\public\\prints\\" + filename;

@@ -11,9 +11,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/dashboard.css' />
     <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
+    <link rel='stylesheet' href='/stylesheets/daterangepicker.css' />
     <script src='/javascript/jquery.min.js'></script>
     <script src='/javascript/jquery-ui.min.js'></script>
     <script src='/javascript/bootstrap.min.js'></script>
+    <script src='/javascript/date.js'></script>
+    <script src='/javascript/daterangepicker.js'></script>
     <script src='/javascript/gtech.js'></script>
     
   </head>
@@ -45,7 +48,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="/job">Dashboard</a></li>
-            <li><a href="/part">Stock</a></li>            
+            <!--<li><a href="/part">Stock</a></li>-->            
             <li><a href="/report">Reports</a></li>            
           </ul>          
         </div>
@@ -875,12 +878,14 @@
                   <tr>
                     <th>Job Number</th>
                     <th></th>                      
+                    <th></th>                      
                   </tr>
                 </thead>
                 <tbody>
                   {{#jobcards}}
                     <tr>                          
                       <td><a href='/jobcard/{{id}}'>{{{jobnumber}}}</a></td>
+                      <td><a href="/jobcard/print/{{id}}"><span class="glyphicon glyphicon-print"></span></a></td>
                       <td><a class="remove-jobcard-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>      
                     </tr>
                   {{/jobcards}}

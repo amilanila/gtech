@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+    <meta name="dcterms.created" content="Mon, 23 Jun 2014 07:09:03 GMT">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>invoice</title>
+    
+    <style type="text/css">
+    <!--
+    body {
+      color:#000000;
+      background-color:#FFFFFF;
+      background-image:url('Background Image');
+      background-repeat:no-repeat;
+    }
+
+    .print-input {
+       border:groove; 
+       text-indent:5px; 
+    }
+
+    .item-list-table table tr td {
+      border: 1px solid black;
+    }
+    -->
+    </style>
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    {{#jobcard}}
+        {{jobnumber}}
+    {{/jobcard}}
+    <br/>
+    {{#job}}
+        {{fname}}
+    {{/job}}
+  </body>
+</html>

@@ -41,10 +41,32 @@ JobService.prototype.search = function(keyword, callback){
         function(error, result){
         if(error){
           callback(error);
-        } else {          
+        } else {       
           callback(null, result);
         }
       });
+    }   
+  });
+};
+
+//find job by job number
+JobService.prototype.findByJobNumber = function(jobnumber, callback){
+  this.getCollection(function(error, job_collection){
+    if(error){
+      callback(error);
+    } else {
+      job_collection.find(
+        {
+          'jobnumber' : jobnumber
+        },        
+        function(error, result){
+          if(error){
+            callback(error);
+          } else {                   
+            callback(null, result);
+          }
+        }
+      );
     }   
   });
 };

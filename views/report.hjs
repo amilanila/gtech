@@ -48,7 +48,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="/job">Dashboard</a></li>
-            <li><a href="/part">Stock</a></li>            
+            <!--<li><a href="/part">Stock</a></li>-->
             <li><a href="/report">Reports</a></li>            
           </ul>          
         </div>
