@@ -847,12 +847,24 @@ app.get('/jobcard/print/:id', function(req, res){
 
 app.get('/jobcardprint/:id', function(req, res){
     var id = req.params.id; 
+    var dateStr = getDescriptiveDateString(new Date());    
 
     if(id != 'Background Image'){
-        jobcardService.findJobcardAndJob(id, function(error, jobcard, job) {     
+        jobcardService.findJobcardAndJob(id, function(error, jobcard, job) {   
+
+            var taskTmp = '' + jobcard.task;
+            var taskArr = taskTmp.split(',');
+
+            for(var x = 0; x < taskArr.length; x++){
+                var val = taskArr[x];
+                console.log(">>>>>>>>>> " + val);
+            }
+
             res.render('printjobcard', {
                 'jobcard': jobcard,
-                'job': job
+                'job': job,
+                'dateStr': dateStr,
+                'taskArr': taskArr
             });
         });    
     } else {

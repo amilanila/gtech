@@ -25,6 +25,10 @@
     .item-list-table table tr td {
       border: 1px solid black;
     }
+
+    ul {
+      list-style-type: none;
+    }
     -->
     </style>
     <!--[if IE]>
@@ -32,12 +36,187 @@
     <![endif]-->
   </head>
   <body>
-    {{#jobcard}}
-        {{jobnumber}}
-    {{/jobcard}}
-    <br/>
-    {{#job}}
-        {{fname}}
-    {{/job}}
+  	
+<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+<tr valign="top">
+<td style="border-width : 0px;"><br />
+	<div align="center"><span style="font-family: Courier; font-weight: bold; font-style: normal; text-decoration: none; vertical-align: sub;"><font size="6">Workshop Job Card</font></span></div>
+</td>
+</tr>
+</table>
+</div>
+
+<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+<tr valign="top">
+<td style="border-width : 0px;" width="50%">
+<img src="/images/logo.jpg" width="720" height="88" alt="" title="" />
+</td>
+<td style="border-width : 0px;">
+
+<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+<tr valign="top">
+<td style="border-width : 0px;">
+	<b>Name</b>
+</td>
+<td style="border-width : 0px;">
+	{{#job}}
+    {{fname}} {{lname}}
+  {{/job}}	
+</td>
+</tr>
+<tr valign="top">
+<td style="border-width : 0px;">
+<b>	Address
+</b></td>
+<td style="border-width : 0px;">
+	 {{#job}}
+    {{addressstreet}}, {{addresssuburb}}, {{addressstate}} {{addresspostcode}}
+  {{/job}}  
+</td>
+</tr>
+<tr valign="top">
+<td style="border-width : 0px;">
+	<b>Phone</b>
+</td>
+<td style="border-width : 0px;">
+   {{#job}}
+    {{contact}}
+  {{/job}}  
+</td>
+</tr>
+</table>
+</div>
+
+</td>
+</tr>
+</table>
+
+
+<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
+<tr valign="top">
+<td style="border-width : 0px;" width="15%">
+<b>Make/Model</b>
+</td>
+<td style="border-width : 0px;" width="35%">
+  {{#job}}
+    {{make}} - {{model}}
+  {{/job}}
+</td>
+<td style="border-width : 0px;" width="15%">
+<b>Date</b>
+</td>
+<td style="border-width : 0px;" width="35%">
+  {{#dateStr}}
+    {{dateStr}}
+  {{/dateStr}}
+</td>
+</tr>
+<tr valign="top">
+<td style="border-width : 0px;">
+<b>Year</b>
+</td>
+<td style="border-width : 0px;">
+  {{#job}}
+    {{yom}}
+  {{/job}}
+</td>
+<td style="border-width : 0px;">
+</td>
+<td style="border-width : 0px;">
+</td>
+</tr>
+<tr valign="top">
+<td style="border-width : 0px;">
+<b>Type</b>
+</td>
+<td style="border-width : 0px;">
+</td>
+<td style="border-width : 0px;">
+<b>VIN</b>
+</td>
+<td style="border-width : 0px;">
+  {{#job}}
+    {{vin}}
+  {{/job}}
+</td>
+</tr>
+<tr valign="top">
+<td style="border-width : 0px;">
+<b>Reg. number</b>
+</td>
+<td style="border-width : 0px;">
+  {{#job}}
+    {{rego}}
+  {{/job}}
+</td>
+<td style="border-width : 0px;">
+<b>Engine no.</b>
+</td>
+<td style="border-width : 0px;">
+  {{#job}}
+    {{eno}}
+  {{/job}}
+</td>
+</tr>
+<tr valign="top">
+<td style="border-width : 0px;">
+<b>Odometer</b>
+</td>
+<td style="border-width : 0px;">
+  {{#job}}
+    {{odo}}
+  {{/job}}
+</td>
+<td style="border-width : 0px;">
+</td>
+<td style="border-width : 0px;">
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+
+
+<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="1" cellpadding="0" cellspacing="0">
+<tr>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="5%"><b><div align="center">No.</div></b>
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="20%"><b><div align="center">Request</div></b>
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="40%"><b><div align="center">Job Description</div></b>
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="10%"><b><div align="center">Timing</div></b>
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="25%"><b><div align="center">Notes</div></b>
+</td>
+</tr>
+<tr>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid; margin-top:25px;" width="5%" valign="top">
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid; margin-top:25px;" width="20%" valign="top">
+  {{#jobcard}}
+    {{clientrequest}}
+  {{/jobcard}}
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="40%" valign="top">
+  {{#taskArr}}
+    <ul>
+      <li>{{.}}</li>
+    </ul>
+  {{/taskArr}}
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="10%" valign="top">
+</td>
+<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="25%" valign="top">
+  {{#jobcard}}
+    {{note}}
+  {{/jobcard}}
+</td>
+</tr>
+</table>
+</div>
+
   </body>
 </html>
