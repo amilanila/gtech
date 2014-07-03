@@ -103,6 +103,14 @@ app.get('/', function(req, res){
     jobcardService.findAll(function( error, jobcards) {
         varJobCards = jobcards;       
     });
+
+    taskService.findAll(function( error, tasks) {
+        varTasks = tasks;
+        for(var i=0; i<tasks.length; i++){
+            var taskTmp = tasks[i];
+            varTasksMap[taskTmp.id] = taskTmp.name;
+        }
+    });
 });
 
 /////////////////////////////////////// Manufactures ////////////////////////////////
