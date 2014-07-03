@@ -56,6 +56,7 @@ var varJobs = null;
 var varTasks = null;
 var varJobCards = null;
 var makeModelMap = {};
+var varTasksMap = {};
 
 /////////////////////////////////////// Root ////////////////////////////////////////
 app.get('/', function(req, res){
@@ -534,6 +535,12 @@ app.post('/task/save', function(req, res){
 app.get('/task', function(req, res){
     taskService.findAll(function( error, tasks) {
         varTasks = tasks;
+
+        for(var i=0; i<tasks.length; i++){
+            var taskTmp = tasks[i];
+            varTasksMap[taskTmp.id] = taskTmp.name;
+        }
+
         res.render('index', {
             'title': 'Tasks',
             'tasks': tasks
@@ -854,17 +861,18 @@ app.get('/jobcardprint/:id', function(req, res){
 
             var taskTmp = '' + jobcard.task;
             var taskArr = taskTmp.split(',');
+            var tasks = new Array();
 
             for(var x = 0; x < taskArr.length; x++){
                 var val = taskArr[x];
-                console.log(">>>>>>>>>> " + val);
+                tasks.push(varTasksMap[val]);
             }
 
             res.render('printjobcard', {
                 'jobcard': jobcard,
                 'job': job,
                 'dateStr': dateStr,
-                'taskArr': taskArr
+                'tasks': tasks
             });
         });    
     } else {
