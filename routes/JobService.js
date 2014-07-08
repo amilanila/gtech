@@ -189,25 +189,25 @@ JobService.prototype.remove = function(id, callback){
 }
 
 JobService.prototype.getJobsSummary = function(params, callback){
-  this.getCollection(function(error, job_collection){
+  var startDate = params['start'];
+  var endDate = params['end'];
+  var sts = params['status'];
 
+  var criteria = {};
+  if(sts != undefined && sts != '-') {
+    criteria['status'] = sts;
+  }
+
+  this.getCollection(function(error, job_collection){
     if(error){
       callback(error);
-    } else {
-      var start = new Date(2014, 3, 1);
-      var end = new Date(2014, 6, 1);
-
-      job_collection.find(
-        {
-          created_at: {$gte: start, $lt: end}
-        }, 
-        function(error, result){
-        if(error){
-          callback(error);
-        } else {          
-          callback(null, result);
+    } else {      
+      job_collection.find(criteria, function(error, result){
+          result.toArray(function(err, jobsArr){
+            callback(null, jobsArr);
+          });
         }
-      });
+      );
     }   
   });
 }

@@ -798,8 +798,9 @@ app.get('/printjob/:id', function(req, res){
 app.get('/report/jobsummary', function(req, res){
     var s = req.query.start;
     var e = req.query.end;
+    var status = req.query.status;
 
-    var url = 'http://localhost:3000/jobsummary?start=' + s + '&end=' + e;
+    var url = 'http://localhost:3000/jobsummary?start=' + s + '&end=' + e + '&status=' + status;
 
     var filename = 'job-summary-report';
     jobService.convertToPdf(filename, url , function(error, doc){                        
@@ -823,9 +824,7 @@ app.get('/jobsummary', function(req, res){
     var startStr = getDescriptiveDateString(startDate);
     var endStr = getDescriptiveDateString(endDate);
 
-    //jobService.getJobsSummary(parameters, function(error, jobs){
-    jobService.findAll(function(error, jobs){
-
+    jobService.getJobsSummary(parameters, function(error, jobs){
         var len = 0;
         if(jobs != undefined && jobs != null){
             len = jobs.length;
@@ -833,9 +832,7 @@ app.get('/jobsummary', function(req, res){
 
         for(var i=0; i<len; i++){
             var createDate = getDescriptiveDateString(jobs[i].created_at);
-            //var completeDate = getDescriptiveDateString(jobs[i].completedate);
-            jobs[i].created_at = createDate;
-            //jobs[i].completedate = completeDate;
+            jobs[i].created_at = createDate;    
         }
 
         res.render('jobsummary', {

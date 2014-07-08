@@ -235,7 +235,8 @@ $(document).ready(function () {
 
 		var start = $('#reportStartDate').val();
 		var end = $('#reportEndDate').val();
+		var status = $('#status').val();
 
-		window.location.href = action + '?start=' + start + '&end=' + end;
+		window.location.href = action + '?start=' + start + '&end=' + end + '&status=' + status;
 	});
 });
