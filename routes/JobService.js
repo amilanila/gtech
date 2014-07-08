@@ -116,7 +116,8 @@ JobService.prototype.save = function(jobs, callback) {
 
         for( var i =0;i< jobs.length;i++ ) {
           job = jobs[i];
-          job.created_at = new Date();
+          var d = new Date();
+          job.created_at = d.getTime();
         }
 
         job_collection.insert(jobs, function() {
@@ -189,14 +190,20 @@ JobService.prototype.remove = function(id, callback){
 }
 
 JobService.prototype.getJobsSummary = function(params, callback){
-  var startDate = params['start'];
-  var endDate = params['end'];
+  var millsInDay = 3600 * 24 * 1000;
+  var start = params['start'];
+  var end = parseInt(params['end']) + millsInDay;
   var sts = params['status'];
+
 
   var criteria = {};
   if(sts != undefined && sts != '-') {
     criteria['status'] = sts;
   }
+
+  
+  console.log(">>>>>>>>>>>>>>>>>>>> " + start);
+  console.log(">>>>>>>>>>>>>>>>>>>> " + end);
 
   this.getCollection(function(error, job_collection){
     if(error){
