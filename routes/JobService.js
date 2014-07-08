@@ -194,29 +194,46 @@ JobService.prototype.getJobsSummary = function(params, callback){
   var start = params['start'];
   var end = parseInt(params['end']) + millsInDay;
   var sts = params['status'];
-
-
-  var criteria = {};
-  if(sts != undefined && sts != '-') {
-    criteria['status'] = sts;
-  }
-
   
-  console.log(">>>>>>>>>>>>>>>>>>>> " + start);
-  console.log(">>>>>>>>>>>>>>>>>>>> " + end);
-
-  this.getCollection(function(error, job_collection){
-    if(error){
-      callback(error);
-    } else {      
-      job_collection.find(criteria, function(error, result){
+  if(sts != undefined && sts != '-') {
+    this.getCollection(function(error, job_collection){
+      job_collection.find(
+      {
+        $and: 
+        [
+          {
+            'created_at': {
+                          $gte: parseInt(start),
+                          $lt: parseInt(end)                        
+                        }
+          },
+          {
+            'status': sts
+          }
+        ]
+      }, function(error, result){
           result.toArray(function(err, jobsArr){
             callback(null, jobsArr);
           });
         }
       );
-    }   
-  });
+    });    
+  } else {    
+    this.getCollection(function(error, job_collection){
+      job_collection.find(
+      {
+        'created_at': {
+                        $gte: parseInt(start),
+                        $lt: parseInt(end)                        
+                      }
+      }, function(error, result){
+          result.toArray(function(err, jobsArr){
+            callback(null, jobsArr);
+          });
+        }
+      );
+    });
+  }
 }
 
 JobService.prototype.convertToPdf = function(filename, url, callback){  

@@ -831,8 +831,14 @@ app.get('/jobsummary', function(req, res){
         }
 
         for(var i=0; i<len; i++){
-            var createDate = getDescriptiveDateString(jobs[i].created_at);
+            var dateTmp1 = new Date(jobs[i].created_at);
+            var createDate = getDescriptiveDateString(dateTmp1);
             jobs[i].created_at = createDate;    
+
+            if(jobs[i].completedate.length > 0){
+                var dateTmp2 = new Date(jobs[i].completedate);                    
+                jobs[i].completedate = getDescriptiveDateString(dateTmp2);;    
+            }            
         }
 
         res.render('jobsummary', {

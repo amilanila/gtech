@@ -81,8 +81,9 @@
                           <option value="Pickedup">Pickedup</option>                          
                       </select>                                                                  
                     </div>
+                    <br/>
                     <div class="form-group">                      
-                      <label for="note">Date Range</label><br/>        
+                      <label for="note">Job created date</label><br/>
                       <div id="reportrange" > 
                         <div>
                           <i class="icon-calendar icon-large"></i>
