@@ -323,7 +323,8 @@ app.post('/job/save', function(req, res){
     if(id == '-1'){        
         id = crypto.randomBytes(20).toString('hex');
 
-        var timestamp = getDateString();
+        var now = new Date();
+        var timestamp = getDateString(now);
         idGenerationService.findAll(function(error, idnumbers){
 
             var jobIndex = 1;
@@ -748,7 +749,8 @@ app.get('/report', function(req, res){
 // --> Print job invoice
 app.get('/job/print/:id', function(req, res){
     var id = req.params.id; 
-    var dateStr = getDateString();
+    var now = new Date();
+    var dateStr = getDateString(now);
 
     jobService.findOne(id, function( error, job) {       
         idGenerationService.findAll(function(error, idnumbers){
@@ -800,9 +802,13 @@ app.get('/report/jobsummary', function(req, res){
     var e = req.query.end;
     var status = req.query.status;
 
+    var sStr = getDateString(new Date(parseInt(s)));
+    var eStr = getDateString(new Date(parseInt(e)));
+
     var url = 'http://localhost:3000/jobsummary?start=' + s + '&end=' + e + '&status=' + status;
 
-    var filename = 'job-summary-report';
+    var filename = 'job-summary-report-' + sStr + '-to-' + eStr;
+
     jobService.convertToPdf(filename, url , function(error, doc){                        
         res.redirect('/job/download/'+ filename + '.pdf');                
     });
@@ -905,13 +911,12 @@ app.get('/job/download/:filename', function(req, res){
 });
 
 ///////////////////////////// utils //////////////////////////
-function getDateString(){
+function getDateString(date){
     // get id custom identification number
-    var now = new Date();
-    var strYear = '' + now.getFullYear();
-    var strMonth = (now.getMonth()+1) < 10 ? '0' + (now.getMonth()+1) : '' + (now.getMonth()+1);
-    var strDate = now.getDate() < 10 ? '0' + now.getDate() : '' + now.getDate();
-    var timestamp = strYear + strMonth + strDate;
+    var strYear = '' + date.getFullYear();
+    var strMonth = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : '' + (date.getMonth()+1);
+    var strDate = date.getDate() < 10 ? '0' + date.getDate() : '' + date.getDate();
+    var timestamp = strDate + strMonth + strYear;
 
     return timestamp;
 }
