@@ -37,7 +37,8 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var initService = new InitService('localhost', 27017);
+var initService = new InitService(config.db.host, config.db.port, config.db.schema);
+
 initService.db(function(error, db){
     this.manufactureService = new ManufactureService(db);
     this.modelService = new ModelService(db);

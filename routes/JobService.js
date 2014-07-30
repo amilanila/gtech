@@ -1,7 +1,6 @@
 var BSON = require('mongodb').BSON,
     ObjectID = require('mongodb').ObjectID,
     fs = require("fs"),
-    PDFDocument = require('pdfkit'),
     path = require('path'),
     childProcess = require('child_process'),
     phantomjs = require('phantomjs'),
@@ -241,119 +240,6 @@ JobService.prototype.convertToPdf = function(filename, url, callback){
   childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
     callback();   
   });
-}
-
-/* This is no longer being used. Keep it as a reference */
-JobService.prototype.createPrint = function(job, callback){
-  var filename = job.rego + ".pdf";
-  var file = __dirname + "\\..\\public\\prints\\" + filename;
-
-  var doc = new PDFDocument();                        
-  doc.pipe(fs.createWriteStream(file));  
-
-  doc.fontSize(22);
-  doc.font('Times-Roman')
-    .text('GTech Auto Care');
-
-  doc.lineWidth(1)
-  doc.lineCap('butt')
-    .moveTo(60, 100)
-    .lineTo(550, 100)
-    .stroke();  
-
-  var y = 120;
-  var vehicleInfoTitleX = 60;
-  var vehicleInfoValueX = 120;
-  
-  var contactInfoTitleX = 300;
-  var contactInfoValueX = 420;
-
-  var titleFontSize = 14;
-  var valueFontSize = 12;
-
-  // headers
-  doc.fontSize(16); 
-  doc.text('Vehicle Information', vehicleInfoTitleX, y - 5);
-  doc.text('Contact Information', contactInfoTitleX, y - 5);
-  
-  // vehicle information
-  doc.fontSize(titleFontSize); 
-  doc.text('Make', vehicleInfoTitleX, y + 20);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.make, vehicleInfoValueX, y + 20);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('Model', vehicleInfoTitleX, y + 40);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.model, vehicleInfoValueX, y + 40);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('YOM', vehicleInfoTitleX, y + 60);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.yom, vehicleInfoValueX, y + 60);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('Rego', vehicleInfoTitleX, y + 80);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.rego, vehicleInfoValueX, y + 80);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('ODO', vehicleInfoTitleX, y + 100);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.odo + ' km', vehicleInfoValueX, y + 100);
-
-  // contact information
-  doc.fontSize(titleFontSize); 
-  doc.text('First Name', contactInfoTitleX, y + 20);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.fname, contactInfoValueX, y + 20);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('Last Name', contactInfoTitleX, y + 40);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.lname, contactInfoValueX, y + 40);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('Contact', contactInfoTitleX, y + 60);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.contact, contactInfoValueX, y + 60);
-
-  doc.fontSize(titleFontSize); 
-  doc.text('Address', contactInfoTitleX, y + 80);
-  doc.fontSize(valueFontSize); 
-  doc.text(job.addressstreet, contactInfoValueX, y + 80);
-  doc.text(job.addresssuburb, contactInfoValueX, y + 100);
-  doc.text(job.addressstate, contactInfoValueX, y + 120);
-  doc.text(job.addresspostcode, contactInfoValueX + 25, y + 120);  
-
-  // Job information
-  doc.fontSize(16); 
-  doc.text('Job Information', vehicleInfoTitleX, y + 160);
-  doc.fontSize(valueFontSize); 
-  
-  var serviceTypeCodeNameMap = {};
-  for (var i = job.serviceTypesDetailed.length - 1; i >= 0; i--) {
-    var x = job.serviceTypesDetailed[i];
-    serviceTypeCodeNameMap[x.code] = x.name;
-  };
-  
-  var serviceTypeInitY = y + 180;
-  var serviceTypeIntiX = vehicleInfoTitleX + 20;
-  
-  doc.fontSize(titleFontSize); 
-  doc.text('Service', vehicleInfoTitleX, serviceTypeInitY);
-  serviceTypeInitY += 20;
-
-  doc.fontSize(valueFontSize); 
-  for (var i = job.servicetypes.length - 1; i >= 0; i--) {
-    var serviceTypeCode = job.servicetypes[i];
-    var serviceTypeName = serviceTypeCodeNameMap[serviceTypeCode];
-    doc.text("* " + serviceTypeName, serviceTypeIntiX, serviceTypeInitY);
-    serviceTypeInitY += 20;
-  };
-
-  doc.end(); 
-  callback(doc);
 }
 
 exports.JobService = JobService;

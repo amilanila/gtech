@@ -1,5 +1,6 @@
 var page = require('webpage').create(),
-    system = require('system');
+    system = require('system'),
+    config = require('../config.json');
 
 page.paperSize = {
   format: 'A4',
@@ -16,8 +17,8 @@ page.open(url, function (status) {
         phantom.exit();
     } else {        
         window.setTimeout(function () {  
-            // TODO: read from config          
-            var str = 'C:/documents/personal/project/gtech/public/prints/' + filename + '.pdf';
+            var str = config.print.location + filename + '.pdf';
+            //var str = 'C:/documents/personal/project/gtech/public/prints/' + filename + '.pdf';
             //var str = 'E:/mystuff/workspace/gtech/public/prints/' + filename + '.pdf';
             page.render(str);
             phantom.exit();
