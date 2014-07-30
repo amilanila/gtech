@@ -16,7 +16,8 @@ var express = require('express'),
     idGenerationService = require('./routes/IDGenerationService').IDGenerationService,
     jobcardService = require('./routes/JobCardService').JobCardService,    
     partService = require('./routes/PartService').PartService,    
-    fs = require("fs");
+    fs = require("fs"),
+    config = require('./config.json');
 
 var app = express();
 
