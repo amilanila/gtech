@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{{{ title }}}</title>        
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link rel='stylesheet' href='/stylesheets/jquery-ui.css' />
+    <link rel='stylesheet' href='/stylesheets/daterangepicker.css' />
+    <script src='/javascript/jquery.min.js'></script>
+    <script src='/javascript/jquery-ui.min.js'></script>
+    <script src='/javascript/bootstrap.min.js'></script>
+    <script src='/javascript/date.js'></script>
+    <script src='/javascript/daterangepicker.js'></script>
+    <script src='/javascript/gtech.js'></script>
+    
+  </head>
+  <body>    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="/job">Dashboard</a></li>
+            <!--<li><a href="/part">Stock</a></li>-->
+            <li><a href="/report">Reports</a></li>            
+          </ul>          
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <!-- Nav tabs -->
+          <ul id="mainTab" class="nav nav-tabs">
+            <li><a href="#auth" data-toggle="tab">Authentication</a></li>            
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+
+            <!-- Report tab-->
+            <div class="tab-pane" id="auth">
+              <div class="table-responsive">
+                <div class="row">
+
+                 <form role="authForm" method="post" action="/auth/save">                
+                    <div class="form-group">                    
+                      <label for="name">Key</label>
+                      <input type="text" class="form-control" id="authkey" name="authkey" placeholder="Key">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sml pull-right">Save</button>                                      
+                  </form> 
+                </div>
+              </div>  
+            </div>
+
+          </div>
+        </div>
+      </div>  
+    </div>  
+  </body>
+</html>

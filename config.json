@@ -9,5 +9,11 @@
     "print":
     {
     	"location": "C:/documents/personal/project/gtech/public/prints/"
-    }
+    },
+    "application":
+    {
+        "host": "localhost",
+        "port": "3000"
+    },
+    "key": "amilanila@gmail.com1"
 }

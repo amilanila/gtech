@@ -23,6 +23,8 @@ $(document).ready(function () {
 			selector = "#mainTab a[href=\"#part\"]";			
 		} else if(pathName.indexOf('report') > -1){
 			selector = "#mainTab a[href=\"#report\"]";			
+		} else if(pathName.indexOf('auth') > -1){
+			selector = "#mainTab a[href=\"#auth\"]";			
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			selector = "#mainTab a[href=\"#job\"]";			
 		}

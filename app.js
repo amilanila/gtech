@@ -16,6 +16,7 @@ var express = require('express'),
     idGenerationService = require('./routes/IDGenerationService').IDGenerationService,
     jobcardService = require('./routes/JobCardService').JobCardService,    
     partService = require('./routes/PartService').PartService,    
+    authService = require('./routes/AuthenticationService').AuthenticationService,    
     fs = require("fs"),
     config = require('./config.json');
 
@@ -49,6 +50,7 @@ initService.db(function(error, db){
     this.idGenerationService = new IDGenerationService(db);
     this.jobcardService = new JobCardService(db);
     this.partService = new PartService(db);
+    this.authService = new AuthenticationService(db);
 });
 
 var varManufacturers = null;
@@ -60,8 +62,20 @@ var varJobCards = null;
 var makeModelMap = {};
 var varTasksMap = {};
 
+var authenticate = function(){
+    authService.findAll(function( error, auths) {
+        var authkey = auths[0].authkey;    
+        if(authkey != config.key){
+            server.listen(3000, function() {
+                throw new Error();
+            });
+        }
+    });    
+}
 /////////////////////////////////////// Root ////////////////////////////////////////
 app.get('/', function(req, res){
+    authenticate();
+
     manufactureService.findAll(function( error, manufacturers) {
         varManufacturers = manufacturers;    
     });
@@ -142,6 +156,7 @@ app.post('/manufacturer/save', function(req, res){
 });
 
 app.get('/manufacturer', function(req, res){
+    authenticate();
     manufactureService.findAll(function( error, manufacturers) {
         varManufacturers = manufacturers;
         res.render('index', {
@@ -152,6 +167,7 @@ app.get('/manufacturer', function(req, res){
 });
 
 app.get('/manufacturer/:id', function(req, res){
+    authenticate();
 	var id = req.params.id;	
 	manufactureService.findOne(id, function(error, manufacturer){
 		res.render('index', {
@@ -163,6 +179,7 @@ app.get('/manufacturer/:id', function(req, res){
 });
 
 app.get('/manufacturer/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     manufactureService.remove(id, function( error, docs) {
         res.redirect('/manufacturer')
@@ -202,6 +219,7 @@ app.post('/model/save', function(req, res){
 });
 
 app.get('/model', function(req, res){
+    authenticate();
     modelService.findAll(function( error, models) {
         varModels = models;
 
@@ -226,6 +244,7 @@ app.get('/model', function(req, res){
 });
 
 app.get('/model/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     modelService.findOne(id, function(error, model){
         res.render('index', {
@@ -238,6 +257,7 @@ app.get('/model/:id', function(req, res){
 });
 
 app.get('/model/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     modelService.remove(id, function( error, docs) {
         res.redirect('/model')
@@ -271,6 +291,7 @@ app.post('/servicetype/save', function(req, res){
 });
 
 app.get('/servicetype', function(req, res){
+    authenticate();
 	serviceTypeService.findAll(function( error, servicetypes) {
         varServiceTypes = servicetypes;
         res.render('index', {
@@ -281,6 +302,7 @@ app.get('/servicetype', function(req, res){
 });
 
 app.get('/servicetype/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     serviceTypeService.findOne(id, function(error, servicetype){
         res.render('index', {
@@ -292,6 +314,7 @@ app.get('/servicetype/:id', function(req, res){
 });
 
 app.get('/servicetype/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     serviceTypeService.remove(id, function( error, docs) {
         res.redirect('/servicetype')
@@ -416,6 +439,7 @@ app.post('/job/save', function(req, res){
 });
 
 app.get('/job', function(req, res){
+    authenticate();
     jobService.findAll(function( error, jobs) {        
         varJobs = jobs;
         res.render('index', {
@@ -430,6 +454,7 @@ app.get('/job', function(req, res){
 });
 
 app.get('/job/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     jobService.findOne(id, function(error, job){
         res.render('index', {
@@ -444,6 +469,7 @@ app.get('/job/:id', function(req, res){
 });
 
 app.get('/job/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     jobService.remove(id, function( error, docs) {
         res.redirect('/job')
@@ -451,6 +477,7 @@ app.get('/job/remove/:id', function(req, res){
 });
 
 app.get('/search', function(req, res){    
+    authenticate();
     var keyword = req.query.keyword; 
     jobService.search(keyword, function(error, result){
         result.toArray(function(err, jobs){
@@ -468,6 +495,7 @@ app.get('/search', function(req, res){
 
 /////////////////////////////////////// Manual ////////////////////////////////
 app.get('/manual', function(req, res){
+    authenticate();
     manualService.findAll(function( error, manuals) {        
         res.render('index', {
             'title': 'Manuals',
@@ -498,6 +526,7 @@ app.post('/manual/save', function(req, res){
 });
 
 app.get('/manual/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     manualService.remove(id, function( error, docs) {
         res.redirect('/manual')
@@ -505,6 +534,7 @@ app.get('/manual/remove/:id', function(req, res){
 });
 
 app.get('/manual/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     manualService.findOne(id, function(error, manual){
 
@@ -544,6 +574,7 @@ app.post('/task/save', function(req, res){
 });
 
 app.get('/task', function(req, res){
+    authenticate();
     taskService.findAll(function( error, tasks) {
         varTasks = tasks;
 
@@ -560,6 +591,7 @@ app.get('/task', function(req, res){
 });
 
 app.get('/task/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     taskService.findOne(id, function(error, task){
         res.render('index', {
@@ -571,6 +603,7 @@ app.get('/task/:id', function(req, res){
 });
 
 app.get('/task/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     taskService.remove(id, function( error, docs) {
         res.redirect('/task')
@@ -610,6 +643,7 @@ app.post('/jobcard/save', function(req, res){
 });
 
 app.get('/jobcard', function(req, res){
+    authenticate();
     jobcardService.findAll(function( error, jobcards) {
         varJobCards = jobcards;
         res.render('index', {
@@ -621,6 +655,7 @@ app.get('/jobcard', function(req, res){
 });
 
 app.get('/jobcard/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     jobcardService.findOne(id, function(error, jobcard){
         res.render('index', {
@@ -633,6 +668,7 @@ app.get('/jobcard/:id', function(req, res){
 });
 
 app.get('/jobcard/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     jobcardService.remove(id, function( error, docs) {
         res.redirect('/jobcard')
@@ -640,6 +676,7 @@ app.get('/jobcard/remove/:id', function(req, res){
 });
 
 app.get('/jobcard/search/:jobnumber', function(req, res){    
+    authenticate();
     var jobnumber = req.params.jobnumber; 
     jobcardService.search(jobnumber, function(error, result){
         result.toArray(function(err, jobcards){
@@ -710,6 +747,7 @@ app.post('/part/save', function(req, res){
 });
 
 app.get('/part', function(req, res){
+    authenticate();
     partService.findAll(function( error, parts) {
         varParts = parts;
         res.render('parts', {
@@ -722,6 +760,7 @@ app.get('/part', function(req, res){
 });
 
 app.get('/part/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     partService.findOne(id, function(error, part){
         res.render('parts', {
@@ -735,6 +774,7 @@ app.get('/part/:id', function(req, res){
 });
 
 app.get('/part/remove/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     partService.remove(id, function( error, docs) {
         res.redirect('/part')
@@ -743,13 +783,14 @@ app.get('/part/remove/:id', function(req, res){
 
 /////////////////////////////////////// Reports & Printing////////////////////////////////
 app.get('/report', function(req, res){
+    authenticate();
     res.render('report', {
-
     });    
 });
 
 // --> Print job invoice
 app.get('/job/print/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     var now = new Date();
     var dateStr = getDateString(now);
@@ -772,8 +813,8 @@ app.get('/job/print/:id', function(req, res){
             idGenerationService.update(idnumbers[0], function(error, docs){
                 job.invnumber = invNumber;
                 jobService.update(job, function(err, docs){
-                    var url = 'http://localhost:3000/printjob/' + id;
-
+                    var url = 'http://' + config.application.host + ':' + config.application.port + '/printjob/' + id;
+                    
                     var filename = job.rego;
                     jobService.convertToPdf(filename, url , function(error, doc){                                        
                         res.redirect('/job/download/'+ filename + '.pdf');                
@@ -785,6 +826,7 @@ app.get('/job/print/:id', function(req, res){
 });
 
 app.get('/printjob/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     
     var now = new Date();
@@ -800,6 +842,7 @@ app.get('/printjob/:id', function(req, res){
 
 // --> Print job summaries
 app.get('/report/jobsummary', function(req, res){
+    authenticate();
     var s = req.query.start;
     var e = req.query.end;
     var status = req.query.status;
@@ -807,7 +850,7 @@ app.get('/report/jobsummary', function(req, res){
     var sStr = getDateString(new Date(parseInt(s)));
     var eStr = getDateString(new Date(parseInt(e)));
 
-    var url = 'http://localhost:3000/jobsummary?start=' + s + '&end=' + e + '&status=' + status;
+    var url = 'http://' + config.application.host + ':' + config.application.port + '/jobsummary?start=' + s + '&end=' + e + '&status=' + status;
 
     var filename = 'job-summary-report-' + sStr + '-to-' + eStr;
 
@@ -817,6 +860,7 @@ app.get('/report/jobsummary', function(req, res){
 });
 
 app.get('/jobsummary', function(req, res){
+    authenticate();
     var s = req.query.start;
     var e = req.query.end;
     var status = req.query.status;
@@ -859,10 +903,11 @@ app.get('/jobsummary', function(req, res){
 
 // --> Print job card
 app.get('/jobcard/print/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
 
     jobcardService.findOne(id, function(error, jobcard){
-        var url = 'http://localhost:3000/jobcardprint/' + id;
+        var url = 'http://' + config.application.host + ':' + config.application.port + '/jobcardprint/' + id;
 
         var filename = jobcard.jobnumber + '-jobcard';
         jobService.convertToPdf(filename, url , function(error, doc){                                        
@@ -872,6 +917,7 @@ app.get('/jobcard/print/:id', function(req, res){
 });
 
 app.get('/jobcardprint/:id', function(req, res){
+    authenticate();
     var id = req.params.id; 
     var dateStr = getDescriptiveDateString(new Date());    
 
@@ -901,6 +947,7 @@ app.get('/jobcardprint/:id', function(req, res){
 
 // --> Download pdf
 app.get('/job/download/:filename', function(req, res){
+    authenticate();
     var filename = req.params.filename; 
     var file = __dirname + "\\public\\prints\\" + filename;
 
@@ -935,5 +982,21 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
-// check authentication conditions
-//server.close();
+//////////////////////////// Authentication ////////////////////////////
+app.post('/auth/save', function(req, res){
+    var authkey = req.body.authkey;
+    id = crypto.randomBytes(20).toString('hex');
+    authService.save({
+        'id': id,
+        'authkey': authkey
+    }, function( error, docs) {
+        console.log("authentiction key is saved " + authkey);
+    });    
+});
+
+app.get('/auth', function(req, res){
+    res.render('auth', {
+        'title': 'Auth'
+    });
+});
+

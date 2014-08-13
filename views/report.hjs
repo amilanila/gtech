@@ -71,17 +71,6 @@
                   <form role="form" id="jobSummaryForm" method="post" action="/report/jobsummary">               
                     <input type="hidden" id="reportStartDate" value=""/>
                     <input type="hidden" id="reportEndDate" value=""/>
-                    <div class="form-group">
-                      <label for="note">Status</label>        
-                      <select class="form-control job-status" id="status" name="status" placeholder="Job Status" style="width:250px;">                          
-                          <option value="-">- select job status -</option>                          
-                          <option value="New">New</option>                          
-                          <option value="Inprogress">Inprogress</option>                          
-                          <option value="Completed">Completed</option>                          
-                          <option value="Pickedup">Pickedup</option>                          
-                      </select>                                                                  
-                    </div>
-                    <br/>
                     <div class="form-group">                      
                       <label for="note">Job created date</label><br/>
                       <div id="reportrange" > 
