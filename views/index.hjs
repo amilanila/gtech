@@ -32,7 +32,8 @@
           </button>
           <a class="navbar-brand" href="#">GTech Auto Care</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" style="text-align:center;color:white;">
+          <small>All rights reserved: ABN 68521993387 - amilanila@gmail.com - 0415 252 752</small>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Help</a></li>
           </ul>
