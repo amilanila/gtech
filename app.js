@@ -62,20 +62,8 @@ var varJobCards = null;
 var makeModelMap = {};
 var varTasksMap = {};
 
-var authenticate = function(){
-    authService.findAll(function( error, auths) {
-        var authkey = auths[0].authkey;    
-        if(authkey != config.key){
-            server.listen(3000, function() {
-                throw new Error();
-            });
-        }
-    });    
-}
 /////////////////////////////////////// Root ////////////////////////////////////////
 app.get('/', function(req, res){
-    authenticate();
-
     manufactureService.findAll(function( error, manufacturers) {
         varManufacturers = manufacturers;    
     });
@@ -982,15 +970,32 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
+var authenticate = function(){
+    authService.findAll(function( error, auths) {
+        var authkey = auths[0].authkey;    
+        var decipher = crypto.createDecipher(config.alg, config.key);
+        var decrypted = decipher.update(authkey, 'hex', 'utf8') + decipher.final('utf8');
+        if(decrypted != config.abn){
+            server.listen(config.application.port, function() {
+                throw new Error();
+            });
+        }
+    });    
+}
+
 //////////////////////////// Authentication ////////////////////////////
 app.post('/auth/save', function(req, res){
-    var authkey = req.body.authkey;
     id = crypto.randomBytes(20).toString('hex');
+
+    var text = config.abn;
+    var cipher = crypto.createCipher(config.alg, config.key);  
+    var encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
+
     authService.save({
         'id': id,
-        'authkey': authkey
+        'authkey': encrypted
     }, function( error, docs) {
-        console.log("authentiction key is saved " + authkey);
+        console.log("authentiction key is saved " + encrypted);
     });    
 });
 
@@ -999,4 +1004,3 @@ app.get('/auth', function(req, res){
         'title': 'Auth'
     });
 });
-

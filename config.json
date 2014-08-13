@@ -15,5 +15,7 @@
         "host": "localhost",
         "port": "3000"
     },
-    "key": "amilanila@gmail.com1"
+    "key": "amilanila@gmail.com",
+    "alg": "aes256",
+    "abn": "68521993387"
 }
