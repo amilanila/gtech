@@ -921,12 +921,44 @@ app.get('/jobcardprint/:id', function(req, res){
                 tasks.push(varTasksMap[val]);
             }
 
-            res.render('printjobcard', {
-                'jobcard': jobcard,
-                'job': job,
-                'dateStr': dateStr,
-                'tasks': tasks
-            });
+            var vinarr = null;
+            if(job.vin != undefined && job.vin.length == 17){
+                vinarr = new Array();
+                vinarr.push(job.vin.charAt(0));
+                vinarr.push(job.vin.charAt(1));
+                vinarr.push(job.vin.charAt(2));
+                vinarr.push(job.vin.charAt(3));
+                vinarr.push(job.vin.charAt(4));
+                vinarr.push(job.vin.charAt(5));
+                vinarr.push(job.vin.charAt(6));
+                vinarr.push(job.vin.charAt(7));
+                vinarr.push(job.vin.charAt(8));
+                vinarr.push(job.vin.charAt(9));
+                vinarr.push(job.vin.charAt(10));
+                vinarr.push(job.vin.charAt(11));
+                vinarr.push(job.vin.charAt(12));
+                vinarr.push(job.vin.charAt(13));
+                vinarr.push(job.vin.charAt(14));
+                vinarr.push(job.vin.charAt(15));
+                vinarr.push(job.vin.charAt(16));
+            }
+
+            if(vinarr == null){
+               res.render('printjobcard', {
+                    'jobcard': jobcard,
+                    'job': job,
+                    'dateStr': dateStr,
+                    'tasks': tasks
+                });
+            } else {
+               res.render('printjobcard', {
+                    'jobcard': jobcard,
+                    'job': job,
+                    'dateStr': dateStr,
+                    'tasks': tasks,
+                    'vinarr': vinarr
+                }); 
+            }            
         });    
     } else {
         res.redirect('/jobcard');

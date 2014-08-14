@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
-    <meta name="dcterms.created" content="Mon, 23 Jun 2014 07:09:03 GMT">
+    <meta name="dcterms.created" content="Thu, 14 Aug 2014 01:23:48 GMT">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>invoice</title>
+    <title>printjob</title>
     
     <style type="text/css">
     <!--
@@ -15,214 +15,272 @@
       background-color:#FFFFFF;
       background-image:url('Background Image');
       background-repeat:no-repeat;
+      font-family: sans-serif;
     }
-
-    .print-input {
-       border:groove; 
-       text-indent:5px; 
-    }
-
-    .item-list-table table tr td {
-      border: 1px solid black;
-    }
-
-    ul {
-      list-style-type: none;
-    }
+    a  { color:#0000FF; }
+    a:visited { color:#800080; }
+    a:hover { color:#008000; }
+    a:active { color:#FF0000; }
     -->
     </style>
     <!--[if IE]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
-  	
-<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-<tr valign="top">
-<td style="border-width : 0px;"><br />
-	<div align="center"><span style="font-family: Courier; font-weight: bold; font-style: normal; text-decoration: none; vertical-align: sub;"><font size="6">Workshop Job Card</font></span></div>
-</td>
-</tr>
-</table>
-</div>
 
-<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-<tr valign="top">
-<td style="border-width : 0px;" width="50%">
-<img src="/images/logo.jpg" width="500" height="88" alt="" title="" />
-</td>
-<td style="border-width : 0px;">
-
-<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-<tr valign="top">
-<td style="border-width : 0px;">
-	<b>Name</b>
-</td>
-<td style="border-width : 0px;">
-	{{#job}}
-    {{fname}} {{lname}}
-  {{/job}}	
-</td>
-</tr>
-<tr valign="top">
-<td style="border-width : 0px;">
-<b>	Address
-</b></td>
-<td style="border-width : 0px;">
-	 {{#job}}
-    {{addressstreet}}, {{addresssuburb}}, {{addressstate}} {{addresspostcode}}
-  {{/job}}  
-</td>
-</tr>
-<tr valign="top">
-<td style="border-width : 0px;">
-	<b>Phone</b>
-</td>
-<td style="border-width : 0px;">
-   {{#job}}
-    {{contact}}
-  {{/job}}  
-</td>
-</tr>
-</table>
-</div>
-
-</td>
-</tr>
-</table>
-
-
-<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;"><table width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
-<tr valign="top">
-<td style="border-width : 0px;" width="15%">
-<b>Make/Model</b>
-</td>
-<td style="border-width : 0px;" width="35%">
-  {{#job}}
-    {{make}} - {{model}}
-  {{/job}}
-</td>
-<td style="border-width : 0px;" width="15%">
-<b>Date</b>
-</td>
-<td style="border-width : 0px;" width="35%">
-  {{#dateStr}}
-    {{dateStr}}
-  {{/dateStr}}
-</td>
-</tr>
-<tr valign="top">
-<td style="border-width : 0px;">
-<b>Year</b>
-</td>
-<td style="border-width : 0px;">
-  {{#job}}
-    {{yom}}
-  {{/job}}
-</td>
-<td style="border-width : 0px;">
-</td>
-<td style="border-width : 0px;">
-</td>
-</tr>
-<tr valign="top">
-<td style="border-width : 0px;">
-<b>Type</b>
-</td>
-<td style="border-width : 0px;">
-</td>
-<td style="border-width : 0px;">
-<b>VIN</b>
-</td>
-<td style="border-width : 0px;">
-  {{#job}}
-    {{vin}}
-  {{/job}}
-</td>
-</tr>
-<tr valign="top">
-<td style="border-width : 0px;">
-<b>Reg. number</b>
-</td>
-<td style="border-width : 0px;">
-  {{#job}}
-    {{rego}}
-  {{/job}}
-</td>
-<td style="border-width : 0px;">
-<b>Engine no.</b>
-</td>
-<td style="border-width : 0px;">
-  {{#job}}
-    {{eno}}
-  {{/job}}
-</td>
-</tr>
-<tr valign="top">
-<td style="border-width : 0px;">
-<b>Odometer</b>
-</td>
-<td style="border-width : 0px;">
-  {{#job}}
-    {{odo}}
-  {{/job}}
-</td>
-<td style="border-width : 0px;">
-</td>
-<td style="border-width : 0px;">
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-
-
-
-<div style=" text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 0px 0px 0px 0px;">
-<table width="100%" border="1" cellpadding="0" cellspacing="0" height="950px;">
-<thead>
-<th style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="5%"><b><div align="center">No.</div></b>
-</th>
-<th style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="20%"><b><div align="center">Request</div></b>
-</th>
-<th style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="40%"><b><div align="center">Job Description</div></b>
-</th>
-<th style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="10%"><b><div align="center">Timing</div></b>
-</th>
-<th style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="25%"><b><div align="center">Notes</div></b>
-</th>
-</thead>
-<tbody>
-<tr>
-<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid; margin-top:25px;" width="5%" valign="top">
-</td>
-<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid; margin-top:25px; padding-top:18px; padding-left:5px;" width="20%" valign="top">
-  {{#jobcard}}
-    {{clientrequest}}
-  {{/jobcard}}
-</td>
-<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="40%" valign="top">
-  {{#tasks}}
-    <ul>
-      <li>{{.}}</li>
-    </ul>
-  {{/tasks}}
-</td>
-<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid;" width="10%" valign="top">
-</td>
-<td style="border-color : #969696 #969696 #969696 #969696; border-style: solid; padding-top:18px; padding-left:5px;" width="25%" valign="top">
-  {{#jobcard}}
-    {{note}}
-  {{/jobcard}}
-</td>
-</tr>
-</tbody>
-</table>
-</div>
+  <table style="width:100%">
+  	<tr>
+	<td>
+	<div align="right"><label for="date" style="font-size:larger;"><b>Date:</b></label>
+	<input type="text" name="date" value="" style="border-width:3px; height:25px"></div>
+	</td>	
+    </tr>
+	<tr>
+	<td>
+	  <img src="/images/logo.jpg" width="100%" height="88" alt="" title="" />
+	</td>
+	</tr>
+	<tr>
+	<td>
+<div align="center">	<b>  GTECH AUTO CARE - JOB CARD</b><br/>
+<font size="-1">75 Triholm Avenue Laverton VIC 3028 Australia Phone: (03) 9931 1123 - Mobile: 0420 47 17 62 eMail: gtechautocare@gmail.com</font></div> 
+	</td>
+	</tr>
+  </table>
+  <hr />
+  <table style="width:76%">
+  <tr>
+  <td><b><font size="+1">Vehicle</font></b></td>
+  <td></td>
+  <td align="right"><b><font size="+1">Client</font></b></td>
+  </tr>
+  </table>
+  <table width="100%" border="1" cellpadding="3px" cellspacing="0" style="border-color: #c0c0c0; border-style: solid; background-color: #ffffff;">
+  <tr>
+  <td style="width:30%;">Year:
+    {{#job}}
+      {{yom}}
+    {{/job}}
+  </td>
+  <td style="width:30%;">Make:
+    {{#job}}
+      {{make}}
+    {{/job}}
+  </td>
+  <td style="width:40%;">Name:
+    {{#job}}
+      {{fname}} {{lname}}
+    {{/job}}
+  </td>
+  </tr>
+    <tr>
+  <td>Model:
+    {{#job}}
+      {{model}}
+    {{/job}}
+  </td>
+  <td>Type:</td>
+  <td>Address:
+    {{#job}}
+      {{addressstreet}}, {{addresssuburb}}
+    {{/job}}  
+  </td>
+  </tr>
+  <tr>
+  <td>Reg.:
+    {{#job}}
+      {{rego}}
+    {{/job}}
+  </td>
+  <td>Colour:</td>
+  <td>
+    {{#job}}
+      {{addressstate}} {{addresspostcode}}
+    {{/job}}  
+  </td>
+  </tr>
+  <tr>
+  <td>ODO:
+    {{#job}}
+      {{odo}}
+    {{/job}}
+  </td>
+  <td>Engine Number:
+    {{#job}}
+      {{eno}}
+    {{/job}}
+  </td>
+  <td>Phone:
+    {{#job}}
+      {{contact}}
+    {{/job}}  
+  </td>
+  </tr>
+  </table>
+  <br />
+  <div align="center"><b><font size="+1">VIN:</font></b></div>
+  <table align="center" width="50%" border="1" cellpadding="3px" cellspacing="0" style="border-color: #c0c0c0; border-style: solid; background-color: #ffffff;">  
+  <tr style="height:35px;">
+  {{#vinarr}}  
+    <td style="text-align:center; width:25px;">{{.}}</td>       
+  {{/vinarr}}  
+  {{^vinarr}}    
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  {{/vinarr}}
+  </tr>   
+  </table>
+  <br/>
+  <font size="+1">Customer concerns:</font>
+  <table style="width:100%" border="1" cellpadding="3px" cellspacing="0" style="border-color: #c0c0c0; border-style: solid; background-color: #ffffff;">
+  <tr style="height:150px;" valign="top">
+  <td>
+    {{#jobcard}}
+      {{clientrequest}}
+    {{/jobcard}}
+  </td>
+  </tr>
+  </table>
+  <br />
+  <table style="width:100%" border="1" cellpadding="3px" cellspacing="0" style="border-color: #c0c0c0; border-style: solid; background-color: #ffffff;">
+  <tr>
+  <td width="3%"></td>
+  <td width="2%"></td>
+  <td width="30%" align="center"><font size="+1">Problem</font></td>
+  <td width="30%" align="center"><font size="+1">Description</font></td>
+  <td width="35%" align="center"><font size="+1">Comments</font></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">1.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">2.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">3.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">4.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">5.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">6.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">7.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">8.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">9.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">10.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">10.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">11.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">12.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">13.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">14.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  <tr style="height:35px;">
+  <td width="3%"></td>
+  <td width="2%">15.</td>
+  <td width="30%"></td>
+  <td width="30%"></td>
+  <td width="35%"></td>
+  </tr>
+  </table>
+  <br />
   <table  width="100%" border="0" cellpadding="2" cellspacing="2" style="background-color: #ffffff;">
     <tr style="text-align: center;"><td><font size="2">GTECH AUTO CARE - The Quality Workshop - All types of Motor Vehicles - MECHANICAL REPAIRS & SERVICES</font></td></tr>
   </table>
-
   </body>
 </html>

@@ -395,10 +395,10 @@
                               <div class="form-group">
                                 <label for="odo">VIN</label>
                                 {{#job}}                    
-                                  <input type="input" class="form-control" id="vin" name="vin" placeholder="VIN" value="{{{vin}}}">
+                                  <input type="input" class="form-control" maxlength="17" id="vin" name="vin" placeholder="VIN" value="{{{vin}}}">
                                 {{/job}}
                                 {{^job}}
-                                  <input type="input" class="form-control" id="vin" name="vin" placeholder="VIN">
+                                  <input type="input" class="form-control" maxlength="17" id="vin" name="vin" placeholder="VIN">
                                 {{/job}}
                               </div>
                           </div>
