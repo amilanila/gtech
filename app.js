@@ -833,12 +833,11 @@ app.get('/report/jobsummary', function(req, res){
     authenticate();
     var s = req.query.start;
     var e = req.query.end;
-    var status = req.query.status;
 
     var sStr = getDateString(new Date(parseInt(s)));
     var eStr = getDateString(new Date(parseInt(e)));
 
-    var url = 'http://' + config.application.host + ':' + config.application.port + '/jobsummary?start=' + s + '&end=' + e + '&status=' + status;
+    var url = 'http://' + config.application.host + ':' + config.application.port + '/jobsummary?start=' + s + '&end=' + e ;
 
     var filename = 'job-summary-report-' + sStr + '-to-' + eStr;
 

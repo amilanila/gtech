@@ -15,6 +15,7 @@
       background-color:#FFFFFF;
       background-image:url('Background Image');
       background-repeat:no-repeat;
+       font-family: sans-serif;
     }
 
     .print-input {
