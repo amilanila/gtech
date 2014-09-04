@@ -769,6 +769,24 @@ app.get('/part/remove/:id', function(req, res){
     });
 });
 
+/////////////////////////////////////// Dataload ////////////////////////////////
+app.get('/dataload', function(req, res){
+    authenticate();
+    res.render('dataload', {
+    });    
+});
+
+app.post('/dataloadmake/save', function(req, res){
+    var fs = require('fs')
+    fs.readFile(config.dataload.make, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      } 
+      var obj = JSON.parse(data);
+      console.log('>>>>>>>>>>> ' + obj.glossary.title);
+    });
+});
+
 /////////////////////////////////////// Reports & Printing////////////////////////////////
 app.get('/report', function(req, res){
     authenticate();

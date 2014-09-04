@@ -25,6 +25,8 @@ $(document).ready(function () {
 			selector = "#mainTab a[href=\"#report\"]";			
 		} else if(pathName.indexOf('auth') > -1){
 			selector = "#mainTab a[href=\"#auth\"]";			
+		} else if(pathName.indexOf('dataload') > -1){
+			selector = "#mainTab a[href=\"#dataload\"]";			
 		} else if(pathName.indexOf('job') > -1 || pathName == '/'){
 			selector = "#mainTab a[href=\"#job\"]";			
 		}

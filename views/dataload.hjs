@@ -58,35 +58,22 @@
 
           <!-- Nav tabs -->
           <ul id="mainTab" class="nav nav-tabs">
-            <li><a href="#report" data-toggle="tab">Job summary</a></li>            
+            <li><a href="#dataload" data-toggle="tab">Dataload</a></li>            
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
 
             <!-- Report tab-->
-            <div class="tab-pane" id="report">
-              <h2 class="sub-header">Job Summary</h2>
+            <div class="tab-pane" id="dataload">
               <div class="table-responsive">
-                <div class="row">
-
-                  <form role="form" id="jobSummaryForm" method="post" action="/report/jobsummary">               
-                    <input type="hidden" id="reportStartDate" value=""/>
-                    <input type="hidden" id="reportEndDate" value=""/>
-                    <div class="form-group">                      
-                      <label for="note">Job created date</label><br/>
-                      <div id="reportrange" > 
-                        <div>
-                          <i class="icon-calendar icon-large"></i>
-                          <span>
-                            January 1, 2013 - January 31, 2013
-                          </span> <b class="caret"></b>       
-                        </div>                  
-                      </div>        
-                    </div>
-                    <a id="reportJobSummary" class="btn btn-primary pull-right" style="margin-left:15px;" href="#">Generate Report</a>
-                  </form>  
-                </div>
+                <br/>
+                <form role="newManufacturerForm" method="post" action="/dataloadmake/save">   
+                  <div class="row">
+                    <td>Load manufacturers</td>
+                    <td><button type="submit" class="btn btn-primary pull-right">Load Manufacturers</button></td>
+                  </div>
+                </form>
               </div>  
             </div>
 

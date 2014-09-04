@@ -17,5 +17,9 @@
     },
     "key": "amilanila@gmail.com",
     "alg": "aes256",
-    "abn": "68521993387"
+    "abn": "68521993387",
+    "dataload":
+    {
+        "make": "C:/documents/personal/project/gtech/public/dataload/make.json"
+    }
 }
