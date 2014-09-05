@@ -781,9 +781,47 @@ app.post('/dataloadmake/save', function(req, res){
     fs.readFile(config.dataload.make, 'utf8', function (err,data) {
       if (err) {
         return console.log(err);
+      } else {
+        var obj = JSON.parse(data);  
+        var make = obj.make;
+
+        var arr1 = [];
+        var arr2 = [];
+
+        for (var i = make.length - 1; i >= 0; i--) {
+            arr1.push(make[i].name);
+        };
+
+        manufactureService.findAll(function( error, manufacturers) {
+            if(manufacturers != null && manufacturers.length > 0){            
+                for (var j = 0; j < arr1.length; j++) {
+                    var notFound = true;
+                    for(var i = 0; i < manufacturers.length; i++){          
+                        if(manufacturers[i].name == arr1[j]){
+                            notFound = false;
+                        }
+                    }
+                    if(notFound){
+                        arr2.push(arr1[j]);
+                    }
+                };                            
+            } else {
+                arr2 = arr1;
+            }       
+
+
+            for (var i = arr2.length - 1; i >= 0; i--) {
+                console.log('>>>>>>>>>>> ' + arr2[i]);
+                manufactureService.save({
+                    'id': crypto.randomBytes(20).toString('hex'),
+                    'name': arr2[i],
+                    'description': arr2[i]
+                }, function(){
+                    // do nothing                    
+                });    
+            };
+        });
       } 
-      var obj = JSON.parse(data);
-      console.log('>>>>>>>>>>> ' + obj.glossary.title);
     });
 });
 

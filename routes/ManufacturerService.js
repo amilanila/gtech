@@ -110,4 +110,25 @@ ManufacturerService.prototype.remove = function(id, callback){
   });
 }
 
+//search manufacturer with given name
+ManufacturerService.prototype.search = function(keyword, callback){
+  this.getCollection(function(error, manufacturer_collection){
+    if(error){
+      callback(error);
+    } else {      
+      manufacturer_collection.find(        
+        {          
+          "name" : keyword
+        }, 
+        function(error, result){
+        if(error){
+          callback(error);
+        } else {       
+          callback(null, result);
+        }
+      });
+    }   
+  });
+};
+
 exports.ManufacturerService = ManufacturerService;

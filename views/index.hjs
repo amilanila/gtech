@@ -130,6 +130,7 @@
                       <tr>
                         <th>Name</th>
                         <th>Description</th>                            
+                        <th></th>   
                       </tr>
                     </thead>
                     <tbody>
@@ -137,6 +138,7 @@
                         <tr>
                           <td><a href='/manufacturer/{{id}}'>{{{name}}}</a></td>
                           <td>{{{description}}}</td>                        
+                          <td><a class="remove-manufacturer-link" data-id="{{id}}"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
                       {{/manufacturers}}
                     </tbody>
