@@ -1,0 +1,6 @@
+{
+    "servicetype": [
+    	{"name":"Minor service", "description":"Minor service. Change oil, air filter"},
+		{"name":"Major service", "description":"Major service. Change oil, air filter, timing belts, break oil"}
+    ]
+}

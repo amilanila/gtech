@@ -825,6 +825,57 @@ app.post('/dataloadmake/save', function(req, res){
     });
 });
 
+app.post('/dataloadservicetype/save', function(req, res){
+    var fs = require('fs')
+    fs.readFile(config.dataload.servicetype, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      } else {
+        var obj = JSON.parse(data);  
+        var servicetype = obj.servicetype;
+
+        var arr1 = [];
+        var arr2 = [];
+        var map = {};
+
+        for (var i = servicetype.length - 1; i >= 0; i--) {
+            arr1.push(servicetype[i].name);
+            map[servicetype[i].name] = servicetype[i].description;
+        };
+
+        serviceTypeService.findAll(function( error, servicetypes) {
+            if(servicetypes != null && servicetypes.length > 0){            
+                for (var j = 0; j < arr1.length; j++) {
+                    var notFound = true;
+                    for(var i = 0; i < servicetypes.length; i++){          
+                        if(servicetypes[i].name == arr1[j]){
+                            notFound = false;
+                        }
+                    }
+                    if(notFound){
+                        arr2.push(arr1[j]);
+                    }
+                };                            
+            } else {
+                arr2 = arr1;
+            }       
+
+
+            for (var i = arr2.length - 1; i >= 0; i--) {
+                console.log('********** ' + arr2[i]);
+                serviceTypeService.save({
+                    'id': crypto.randomBytes(20).toString('hex'),
+                    'name': arr2[i],
+                    'description': map[arr2[i]]
+                }, function(){
+                    // do nothing                    
+                });    
+            };
+        });
+      } 
+    });
+});
+
 /////////////////////////////////////// Reports & Printing////////////////////////////////
 app.get('/report', function(req, res){
     authenticate();

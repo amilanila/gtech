@@ -70,8 +70,15 @@
                 <br/>
                 <form role="newManufacturerForm" method="post" action="/dataloadmake/save">   
                   <div class="row">
-                    <td>Load manufacturers</td>
+                    <td><strong>Load Manufacturers</strong></td>
                     <td><button type="submit" class="btn btn-primary pull-right">Load Manufacturers</button></td>
+                  </div>
+                </form>
+                <br/>
+                <form role="newServiceTypeForm" method="post" action="/dataloadservicetype/save">   
+                  <div class="row">
+                    <td><strong>Load Service Types</strong></td>
+                    <td><button type="submit" class="btn btn-primary pull-right">Load Service Types</button></td>
                   </div>
                 </form>
               </div>  

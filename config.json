@@ -20,6 +20,7 @@
     "abn": "68521993387",
     "dataload":
     {
-        "make": "C:/documents/personal/project/gtech/public/dataload/make.json"
+        "make": "C:/documents/personal/project/gtech/public/dataload/make.json",
+        "servicetype": "C:/documents/personal/project/gtech/public/dataload/servicetype.json"
     }
 }
