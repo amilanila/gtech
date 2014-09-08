@@ -1,0 +1,8 @@
+{
+    "task": [
+    	{"name":"Change tyre", "description":"Change front wheels"},
+		{"name":"Change oil", "description":"Collect oil to an empty can"},
+		{"name":"Remove front door", "description":"Remove front door for painting"},
+		{"name":"Remove buffer", "description":"Remove buffer for straightening"}		
+    ]
+}

@@ -81,6 +81,13 @@
                     <td><button type="submit" class="btn btn-primary pull-right">Load Service Types</button></td>
                   </div>
                 </form>
+                <br/>
+                <form role="newTaskForm" method="post" action="/dataloadtask/save">   
+                  <div class="row">
+                    <td><strong>Load Tasks</strong></td>
+                    <td><button type="submit" class="btn btn-primary pull-right">Load Tasks</button></td>
+                  </div>
+                </form>
               </div>  
             </div>
 

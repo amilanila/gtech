@@ -876,6 +876,56 @@ app.post('/dataloadservicetype/save', function(req, res){
     });
 });
 
+app.post('/dataloadtask/save', function(req, res){
+    var fs = require('fs')
+    fs.readFile(config.dataload.task, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      } else {
+        var obj = JSON.parse(data);  
+        var task = obj.task;
+
+        var arr1 = [];
+        var arr2 = [];
+        var map = {};
+
+        for (var i = task.length - 1; i >= 0; i--) {
+            arr1.push(task[i].name);
+            map[task[i].name] = task[i].description;
+        };
+
+        taskService.findAll(function( error, tasks) {
+            if(tasks != null && tasks.length > 0){            
+                for (var j = 0; j < arr1.length; j++) {
+                    var notFound = true;
+                    for(var i = 0; i < tasks.length; i++){          
+                        if(tasks[i].name == arr1[j]){
+                            notFound = false;
+                        }
+                    }
+                    if(notFound){
+                        arr2.push(arr1[j]);
+                    }
+                };                            
+            } else {
+                arr2 = arr1;
+            }       
+
+
+            for (var i = arr2.length - 1; i >= 0; i--) {
+                console.log('++++++++++ ' + arr2[i]);
+                taskService.save({
+                    'id': crypto.randomBytes(20).toString('hex'),
+                    'name': arr2[i],
+                    'description': map[arr2[i]]
+                }, function(){
+                    // do nothing                    
+                });    
+            };
+        });
+      } 
+    });
+});
 /////////////////////////////////////// Reports & Printing////////////////////////////////
 app.get('/report', function(req, res){
     authenticate();

@@ -21,6 +21,7 @@
     "dataload":
     {
         "make": "C:/documents/personal/project/gtech/public/dataload/make.json",
-        "servicetype": "C:/documents/personal/project/gtech/public/dataload/servicetype.json"
+        "servicetype": "C:/documents/personal/project/gtech/public/dataload/servicetype.json",
+        "task": "C:/documents/personal/project/gtech/public/dataload/task.json"
     }
 }
