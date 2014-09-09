@@ -179,7 +179,8 @@ app.post('/model/save', function(req, res){
     var id = req.body.id;
     var make = req.body.make;
     var name = req.body.name;
-    var yom = req.body.yom;
+    //var yom = req.body.yom;
+    var yom = '';
     var description = req.body.description;
 
     if(id == '-1'){
