@@ -927,6 +927,63 @@ app.post('/dataloadtask/save', function(req, res){
       } 
     });
 });
+
+app.post('/dataloadmodel/save', function(req, res){
+    var fs = require('fs')
+    fs.readFile(config.dataload.model, 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      } else {
+        var obj = JSON.parse(data);  
+        var model = obj.model;
+
+        var arr1 = [];
+        var arr2 = [];
+        var map = {};
+
+        for (var i = model.length - 1; i >= 0; i--) {
+            arr1.push(model[i].make + "#" + model[i].name);            
+        };
+
+        taskService.findAll(function( error, models) {
+            if(models != null && models.length > 0){            
+                for (var j = 0; j < arr1.length; j++) {
+                    var notFound = true;
+                    for(var i = 0; i < models.length; i++){          
+                        var tmp = arr1[j];
+                        var tmparr = tmp.split("#");
+
+                        if(models[i].make == tmparr[0].trim() && models[i].name == tmparr[1].trim()){
+                            notFound = false;
+                        }
+                    }
+                    if(notFound){
+                        arr2.push(arr1[j]);
+                    }
+                };                            
+            } else {
+                arr2 = arr1;
+            }       
+
+
+            for (var i = arr2.length - 1; i >= 0; i--) {
+                var tmp = arr2[i];
+                var tmparr = tmp.split("#");
+                console.log('^^^^^^^^^^^^^^^ ' + tmparr[0] + ' :: ' + tmparr[1]);
+                modelService.save({
+                    'id': crypto.randomBytes(20).toString('hex'),
+                    'make': tmparr[0],
+                    'name': tmparr[1],
+                    'description': tmparr[1]
+                }, function(){
+                    // do nothing                    
+                });    
+            };
+        });
+      } 
+    });
+});
+
 /////////////////////////////////////// Reports & Printing////////////////////////////////
 app.get('/report', function(req, res){
     authenticate();

@@ -3,6 +3,18 @@
     	{"name":"Minor service", "description":"Minor service. Change oil, air filter"},
 		{"name":"Major service", "description":"Major service. Change oil, air filter, timing belts, break oil"},
 		{"name":"Oil chantge only", "description":"Oil change only"},
-		{"name":"Engine Repair", "description":"Repair engine"}
+		{"name":"Engine Repair", "description":"Repair engine"},
+		{"name":"Safety Service", "description":"Safety Service"},
+		{"name":"Premium Service", "description":"Premium Service"},
+		{"name":"Ultimate Service", "description":"Ultimate Service"},
+		{"name":"Up to five litres of premium semi-synthetic oil", "description":"Up to five litres of premium semi-synthetic oil"},
+		{"name":"Premium oil filter", "description":"Premium oil filter"},
+		{"name":"Fuel system additive", "description":"Fuel system additive"},
+		{"name":"Tyre rotation", "description":"Tyre rotation"},
+		{"name":"Inspection ignition leads and connections", "description":"Inspection ignition leads and connections"},
+		{"name":"Vehicle inspection", "description":"Vehicle inspection"},
+		{"name":"Electronic battery condition check", "description":"Electronic battery condition check"},
+		{"name":"Four standard electronic wheel balances", "description":"Four standard electronic wheel balances"},
+		{"name":"Fleet servicing", "description":"Fleet servicing"}
     ]
 }
