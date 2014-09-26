@@ -1,12 +1,12 @@
 var express = require('express'),
-	routes = require('./routes'),
-	http = require('http'),
-	path = require('path'),
+    routes = require('./routes'),
+    http = require('http'),
+    path = require('path'),
     crypto = require('crypto'),
     Db = require('mongodb').Db,
     Connection = require('mongodb').Connection,
     Server = require('mongodb').Server,
-    InitService = require('./routes/InitService.min').InitService,
+    InitService = require('./routes/InitService.min').InitService
     ManufactureService = require('./routes/ManufacturerService.min').ManufacturerService,
     ModelService = require('./routes/ModelService.min').ModelService,
     ServiceTypeService = require('./routes/ServiceTypeService.min').ServiceTypeService,
@@ -156,14 +156,14 @@ app.get('/manufacturer', function(req, res){
 
 app.get('/manufacturer/:id', function(req, res){
     authenticate();
-	var id = req.params.id;	
-	manufactureService.findOne(id, function(error, manufacturer){
-		res.render('index', {
-			'title': 'Manufacturers',
-			'manufacturer':manufacturer,
-			'manufacturers': varManufacturers
-		});
-	})
+    var id = req.params.id; 
+    manufactureService.findOne(id, function(error, manufacturer){
+        res.render('index', {
+            'title': 'Manufacturers',
+            'manufacturer':manufacturer,
+            'manufacturers': varManufacturers
+        });
+    })
 });
 
 app.get('/manufacturer/remove/:id', function(req, res){
@@ -281,7 +281,7 @@ app.post('/servicetype/save', function(req, res){
 
 app.get('/servicetype', function(req, res){
     authenticate();
-	serviceTypeService.findAll(function( error, servicetypes) {
+    serviceTypeService.findAll(function( error, servicetypes) {
         varServiceTypes = servicetypes;
         res.render('index', {
             'title': 'Service Types',
@@ -312,7 +312,7 @@ app.get('/servicetype/remove/:id', function(req, res){
 
 /////////////////////////////////////// Jobs //////////////////////////////////////
 app.post('/job/save', function(req, res){
-	var id = req.body.id;
+    var id = req.body.id;
     var make = req.body.make;
     var model = req.body.model;
     var yom = req.body.yom;
@@ -527,7 +527,7 @@ app.get('/manual/:id', function(req, res){
     var id = req.params.id; 
     manualService.findOne(id, function(error, manual){
 
-    	var file = __dirname + "\\public\\uploads\\" + manual.id + "\\" + manual.filename;
+        var file = __dirname + "\\public\\uploads\\" + manual.id + "\\" + manual.filename;
         fs.readFile(file, function (err,data){
             res.setHeader('Content-disposition', 'attatchment; filename="' + manual.filename + '"');
             res.setHeader('Content-type', 'application/pdf');
@@ -1213,7 +1213,7 @@ function getDescriptiveDateString(date){
 
 // create server
 var server = http.createServer(app).listen(app.get('port'), function(){
-	console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
 var authenticate = function(){
