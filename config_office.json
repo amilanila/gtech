@@ -1,0 +1,27 @@
+{
+    "db":
+    {
+        "host": "localhost",
+        "port": "27017",
+        "schema": "gtech"
+    },
+    "appname": "Gtech",
+    "print":
+    {
+    	"location": "C:/documents/personal/project/gtech/public/prints/"
+    },
+    "application":
+    {
+        "host": "localhost",
+        "port": "3000"
+    },
+    "key": "amilanila@gmail.com",
+    "alg": "aes256",
+    "abn": "68521993387",
+    "dataload":
+    {
+        "make": "C:/documents/personal/project/gtech/public/dataload/make.json",
+        "servicetype": "C:/documents/personal/project/gtech/public/dataload/servicetype.json",
+        "task": "C:/documents/personal/project/gtech/public/dataload/task.json"
+    }
+}
