@@ -8,7 +8,7 @@
     "appname": "Gtech",
     "print":
     {
-    	"location": "C:/documents/personal/project/gtech/public/prints/"
+        "location": "C:/documents/personal/project/gtech/public/prints/"
     },
     "application":
     {
@@ -22,6 +22,8 @@
     {
         "make": "C:/documents/personal/project/gtech/public/dataload/make.json",
         "servicetype": "C:/documents/personal/project/gtech/public/dataload/servicetype.json",
-        "task": "C:/documents/personal/project/gtech/public/dataload/task.json"
-    }
+        "task": "C:/documents/personal/project/gtech/public/dataload/task.json",
+        "model": "C:/documents/personal/project/gtech/public/dataload/model.json"
+    },
+    "minify": "false"
 }

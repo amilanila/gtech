@@ -1,0 +1,29 @@
+{
+    "db":
+    {
+        "host": "localhost",
+        "port": "27017",
+        "schema": "gtech"
+    },
+    "appname": "Gtech",
+    "print":
+    {
+        "location": "E:/mystuff/workspace/gtech/public/prints/"
+    },
+    "application":
+    {
+        "host": "localhost",
+        "port": "3000"
+    },
+    "key": "amilanila@gmail.com",
+    "alg": "aes256",
+    "abn": "68521993387",
+    "dataload":
+    {
+        "make": "E:/mystuff/workspace/gtech/public/dataload/make.json",
+        "servicetype": "E:/mystuff/workspace/gtech/public/dataload/servicetype.json",
+        "task": "E:/mystuff/workspace/gtech/public/dataload/task.json",
+        "model": "E:/mystuff/workspace/gtech/public/dataload/model.json"
+    },
+    "minify": "true"
+}
