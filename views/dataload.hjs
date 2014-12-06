@@ -71,21 +71,28 @@
                 <form role="newManufacturerForm" method="post" action="/dataloadmake/save">   
                   <div class="row">
                     <td><strong>Load Manufacturers</strong></td>
-                    <td><button type="submit" class="btn btn-primary pull-right">Load Manufacturers</button></td>
+                    <td><button type="submit" class="btn btn-primary pull-right" style="width:160px;">Load Manufacturers</button></td>
+                  </div>
+                </form>
+                <br/>
+                <form role="newModelForm" method="post" action="/dataloadmodel/save">   
+                  <div class="row">
+                    <td><strong>Load Models</strong></td>
+                    <td><button type="submit" class="btn btn-primary pull-right" style="width:160px;">Load Models</button></td>
                   </div>
                 </form>
                 <br/>
                 <form role="newServiceTypeForm" method="post" action="/dataloadservicetype/save">   
                   <div class="row">
                     <td><strong>Load Service Types</strong></td>
-                    <td><button type="submit" class="btn btn-primary pull-right">Load Service Types</button></td>
+                    <td><button type="submit" class="btn btn-primary pull-right" style="width:160px;">Load Service Types</button></td>
                   </div>
                 </form>
                 <br/>
                 <form role="newTaskForm" method="post" action="/dataloadtask/save">   
                   <div class="row">
                     <td><strong>Load Tasks</strong></td>
-                    <td><button type="submit" class="btn btn-primary pull-right">Load Tasks</button></td>
+                    <td><button type="submit" class="btn btn-primary pull-right" style="width:160px;">Load Tasks</button></td>
                   </div>
                 </form>
               </div>  
